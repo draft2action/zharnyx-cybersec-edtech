@@ -4,6 +4,7 @@ import { requireAdmin } from "@/lib/auth/role-guard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { UserTable } from "@/components/admin/user-management/user-table";
 import { MentorApplicationTable } from "@/components/admin/mentor-management/mentor-application-table";
+import { CourseManager } from "@/components/admin/course-management/course-manager";
 import {
   Card,
   CardContent,
@@ -105,20 +106,8 @@ export default async function AdminPage() {
 
               <TabsContent value="course-management">
                 <Card className="bg-black/40 border-white/10 text-white backdrop-blur-sm">
-                  <CardHeader>
-                    <CardTitle className="font-mono text-xl">
-                      Course Management
-                    </CardTitle>
-                    <CardDescription className="text-gray-400 font-mono">
-                      Create, edit, and manage courses.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-center h-40 border-2 border-dashed border-white/10 rounded-md">
-                      <p className="text-gray-500 font-mono">
-                        Course Management Content Placeholder
-                      </p>
-                    </div>
+                  <CardContent className="p-6">
+                    <CourseManager />
                   </CardContent>
                 </Card>
               </TabsContent>

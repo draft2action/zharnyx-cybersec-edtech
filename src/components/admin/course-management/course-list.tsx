@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { User, columns } from "./columns";
 import { DataTable } from "./data-table";
-import { getAllUsers } from "@/actions/admin/user-management/action";
+import { getColumns, Course } from "./columns";
+import { getAllCourses } from "@/actions/admin/course-management/action";
 import {
   Select,
   SelectContent,
@@ -12,8 +12,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function UserTable() {
-  const [data, setData] = useState<User[]>([]);
+interface CourseListProps {
+  onEdit: (courseId: string) => void;
+}
+
+export function CourseList({ onEdit }: CourseListProps) {
+  const [data, setData] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({
     pageIndex: 0,
@@ -21,52 +25,50 @@ export function UserTable() {
   });
   const [pageCount, setPageCount] = useState(0);
 
-  // Search and Filter states
-  const [query, setQuery] = useState(""); // Internal state for input
-  const [searchQuery, setSearchQuery] = useState(""); // Actual query sent to API
-  const [roleFilter, setRoleFilter] = useState("all");
+  const [query, setQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+
+  const fetchData = async () => {
+    setLoading(true);
+    const result = await getAllCourses({
+      page: pagination.pageIndex + 1,
+      limit: pagination.pageSize,
+      query: searchQuery,
+      status: statusFilter,
+    });
+
+    if (result.success && result.data) {
+      const mappedCourses: Course[] = result.data.map((c: any) => ({
+        id: c.id,
+        title: c.title,
+        description: c.description || "",
+        status: c.status,
+        createdAt: new Date(c.createdAt).toString(),
+      }));
+      setData(mappedCourses);
+      setPageCount(result.meta?.totalPages || 0);
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      // API uses 1-based index for page
-      const result = await getAllUsers({
-        page: pagination.pageIndex + 1,
-        limit: pagination.pageSize,
-        query: searchQuery,
-        role: roleFilter,
-      });
-
-      if (result.success && result.data) {
-        // Map DB result to User type if needed, but assuming schema matches for now
-        // Casting raw data to User[] - ensure fields match schema.ts
-        const mappedUsers: User[] = result.data.map((u) => ({
-          id: u.id,
-          name: u.name,
-          email: u.email,
-          role: u.role,
-          createdAt: new Date(u.createdAt),
-        }));
-        setData(mappedUsers);
-        setPageCount(result.meta?.totalPages || 0);
-      }
-      setLoading(false);
-    };
-
     fetchData();
-  }, [pagination, searchQuery, roleFilter]);
+  }, [pagination, searchQuery, statusFilter]);
 
   const handleSearch = () => {
-    setPagination((prev) => ({ ...prev, pageIndex: 0 })); // Reset to first page
+    setPagination((prev) => ({ ...prev, pageIndex: 0 }));
     setSearchQuery(query);
   };
 
+  const columns = getColumns({ onEdit });
+
   return (
-    <div className="container mx-auto py-10">
+    <div className="space-y-4">
       <div className="flex items-center py-4 gap-4">
         <div className="flex flex-1 items-center gap-2">
           <input
-            placeholder="Search users..."
+            placeholder="Search courses..."
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             className="h-10 flex-1 rounded-md border border-white/10 bg-transparent px-3 text-sm text-white placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-slate-400 font-mono"
@@ -79,30 +81,33 @@ export function UserTable() {
           <button
             onClick={handleSearch}
             className="h-10 px-4 rounded-md bg-white/10 text-white hover:bg-white/20 transition-colors text-sm font-medium font-mono"
+            disabled={loading}
           >
             Search
           </button>
         </div>
         <Select
-          value={roleFilter}
+          value={statusFilter}
           onValueChange={(value) => {
-            setRoleFilter(value);
+            setStatusFilter(value);
             setPagination((prev) => ({ ...prev, pageIndex: 0 }));
           }}
         >
           <SelectTrigger className="w-[180px] h-10 border-white/10 bg-transparent text-white font-mono">
-            <SelectValue placeholder="All Roles" />
+            <SelectValue placeholder="All Status" />
           </SelectTrigger>
           <SelectContent className="bg-black border-white/10 text-white font-mono">
-            <SelectItem value="all">All Roles</SelectItem>
-            <SelectItem value="student">Student</SelectItem>
-            <SelectItem value="mentor">Mentor</SelectItem>
-            <SelectItem value="admin">Admin</SelectItem>
+            <SelectItem value="all">All Status</SelectItem>
+            <SelectItem value="published">Published</SelectItem>
+            <SelectItem value="unpublished">Unpublished</SelectItem>
           </SelectContent>
         </Select>
       </div>
+
       {loading ? (
-        <div className="text-white font-mono mx-auto container">Loading...</div>
+        <div className="text-white font-mono text-center py-10">
+          Loading courses...
+        </div>
       ) : (
         <DataTable
           columns={columns}
