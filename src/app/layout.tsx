@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { GlobalLoader } from "@/components/shared/global-loader";
+import { LoaderProvider } from "@/components/shared/loader-context";
+import { Suspense } from "react";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -22,8 +25,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${jetbrainsMono.variable} antialiased`}>
-        {children}
-        <Toaster position="bottom-right" expand={false} />
+        <LoaderProvider>
+          <Suspense fallback={null}>
+            <GlobalLoader />
+          </Suspense>
+          {children}
+          <Toaster position="bottom-right" expand={false} />
+        </LoaderProvider>
       </body>
     </html>
   );

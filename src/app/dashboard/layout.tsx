@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import { getCurrentSession } from "@/lib/auth/role-guard";
-import Link from "next/link";
+import { SignOutButton } from "@/components/auth/sign-out-button";
+import { LogOut } from "lucide-react";
+import { TransitionLink } from "@/components/shared/transition-link";
 
 export default async function DashboardLayout({
   children,
@@ -25,42 +27,50 @@ export default async function DashboardLayout({
                 <h1 className="text-xl font-bold">CyberSec EdTech</h1>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                <Link
+                <TransitionLink
                   href="/dashboard"
                   className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900"
                 >
                   Dashboard
-                </Link>
-                <Link
+                </TransitionLink>
+                <TransitionLink
                   href="/dashboard/student"
                   className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900"
                 >
                   My Learning
-                </Link>
+                </TransitionLink>
                 {(userRole === "admin" || userRole === "mentor") && (
-                  <Link
+                  <TransitionLink
                     href="/dashboard/mentor"
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900"
                   >
                     Mentor Portal
-                  </Link>
+                  </TransitionLink>
                 )}
                 {userRole === "admin" && (
-                  <Link
+                  <TransitionLink
                     href="/dashboard/admin"
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900"
                   >
                     Admin Panel
-                  </Link>
+                  </TransitionLink>
                 )}
               </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center gap-4">
               <div className="shrink-0">
                 <span className="text-sm text-gray-700">
                   {session.user.name} ({userRole})
                 </span>
               </div>
+              <SignOutButton
+                variant="ghost"
+                size="sm"
+                className="text-gray-500 hover:text-gray-900"
+              >
+                <LogOut className="h-4 w-4 mr-2" />
+                Sign Out
+              </SignOutButton>
             </div>
           </div>
         </div>

@@ -139,3 +139,4 @@ export const mentorApplicationRelations = relations(mentorApplication, ({ one })
 // ===============COURSES=================
 
 
+

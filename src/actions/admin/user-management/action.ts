@@ -6,6 +6,8 @@ import { requireAdmin } from "@/lib/auth/role-guard";
 import { eq, like, or, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
+
+// Get All Users
 export async function getAllUsers({
     page = 1,
     limit = 10,
@@ -57,6 +59,7 @@ export async function getAllUsers({
     }
 }
 
+// Update User Role
 export async function updateUserRole(userId: string, newRole: "admin" | "mentor" | "student") {
     try {
         await requireAdmin();

@@ -3,12 +3,18 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
+import { useSession } from "@/lib/auth/auth-client";
+import { SignOutButton } from "@/components/auth/sign-out-button";
+import { Loader2 } from "lucide-react";
+import { TransitionLink } from "@/components/shared/transition-link";
 
 interface NavbarProps {
   className?: string;
 }
 
 export function Navbar({ className }: NavbarProps) {
+  const { data: session, isPending } = useSession();
+
   return (
     <div
       className={cn(
@@ -30,43 +36,64 @@ export function Navbar({ className }: NavbarProps) {
 
         {/* Middle: Nav Links */}
         <div className="flex items-center space-x-8">
-          <Link
+          <TransitionLink
             href="/programs"
             className="text-white hover:text-white/80 transition-colors text-sm font-medium"
           >
             Programs
-          </Link>
+          </TransitionLink>
 
-          <Link
+          <TransitionLink
             href="/projects"
             className="text-white hover:text-white/80 transition-colors text-sm font-medium"
           >
             Projects
-          </Link>
+          </TransitionLink>
 
-          <Link
+          <TransitionLink
             href="/mentors"
             className="text-white hover:text-white/80 transition-colors text-sm font-medium"
           >
             Mentors
-          </Link>
+          </TransitionLink>
 
-          <Link
+          <TransitionLink
             href="/contact"
             className="text-white hover:text-white/80 transition-colors text-sm font-medium"
           >
             Contact
-          </Link>
+          </TransitionLink>
         </div>
 
-        {/* Right: Get Started Button */}
-        <Link
-          href="/auth?mode=signup"
-          className="px-6 py-2 bg-white text-black font-semibold hover:bg-transparent transition-colors text-sm hover:text-white border-2 border-white"
-          style={{ borderRadius: "0px" }} // 90-degree corners for button too
-        >
-          Get Started
-        </Link>
+        {/* Right: Auth Buttons */}
+        <div className="flex items-center gap-4">
+          {isPending ? (
+            <Loader2 className="h-5 w-5 animate-spin text-white" />
+          ) : session ? (
+            <>
+              <TransitionLink
+                href="/dashboard"
+                className="text-white hover:text-white/80 transition-colors text-sm font-medium"
+              >
+                Dashboard
+              </TransitionLink>
+              <SignOutButton
+                variant="default"
+                className="px-6 py-2 bg-white text-black font-semibold hover:bg-transparent transition-colors text-sm hover:text-white border-2 border-white rounded-none"
+              >
+                Sign Out
+              </SignOutButton>
+            </>
+          ) : (
+            <TransitionLink
+              href="/auth?mode=signup"
+              className="px-6 py-2 bg-white text-black font-semibold hover:bg-transparent transition-colors text-sm hover:text-white border-2 border-white"
+              style={{ borderRadius: "0px" }} // 90-degree corners for button too
+            >
+              Get Started
+            </TransitionLink>
+          )}
+        </div>
       </motion.nav>
     </div>
   );
