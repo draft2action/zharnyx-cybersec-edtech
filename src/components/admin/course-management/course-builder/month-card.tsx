@@ -11,13 +11,7 @@ import {
 import { CourseFormValues } from "@/lib/validators/course";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  Trash2,
-  Plus,
-  GripVertical,
-  ChevronDown,
-  ChevronUp,
-} from "lucide-react";
+import { Trash2, GripVertical, ChevronDown, ChevronUp } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -37,6 +31,7 @@ interface MonthCardProps {
   remove: (index: number) => void;
   watch: UseFormWatch<CourseFormValues>;
   setValue: UseFormSetValue<CourseFormValues>; // For manual override if needed
+  mentors?: { id: string; name: string }[];
 }
 
 export function MonthCard({
@@ -47,28 +42,19 @@ export function MonthCard({
   remove,
   watch,
   setValue,
+  mentors = [],
 }: MonthCardProps) {
   const [isExpanded, setIsExpanded] = useState(true);
 
   // Nested Field Array for Weeks
   const {
     fields: weekFields,
-    append: appendWeek,
     remove: removeWeek,
+    replace: replaceWeeks,
   } = useFieldArray({
     control,
     name: `months.${index}.weeks`,
   });
-
-  const addWeek = () => {
-    appendWeek({
-      title: "New Week",
-      order: weekFields.length + 1,
-      isProject: false,
-      resources: [],
-      mentorIds: [],
-    });
-  };
 
   return (
     <Card className="bg-black/20 border-white/10 mb-4">
@@ -94,15 +80,49 @@ export function MonthCard({
           <div className="flex items-center gap-2">
             <Select
               onValueChange={(val) => {
-                // We need to manually create a change handler correctly for RHF with Select
-                // Since register doesn't work directly on shadcn Select
-                // We use the Controller pattern or setValue manually via onValueChange
-                // But wait, Shadcn select is controlled. We should use `Controller` or just use the native select for simplicity if we want to save time,
-                // OR use `setValue` triggered here.
-                // Best way with RHF + Shadcn Select is `Controller` or `setValue`.
+                const newType = val as "common" | "team";
+                setValue(`months.${index}.type`, newType, {
+                  shouldValidate: true,
+                });
 
-                // Let's use `setValue` since we passed it.
-                setValue(`months.${index}.type`, val as "common" | "team");
+                // Auto-generate weeks based on type using replace() to ensure UI sync
+                if (newType === "team") {
+                  const redWeeks = Array.from({ length: 4 }).map((_, i) => ({
+                    title: i === 3 ? "Project Week (Red)" : `Week ${i + 1}`,
+                    order: i + 1,
+                    isProject: i === 3,
+                    team: "red",
+                    resources: [],
+                    mentorIds: [],
+                  }));
+                  const blueWeeks = Array.from({ length: 4 }).map((_, i) => ({
+                    title: i === 3 ? "Project Week (Blue)" : `Week ${i + 1}`,
+                    order: i + 5,
+                    isProject: i === 3,
+                    team: "blue",
+                    resources: [],
+                    mentorIds: [],
+                  }));
+
+                  replaceWeeks([
+                    ...redWeeks,
+                    ...blueWeeks,
+                  ] as CourseFormValues["months"][number]["weeks"]);
+                } else {
+                  // Common - 4 weeks
+                  const commonWeeks = Array.from({ length: 4 }).map((_, i) => ({
+                    title: i === 3 ? "Project Week" : `Week ${i + 1}`,
+                    order: i + 1,
+                    isProject: i === 3,
+                    team: null,
+                    resources: [],
+                    mentorIds: [],
+                  }));
+
+                  replaceWeeks(
+                    commonWeeks as CourseFormValues["months"][number]["weeks"]
+                  );
+                }
               }}
               defaultValue={watch(`months.${index}.type`)}
             >
@@ -157,19 +177,9 @@ export function MonthCard({
                 remove={() => removeWeek(wIndex)}
                 watch={watch}
                 setValue={setValue}
+                mentors={mentors}
               />
             ))}
-
-            <Button
-              type="button"
-              onClick={addWeek}
-              variant="outline"
-              size="sm"
-              className="w-full font-mono border-dashed border-white/10 text-gray-500 hover:text-white hover:bg-white/5 text-xs h-8"
-            >
-              <Plus className="mr-2 h-3 w-3" />
-              Add Week
-            </Button>
           </div>
         </CardContent>
       )}

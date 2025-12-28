@@ -108,3 +108,20 @@ export async function updateMentorApplicationStatus(
         };
     }
 }
+
+// Get Approved Mentors (for dropdowns)
+export async function getApprovedMentors() {
+    try {
+        await requireAdmin();
+        const mentors = await db.select({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+        }).from(user).where(eq(user.role, "mentor"));
+
+        return { success: true, data: mentors };
+    } catch (error) {
+        console.error("Error fetching approved mentors:", error);
+        return { success: false, error: "Failed to fetch mentors" };
+    }
+}

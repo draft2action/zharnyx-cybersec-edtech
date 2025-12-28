@@ -12,7 +12,8 @@ import { toast } from "sonner";
 import { BasicInfo } from "./basic-info";
 import { CurriculumBuilder } from "./curriculum-builder";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getApprovedMentors } from "@/actions/admin/mentor-management/action";
 
 interface CourseBuilderProps {
   courseId?: string | null;
@@ -26,6 +27,22 @@ export function CourseBuilder({
   initialData,
 }: CourseBuilderProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [mentors, setMentors] = useState<{ id: string; name: string }[]>([]);
+
+  useEffect(() => {
+    async function loadMentors() {
+      const res = await getApprovedMentors();
+      if (res.success && res.data) {
+        setMentors(
+          res.data.map((m) => ({
+            id: m.id,
+            name: m.name || m.email || "Unknown",
+          }))
+        );
+      }
+    }
+    loadMentors();
+  }, []);
 
   const form = useForm<CourseFormValues>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -78,7 +95,7 @@ export function CourseBuilder({
     <form
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onSubmit={handleSubmit(onSubmit as any)}
-      className="space-y-8 w-full max-w-4xl mx-auto"
+      className="space-y-8 w-full max-w-screen mx-auto"
     >
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-2xl font-bold font-mono text-white">
@@ -151,6 +168,7 @@ export function CourseBuilder({
             errors={errors}
             watch={watch}
             setValue={setValue}
+            mentors={mentors}
           />
         </section>
       </div>

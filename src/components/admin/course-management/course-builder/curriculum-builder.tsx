@@ -18,6 +18,7 @@ interface CurriculumBuilderProps {
   errors: FieldErrors<CourseFormValues>;
   watch: UseFormWatch<CourseFormValues>;
   setValue: UseFormSetValue<CourseFormValues>;
+  mentors?: { id: string; name: string }[];
 }
 
 export function CurriculumBuilder({
@@ -26,6 +27,7 @@ export function CurriculumBuilder({
   errors,
   watch,
   setValue,
+  mentors = [],
 }: CurriculumBuilderProps) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -37,7 +39,13 @@ export function CurriculumBuilder({
       title: "New Month",
       type: "common",
       order: fields.length + 1,
-      weeks: [],
+      weeks: Array.from({ length: 4 }).map((_, i) => ({
+        title: i === 3 ? "Project Week" : `Week ${i + 1}`,
+        order: i + 1,
+        isProject: i === 3, // Auto-set 4th week as Project
+        resources: [],
+        mentorIds: [],
+      })),
     });
   };
 
@@ -60,6 +68,7 @@ export function CurriculumBuilder({
             remove={remove}
             watch={watch}
             setValue={setValue}
+            mentors={mentors}
           />
         ))}
       </div>

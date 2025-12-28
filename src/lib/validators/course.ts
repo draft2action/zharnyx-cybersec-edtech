@@ -19,8 +19,9 @@ export const WeekResourceSchema = z.object({
 
 export const AssessmentSchema = z.object({
     title: z.string().min(1, "Assessment title is required"),
+    description: z.string().optional(),
     timer: z.number().min(0, "Timer must be positive").default(60), // In minutes
-    questions: z.array(AssessmentQuestionSchema),
+    questions: z.array(AssessmentQuestionSchema).default([]),
 });
 
 export const CourseWeekSchema = z.object({
@@ -29,6 +30,8 @@ export const CourseWeekSchema = z.object({
     order: z.number().int(),
     team: z.enum(["red", "blue"]).optional().nullable(),
     isProject: z.boolean().default(false),
+    projectTitle: z.string().optional(),
+    projectDescription: z.string().optional(),
     content: z.string().optional(), // Rich text or description
     resources: z.array(WeekResourceSchema).optional(),
     assessment: AssessmentSchema.optional().nullable(),
@@ -47,7 +50,8 @@ export const CourseMonthSchema = z.object({
 export const CourseFormSchema = z.object({
     title: z.string().min(3, "Title must be at least 3 characters"),
     description: z.string().min(10, "Description must be at least 10 characters"),
-    image: z.string().url("Invalid Image URL").optional().or(z.literal("")),
+    // image: z.string().url("Invalid Image URL").optional().or(z.literal("")), // Removed as per request
+    image: z.string().optional().nullable(), // Keeping as optional/nullable for DB compatibility if needed, but not validated/used in UI
     status: z.enum(["published", "unpublished"]).default("unpublished"),
     months: z.array(CourseMonthSchema),
 });

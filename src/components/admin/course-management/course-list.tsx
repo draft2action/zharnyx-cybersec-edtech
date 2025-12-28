@@ -29,17 +29,41 @@ export function CourseList({ onEdit }: CourseListProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
 
-  const fetchData = async () => {
+  const fetchCourses = async (overrides?: {
+    pageIndex?: number;
+    pageSize?: number;
+    searchQuery?: string;
+    statusFilter?: string;
+  }) => {
     setLoading(true);
+    const currentPagination = {
+      pageIndex:
+        overrides?.pageIndex !== undefined
+          ? overrides.pageIndex
+          : pagination.pageIndex,
+      pageSize:
+        overrides?.pageSize !== undefined
+          ? overrides.pageSize
+          : pagination.pageSize,
+    };
+    const currentSearchQuery =
+      overrides?.searchQuery !== undefined
+        ? overrides.searchQuery
+        : searchQuery;
+    const currentStatusFilter =
+      overrides?.statusFilter !== undefined
+        ? overrides.statusFilter
+        : statusFilter;
+
     const result = await getAllCourses({
-      page: pagination.pageIndex + 1,
-      limit: pagination.pageSize,
-      query: searchQuery,
-      status: statusFilter,
+      page: currentPagination.pageIndex + 1,
+      limit: currentPagination.pageSize,
+      query: currentSearchQuery,
+      status: currentStatusFilter,
     });
 
     if (result.success && result.data) {
-      const mappedCourses: Course[] = result.data.map((c: any) => ({
+      const mappedCourses: Course[] = result.data.map((c) => ({
         id: c.id,
         title: c.title,
         description: c.description || "",
@@ -53,12 +77,25 @@ export function CourseList({ onEdit }: CourseListProps) {
   };
 
   useEffect(() => {
-    fetchData();
-  }, [pagination, searchQuery, statusFilter]);
+    fetchCourses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSearch = () => {
     setPagination((prev) => ({ ...prev, pageIndex: 0 }));
     setSearchQuery(query);
+    fetchCourses({ pageIndex: 0, searchQuery: query });
+  };
+
+  const handlePaginationChange = (nextPagination: {
+    pageIndex: number;
+    pageSize: number;
+  }) => {
+    setPagination(nextPagination);
+    fetchCourses({
+      pageIndex: nextPagination.pageIndex,
+      pageSize: nextPagination.pageSize,
+    });
   };
 
   const columns = getColumns({ onEdit });
@@ -91,6 +128,7 @@ export function CourseList({ onEdit }: CourseListProps) {
           onValueChange={(value) => {
             setStatusFilter(value);
             setPagination((prev) => ({ ...prev, pageIndex: 0 }));
+            fetchCourses({ statusFilter: value, pageIndex: 0 });
           }}
         >
           <SelectTrigger className="w-[180px] h-10 border-white/10 bg-transparent text-white font-mono">
@@ -114,7 +152,7 @@ export function CourseList({ onEdit }: CourseListProps) {
           data={data}
           pageCount={pageCount}
           pagination={pagination}
-          onPaginationChange={setPagination}
+          onPaginationChange={handlePaginationChange}
         />
       )}
     </div>

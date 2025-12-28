@@ -181,6 +181,8 @@ export const courseWeek = pgTable("course_week", {
   order: integer("order").notNull(),
   team: text("team", { enum: ["red", "blue"] }), // Nullable, only relevant if month type is 'team'
   isProject: boolean("is_project").default(false).notNull(),
+  projectTitle: text("project_title"),
+  projectDescription: text("project_description"),
   content: text("content"), // Description or learning content
   resources: json("resources"), // Array of { title, link }
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -212,8 +214,9 @@ export const assessment = pgTable("assessment", {
     .notNull()
     .references(() => courseWeek.id, { onDelete: "cascade" }),
   title: text("title").notNull(),
+  description: text("description"), // Problem statement
   timer: integer("timer"), // Duration in minutes
-  questions: json("questions").notNull(), // Array of questions
+  questions: json("questions").notNull().default([]), // Keeping for backward compatibility but defaulting to empty
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()

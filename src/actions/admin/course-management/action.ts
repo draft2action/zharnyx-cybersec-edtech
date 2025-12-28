@@ -8,11 +8,13 @@ import {
     assessment,
     weekMentor
 } from "@/lib/db/schema";
-import { eq, desc, asc, like, and, sql } from "drizzle-orm";
+import { eq, desc, asc, like, and } from "drizzle-orm";
 import { requireAdmin } from "@/lib/auth/role-guard";
 import { revalidatePath } from "next/cache";
 import { CourseFormValues } from "@/lib/validators/course";
 import { createId } from "@paralleldrive/cuid2";
+
+// --- CREATE ---
 
 // --- CREATE ---
 
@@ -54,6 +56,8 @@ export async function createFullCourse(data: CourseFormValues) {
                                 order: wIndex + 1,
                                 team: weekData.team || null,
                                 isProject: weekData.isProject,
+                                projectTitle: weekData.projectTitle,
+                                projectDescription: weekData.projectDescription,
                                 content: weekData.content || null,
                                 resources: weekData.resources || [],
                             }).returning();
@@ -64,8 +68,9 @@ export async function createFullCourse(data: CourseFormValues) {
                                     id: createId(),
                                     weekId: newWeek.id,
                                     title: weekData.assessment.title,
+                                    description: weekData.assessment.description,
                                     timer: weekData.assessment.timer,
-                                    questions: weekData.assessment.questions,
+                                    questions: weekData.assessment.questions || [],
                                 });
                             }
 
@@ -105,6 +110,7 @@ export async function getAllCourses({
     query?: string;
     status?: string;
 }) {
+    // ... existing read logic ...
     try {
         await requireAdmin();
         const offset = (page - 1) * limit;
@@ -127,20 +133,7 @@ export async function getAllCourses({
             orderBy: [desc(course.createdAt)],
         });
 
-        // Count for pagination
-        // Note: Drizzle count() with where clause can be tricky, simplified approach:
-        // If we need exact count with filter, we might need a separate query or raw sql
-        // For now, fetching total count of matching records roughly
-        // Or just fetching all ids with filter to count. 
-        // Optimization: separate count query.
-
         // Simple count query:
-        // const totalCount = await db.select({ count: sql`count(*)` }).from(course).where(whereCondition);
-        // But properly typed with drizzle properties:
-
-        // Fallback: simplified total count (without complex filter if needed, OR do a separate count)
-        // Let's do a basic approximate count or just all table count if filtered
-
         const allMatching = await db.select({ id: course.id }).from(course).where(whereCondition);
         const totalCount = allMatching.length;
         const totalPages = Math.ceil(totalCount / limit);
@@ -162,6 +155,7 @@ export async function getAllCourses({
 }
 
 export async function getCourseDetails(courseId: string) {
+    // ... existing get logic ...
     try {
         await requireAdmin();
         const courseData = await db.query.course.findFirst({
@@ -225,15 +219,10 @@ export async function updateFullCourse(courseId: string, data: CourseFormValues)
             // Delete removed months
             const monthsToDelete = [...existingMonthIds].filter(id => !incomingMonthIds.has(id));
             if (monthsToDelete.length > 0) {
-                // Deleting month cascades to weeks? Check schema. Assuming yes or manual delete needed.
-                // For now, let's assume cascade or explicitly delete weeks first if needed.
-                // Safest: Delete months (weeks should cascade delete in robust DB, but Drizzle definition check needed)
-                // If not cascading, we must delete weeks/assessments manually.
-                // Let's rely on manual clean up for now or just delete month and hope for FK cascade. 
-                // If no FK cascade, this might error.
-                // Better: Find weeks for these months and delete them.
-                // For simplicity in this iteration:
-                await tx.delete(courseMonth).where(and(eq(courseMonth.courseId, courseId), sql`${courseMonth.id} IN ${monthsToDelete}`));
+                // Should cascade delete everything via DB FKs
+                for (const mId of monthsToDelete) {
+                    await tx.delete(courseMonth).where(eq(courseMonth.id, mId));
+                }
             }
 
             // Upsert Months
@@ -269,7 +258,9 @@ export async function updateFullCourse(courseId: string, data: CourseFormValues)
                     // Delete removed weeks
                     const weeksToDelete = [...existingWeekIds].filter(id => !incomingWeekIds.has(id));
                     if (weeksToDelete.length > 0) {
-                        await tx.delete(courseWeek).where(and(eq(courseWeek.monthId, currentMonthId), sql`${courseWeek.id} IN ${weeksToDelete}`));
+                        for (const wId of weeksToDelete) {
+                            await tx.delete(courseWeek).where(eq(courseWeek.id, wId));
+                        }
                     }
 
                     // Upsert Weeks
@@ -283,6 +274,8 @@ export async function updateFullCourse(courseId: string, data: CourseFormValues)
                                 order: wIndex + 1,
                                 team: weekData.team || null,
                                 isProject: weekData.isProject,
+                                projectTitle: weekData.projectTitle,
+                                projectDescription: weekData.projectDescription,
                                 content: weekData.content || null,
                                 resources: weekData.resources || [],
                             }).where(eq(courseWeek.id, currentWeekId));
@@ -297,14 +290,14 @@ export async function updateFullCourse(courseId: string, data: CourseFormValues)
                                 order: wIndex + 1,
                                 team: weekData.team || null,
                                 isProject: weekData.isProject,
+                                projectTitle: weekData.projectTitle,
+                                projectDescription: weekData.projectDescription,
                                 content: weekData.content || null,
                                 resources: weekData.resources || [],
                             });
                         }
 
                         // Sync Assessment
-                        // Assessment is 1-to-1 with week.
-                        // Check if assessment exists for this week
                         const existingAssessment = await tx.query.assessment.findFirst({ where: eq(assessment.weekId, currentWeekId) });
 
                         if (weekData.assessment) {
@@ -312,8 +305,9 @@ export async function updateFullCourse(courseId: string, data: CourseFormValues)
                                 // Update
                                 await tx.update(assessment).set({
                                     title: weekData.assessment.title,
+                                    description: weekData.assessment.description,
                                     timer: weekData.assessment.timer,
-                                    questions: weekData.assessment.questions
+                                    questions: weekData.assessment.questions || []
                                 }).where(eq(assessment.id, existingAssessment.id));
                             } else {
                                 // Create
@@ -321,19 +315,31 @@ export async function updateFullCourse(courseId: string, data: CourseFormValues)
                                     id: createId(),
                                     weekId: currentWeekId,
                                     title: weekData.assessment.title,
+                                    description: weekData.assessment.description,
                                     timer: weekData.assessment.timer,
-                                    questions: weekData.assessment.questions
+                                    questions: weekData.assessment.questions || []
                                 });
                             }
                         } else {
-                            // If no assessment in data, but exists in DB -> Delete
                             if (existingAssessment) {
                                 await tx.delete(assessment).where(eq(assessment.id, existingAssessment.id));
                             }
                         }
 
-                        // Mentors sync (Skipped for brevity/complexity, user didn't explicitly ask for mentor sync in update, but 'functional fully' implies it. 
-                        // I will add basic mentor sync if time permits, otherwise leave as is since UI for mentors isn't main focus here).
+                        // Sync Mentors
+                        // Simple strategy: Delete all existing for week and insert new
+                        if (currentWeekId) {
+                            await tx.delete(weekMentor).where(eq(weekMentor.weekId, currentWeekId));
+
+                            if (weekData.mentorIds && weekData.mentorIds.length > 0) {
+                                const mentorValues = weekData.mentorIds.map(mentorId => ({
+                                    id: createId(),
+                                    weekId: currentWeekId!,
+                                    mentorId: mentorId,
+                                }));
+                                await tx.insert(weekMentor).values(mentorValues);
+                            }
+                        }
                     }
                 }
             }

@@ -1,32 +1,39 @@
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { requireMentor } from "@/lib/auth/role-guard";
+import { MentorDashboardShell } from "@/components/dashboard/mentor/mentor-dashboard-shell";
+import { AnimatedBackground } from "@/components/shared/animated-background";
 
 export default async function MentorPage() {
   await requireMentor();
 
   return (
-    <div className="py-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Mentor Portal</h1>
-          <p className="mt-2 text-sm text-gray-600">
-            Manage your courses and students
-          </p>
-        </div>
+    <>
+      <AnimatedBackground />
+      <div className="relative flex min-h-screen pointer-events-none">
+        <main className="w-full max-w-[95%] mx-auto px-4 sm:px-6 lg:px-8 pointer-events-auto">
+          {/* Header Section */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 pt-8">
+            <div>
+              <Link
+                href="/"
+                className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors mb-2 font-mono"
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Home
+              </Link>
+              <h1 className="text-4xl font-bold tracking-tight text-white font-mono">
+                Mentor Portal
+              </h1>
+              <p className="text-gray-400 font-mono mt-2 text-lg">
+                Manage your courses and students
+              </p>
+            </div>
+          </div>
 
-        <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-          <div className="px-4 py-5 sm:px-6">
-            <h3 className="text-lg leading-6 font-medium text-gray-900">
-              My Courses
-            </h3>
-            <p className="mt-1 max-w-2xl text-sm text-gray-500">
-              Courses you are teaching
-            </p>
-          </div>
-          <div className="border-t border-gray-200 px-4 py-8 text-center text-gray-500">
-            No courses yet. Create your first course to get started.
-          </div>
-        </div>
+          <MentorDashboardShell />
+        </main>
       </div>
-    </div>
+    </>
   );
 }
