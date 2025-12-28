@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-import { getUserProgress } from "@/actions/admin/user-management/action";
+import { getUserProgress } from "@/actions/admin/student-management/action";
 import { toast } from "sonner";
 
 interface UserProgressModalProps {

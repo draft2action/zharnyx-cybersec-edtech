@@ -81,6 +81,11 @@ export const verification = pgTable(
 export const userRelations = relations(user, ({ many }) => ({
   sessions: many(session),
   accounts: many(account),
+  enrollments: many(enrollment),
+  progress: many(studentProgress),
+  assessmentResponses: many(assessmentResponse),
+  projectSubmissions: many(projectSubmission),
+  mentorApplications: many(mentorApplication),
 }));
 
 export const sessionRelations = relations(session, ({ one }) => ({
@@ -272,8 +277,44 @@ export const assessmentResponse = pgTable("assessment_response", {
   index("assessment_response_studentId_idx").on(table.studentId)
 ]);
 
+export const enrollment = pgTable("enrollment", {
+  id: text("id").primaryKey(),
+  studentId: text("student_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  courseId: text("course_id") // Optional relation if we want to link directly to course, assuming course exists
+    .notNull()
+    .references(() => course.id, { onDelete: "cascade" }),
+  enrolledAt: timestamp("enrolled_at").defaultNow().notNull(),
+  paymentStatus: text("payment_status", { enum: ["paid", "pending", "cancelled"] })
+    .default("pending")
+    .notNull(),
+  amount: integer("amount"), // Amount in cents
+  currency: text("currency").default("USD"),
+}, (table) => [
+  index("enrollment_studentId_idx").on(table.studentId),
+  index("enrollment_courseId_idx").on(table.courseId)
+]);
+
+export const studentProgress = pgTable("student_progress", {
+  id: text("id").primaryKey(),
+  studentId: text("student_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  weekId: text("week_id")
+    .notNull()
+    .references(() => courseWeek.id, { onDelete: "cascade" }),
+  isCompleted: boolean("is_completed").default(false).notNull(),
+  isUnlocked: boolean("is_unlocked").default(false).notNull(),
+  completedAt: timestamp("completed_at"),
+}, (table) => [
+  index("student_progress_studentId_idx").on(table.studentId),
+  index("student_progress_weekId_idx").on(table.weekId)
+]);
+
 export const courseRelations = relations(course, ({ many }) => ({
   months: many(courseMonth),
+  enrollments: many(enrollment),
 }));
 
 export const courseMonthRelations = relations(courseMonth, ({ one, many }) => ({
@@ -332,6 +373,28 @@ export const projectSubmissionRelations = relations(projectSubmission, ({ one })
   student: one(user, {
     fields: [projectSubmission.studentId],
     references: [user.id],
+  }),
+}));
+
+export const enrollmentRelations = relations(enrollment, ({ one }) => ({
+  student: one(user, {
+    fields: [enrollment.studentId],
+    references: [user.id],
+  }),
+  course: one(course, {
+    fields: [enrollment.courseId],
+    references: [course.id],
+  }),
+}));
+
+export const studentProgressRelations = relations(studentProgress, ({ one }) => ({
+  student: one(user, {
+    fields: [studentProgress.studentId],
+    references: [user.id],
+  }),
+  week: one(courseWeek, {
+    fields: [studentProgress.weekId],
+    references: [courseWeek.id],
   }),
 }));
 

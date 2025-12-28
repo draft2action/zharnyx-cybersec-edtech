@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { User, columns } from "./columns";
 import { DataTable } from "./data-table";
-import { getAllUsers } from "@/actions/admin/user-management/action";
+import { getAllUsers } from "@/actions/admin/student-management/action";
 import {
   Select,
   SelectContent,

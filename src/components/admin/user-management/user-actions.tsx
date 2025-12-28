@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 import { User } from "./columns";
-import { updateUserRole } from "@/actions/admin/user-management/action";
+import { updateUserRole } from "@/actions/admin/student-management/action";
 import { UserProgressModal } from "./user-progress-modal";
 
 interface UserActionsProps {

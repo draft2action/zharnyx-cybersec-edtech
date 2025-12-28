@@ -11,38 +11,15 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { TransitionLink } from "@/components/shared/transition-link";
 import { PlayCircle } from "lucide-react";
+import { EnrolledCourseSummary } from "@/types/dashboard";
 
-export function EnrolledCourses() {
-  // Mock data - replace with real data fetching later
-  const courses = [
-    {
-      id: "1",
-      title: "Introduction to Cybersecurity",
-      progress: 75,
-      lastAccessed: "2 days ago",
-      totalModules: 12,
-      completedModules: 9,
-    },
-    {
-      id: "2",
-      title: "Network Defense Essentials",
-      progress: 30,
-      lastAccessed: "1 week ago",
-      totalModules: 15,
-      completedModules: 4,
-    },
-    {
-      id: "3",
-      title: "Ethical Hacking Basics",
-      progress: 0,
-      lastAccessed: "Not started",
-      totalModules: 10,
-      completedModules: 0,
-    },
-  ];
+interface EnrolledCoursesProps {
+  courses?: EnrolledCourseSummary[];
+}
 
+export function EnrolledCourses({ courses = [] }: EnrolledCoursesProps) {
   return (
-    <Card className="bg-black/40 border-white/10 backdrop-blur-sm h-full flex flex-col">
+    <Card className="bg-black/40 border-white/10 backdrop-blur-sm h-full flex flex-col font-mono">
       <CardHeader>
         <CardTitle className="text-white font-mono flex items-center gap-2">
           <PlayCircle className="h-5 w-5 text-indigo-400" />
