@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import {
   createFullCourse,
   updateFullCourse,
+  getCourseDetails,
 } from "@/actions/admin/course-management/action";
 import { toast } from "sonner";
 import { BasicInfo } from "./basic-info";
@@ -31,6 +32,7 @@ export function CourseBuilder({
   initialData,
 }: CourseBuilderProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(!!courseId);
   const [mentors, setMentors] = useState<{ id: string; name: string }[]>([]);
 
   useEffect(() => {
@@ -67,7 +69,65 @@ export function CourseBuilder({
     control,
     watch,
     setValue,
+    reset,
   } = form;
+
+  // Load course data if editing
+  useEffect(() => {
+    async function loadCourse() {
+      if (!courseId) return;
+      setIsLoading(true);
+
+      const res = await getCourseDetails(courseId);
+      if (res.success && res.data) {
+        const dbCourse = res.data;
+        
+        // Map DB structure to Form Values
+        const formValues: CourseFormValues = {
+            title: dbCourse.title,
+            description: dbCourse.description || "",
+            image: dbCourse.image || "",
+            status: dbCourse.status as "published" | "unpublished",
+            months: dbCourse.months.map(month => ({
+                id: month.id,
+                title: month.title,
+                type: month.type as "common" | "team",
+                order: month.order,
+                weeks: month.weeks.map(week => ({
+                    id: week.id,
+                    title: week.title,
+                    order: week.order,
+                    team: week.team as "red" | "blue" | null,
+                    isProject: week.isProject,
+                    projectTitle: week.projectTitle || "",
+                    projectDescription: week.projectDescription || "",
+                    content: week.content || "",
+                    resources: week.resources ? (week.resources as any) : [],
+                    assessment: week.assessments && week.assessments.length > 0 ? {
+                        title: week.assessments[0].title,
+                        topic: week.assessments[0].topic || "",
+                        problem: week.assessments[0].problem || "",
+                        submissionFormat: week.assessments[0].submissionFormat || "pdf",
+                        timer: week.assessments[0].timer || 60
+                    } : null,
+                    mentorIds: week.mentors.map(wm => wm.mentorId)
+                }))
+            }))
+        };
+        
+        reset(formValues);
+      } else {
+        toast.error("Failed to load course details");
+        onComplete();
+      }
+      setIsLoading(false);
+    }
+
+    if (courseId) {
+        loadCourse();
+    }
+  }, [courseId, reset, onComplete]);
+
 
   // Handler for saving draft (no validation)
   const handleSaveDraft = async () => {
@@ -149,6 +209,14 @@ export function CourseBuilder({
       setIsSubmitting(false);
     }
   };
+  
+  if (isLoading) {
+      return (
+          <div className="flex justify-center items-center h-64">
+              <Loader2 className="h-8 w-8 animate-spin text-white" />
+          </div>
+      );
+  }
 
   return (
     <form

@@ -131,11 +131,13 @@ export function WeekCard({
     e.stopPropagation();
 
     if (hasAssessment) {
-      setValue(`months.${monthIndex}.weeks.${weekIndex}.assessment`, null, {
+      // Use undefined to remove the field
+      setValue(`months.${monthIndex}.weeks.${weekIndex}.assessment`, undefined, {
         shouldValidate: true,
         shouldDirty: true,
       });
     } else {
+      // Set default values
       setValue(
         `months.${monthIndex}.weeks.${weekIndex}.assessment`,
         {
@@ -148,22 +150,33 @@ export function WeekCard({
         {
           shouldValidate: true,
           shouldDirty: true,
+          shouldTouch: true,
         }
       );
     }
   };
 
   const handleMentorToggle = (mentorId: string, checked: boolean) => {
-    const current = [...assignedMentors];
-    let newMentors;
+    const current = assignedMentors || [];
+    let newMentors: string[];
+    
     if (checked) {
-      newMentors = [...current, mentorId];
+      if (!current.includes(mentorId)) {
+          newMentors = [...current, mentorId];
+          // Auto close on selection
+          setIsMentorDialogOpen(false);
+          setMentorSearch(""); // Reset search
+      } else {
+          newMentors = current;
+      }
     } else {
       newMentors = current.filter((id) => id !== mentorId);
     }
+    
     setValue(`months.${monthIndex}.weeks.${weekIndex}.mentorIds`, newMentors, {
       shouldValidate: true,
       shouldDirty: true,
+      shouldTouch: true,
     });
   };
 

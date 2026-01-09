@@ -27,6 +27,7 @@ interface ColumnsProps {
 
 export const getColumns = ({ onEdit, onDelete }: ColumnsProps): ColumnDef<Course>[] => [
   {
+    accessorKey: "title",
     header: "TITLE",
     cell: ({ row }) => (
       <span className="font-medium text-white">{row.getValue("title")}</span>

@@ -26,6 +26,12 @@ export function UserTable() {
   const [searchQuery, setSearchQuery] = useState(""); // Actual query sent to API
   const [roleFilter, setRoleFilter] = useState("all");
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -60,6 +66,10 @@ export function UserTable() {
     setPagination((prev) => ({ ...prev, pageIndex: 0 })); // Reset to first page
     setSearchQuery(query);
   };
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div className="container mx-auto py-10">

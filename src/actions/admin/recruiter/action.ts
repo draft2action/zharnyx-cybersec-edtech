@@ -53,3 +53,16 @@ export async function updateRecruiterApplicationStatus(applicationId: string, st
         return { success: false, error: "Failed to update application" };
     }
 }
+
+export async function getApprovedRecruiters() {
+    try {
+        await requireAdmin();
+        const recruiters = await db.query.user.findMany({
+            where: eq(user.role, "recruiter")
+        });
+        return { success: true, data: recruiters };
+    } catch (error) {
+        console.error("Error fetching approved recruiters:", error);
+        return { success: false, error: "Failed to fetch recruiters" };
+    }
+}

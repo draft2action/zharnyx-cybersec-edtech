@@ -8,6 +8,8 @@ import { MentorApplicationTable } from "@/components/admin/mentor-management/men
 import { CourseManager } from "@/components/admin/course-management/course-manager";
 import { RankingTable } from "@/components/admin/ranking/ranking-table";
 import { RecruiterApplicationTable } from "@/components/admin/recruiter-management/recruiter-application-table";
+import { ApprovedMentorsTable } from "@/components/admin/mentor-management/approved-mentors-table";
+import { ApprovedRecruitersTable } from "@/components/admin/recruiter-management/approved-recruiters-table";
 import {
   Card,
   CardContent,
@@ -59,24 +61,32 @@ export default function AdminPage() {
                 </Card>
               )}
 
+
+
               {activeSection === "mentor-management" && (
-                <Card className="bg-black/40 border-white/10 text-white backdrop-blur-sm">
-                  <CardHeader>
-                    <CardTitle className="font-mono text-xl">Mentor Management</CardTitle>
-                    <CardDescription className="text-gray-400 font-mono">Manage mentor applications.</CardDescription>
-                  </CardHeader>
-                  <CardContent><MentorApplicationTable /></CardContent>
-                </Card>
+                <div className="space-y-8">
+                    <Card className="bg-black/40 border-white/10 text-white backdrop-blur-sm">
+                      <CardHeader>
+                        <CardTitle className="font-mono text-xl">Mentor Applications</CardTitle>
+                        <CardDescription className="text-gray-400 font-mono">Review and approve mentor applications.</CardDescription>
+                      </CardHeader>
+                      <CardContent><MentorApplicationTable /></CardContent>
+                    </Card>
+                    <ApprovedMentorsTable />
+                </div>
               )}
 
               {activeSection === "recruiter-management" && (
-                <Card className="bg-black/40 border-white/10 text-white backdrop-blur-sm">
-                  <CardHeader>
-                    <CardTitle className="font-mono text-xl">Recruiter Management</CardTitle>
-                    <CardDescription className="text-gray-400 font-mono">Manage recruiter applications.</CardDescription>
-                  </CardHeader>
-                  <CardContent><RecruiterApplicationTable /></CardContent>
-                </Card>
+                <div className="space-y-8">
+                    <Card className="bg-black/40 border-white/10 text-white backdrop-blur-sm">
+                      <CardHeader>
+                        <CardTitle className="font-mono text-xl">Recruiter Applications</CardTitle>
+                        <CardDescription className="text-gray-400 font-mono">Review and approve recruiter applications.</CardDescription>
+                      </CardHeader>
+                      <CardContent><RecruiterApplicationTable /></CardContent>
+                    </Card>
+                    <ApprovedRecruitersTable />
+                </div>
               )}
 
               {activeSection === "course-management" && (
