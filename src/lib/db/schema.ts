@@ -3,21 +3,30 @@ import { pgTable, text, timestamp, boolean, index, integer, json } from "drizzle
 
 // ===============USERS=================
 
+// ===============USERS=================
+
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   emailVerified: boolean("email_verified").default(false).notNull(),
   image: text("image"),
-  role: text("role", { enum: ["admin", "mentor", "student"] })
+  role: text("role", { enum: ["admin", "mentor", "student", "recruiter"] })
     .default("student")
     .notNull(),
+  isRecruiterVisible: boolean("is_recruiter_visible").default(false).notNull(),
+  bio: text("bio"),
+  githubUrl: text("github_url"),
+  linkedinUrl: text("linkedin_url"),
+  websiteUrl: text("website_url"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
 });
+
+// ... (session, account, verification tables remain same)
 
 export const session = pgTable(
   "session",
@@ -86,6 +95,7 @@ export const userRelations = relations(user, ({ many }) => ({
   assessmentResponses: many(assessmentResponse),
   projectSubmissions: many(projectSubmission),
   mentorApplications: many(mentorApplication),
+  recruiterApplications: many(recruiterApplication),
 }));
 
 export const sessionRelations = relations(session, ({ one }) => ({
@@ -140,8 +150,44 @@ export const mentorApplicationRelations = relations(mentorApplication, ({ one })
   }),
 }));
 
+// ===============RECRUITER APPLICATION=================
+
+export const recruiterApplication = pgTable(
+  "recruiter_application",
+  {
+    id: text("id").primaryKey(),
+    userId: text("user_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    fullName: text("full_name").notNull(),
+    email: text("email").notNull(),
+    companyName: text("company_name").notNull(),
+    position: text("position").notNull(),
+    contactNo: text("contact_no").notNull(),
+    linkedinUrl: text("linkedin_url"),
+    websiteUrl: text("website_url"),
+    status: text("status", { enum: ["pending", "approved", "rejected"] })
+      .default("pending")
+      .notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at")
+      .defaultNow()
+      .$onUpdate(() => /* @__PURE__ */ new Date())
+      .notNull(),
+  },
+  (table) => [index("recruiter_application_userId_idx").on(table.userId)]
+);
+
+export const recruiterApplicationRelations = relations(recruiterApplication, ({ one }) => ({
+  user: one(user, {
+    fields: [recruiterApplication.userId],
+    references: [user.id],
+  }),
+}));
+
 
 // ===============COURSES=================
+// ... (course, courseMonth, courseWeek tables remain same)
 
 export const course = pgTable("course", {
   id: text("id").primaryKey(),
@@ -219,9 +265,10 @@ export const assessment = pgTable("assessment", {
     .notNull()
     .references(() => courseWeek.id, { onDelete: "cascade" }),
   title: text("title").notNull(),
-  description: text("description"), // Problem statement
+  topic: text("topic").notNull(),
+  problem: text("problem").notNull(),
+  submissionFormat: text("submission_format").default("pdf").notNull(),
   timer: integer("timer"), // Duration in minutes
-  questions: json("questions").notNull().default([]), // Keeping for backward compatibility but defaulting to empty
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
@@ -266,7 +313,7 @@ export const assessmentResponse = pgTable("assessment_response", {
   studentId: text("student_id")
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
-  answers: json("answers").notNull(), // Student answers
+  submissionUrl: text("submission_url"),
   score: integer("score"),
   status: text("status", { enum: ["pending", "completed"] })
     .default("pending")

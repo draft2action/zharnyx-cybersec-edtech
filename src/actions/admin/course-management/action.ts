@@ -16,8 +16,6 @@ import { createId } from "@paralleldrive/cuid2";
 
 // --- CREATE ---
 
-// --- CREATE ---
-
 export async function createFullCourse(data: CourseFormValues) {
     try {
         await requireAdmin();
@@ -68,9 +66,10 @@ export async function createFullCourse(data: CourseFormValues) {
                                     id: createId(),
                                     weekId: newWeek.id,
                                     title: weekData.assessment.title,
-                                    description: weekData.assessment.description,
+                                    topic: weekData.assessment.topic!,
+                                    problem: weekData.assessment.problem!,
+                                    submissionFormat: weekData.assessment.submissionFormat,
                                     timer: weekData.assessment.timer,
-                                    questions: weekData.assessment.questions || [],
                                 });
                             }
 
@@ -305,9 +304,10 @@ export async function updateFullCourse(courseId: string, data: CourseFormValues)
                                 // Update
                                 await tx.update(assessment).set({
                                     title: weekData.assessment.title,
-                                    description: weekData.assessment.description,
+                                    topic: weekData.assessment.topic!,
+                                    problem: weekData.assessment.problem!,
+                                    submissionFormat: weekData.assessment.submissionFormat,
                                     timer: weekData.assessment.timer,
-                                    questions: weekData.assessment.questions || []
                                 }).where(eq(assessment.id, existingAssessment.id));
                             } else {
                                 // Create
@@ -315,9 +315,10 @@ export async function updateFullCourse(courseId: string, data: CourseFormValues)
                                     id: createId(),
                                     weekId: currentWeekId,
                                     title: weekData.assessment.title,
-                                    description: weekData.assessment.description,
+                                    topic: weekData.assessment.topic!,
+                                    problem: weekData.assessment.problem!,
+                                    submissionFormat: weekData.assessment.submissionFormat,
                                     timer: weekData.assessment.timer,
-                                    questions: weekData.assessment.questions || []
                                 });
                             }
                         } else {
@@ -362,6 +363,20 @@ export async function updateCourseStatus(courseId: string, status: "published" |
     } catch (error) {
         console.error("Error updating course status:", error);
         return { success: false, error: "Failed to update status" };
+    }
+}
+
+// --- DELETE ---
+
+export async function deleteCourse(courseId: string) {
+    try {
+        await requireAdmin();
+        await db.delete(course).where(eq(course.id, courseId));
+        revalidatePath("/dashboard/admin");
+        return { success: true, message: "Course deleted successfully" };
+    } catch (error) {
+        console.error("Error deleting course:", error);
+        return { success: false, error: "Failed to delete course" };
     }
 }
 

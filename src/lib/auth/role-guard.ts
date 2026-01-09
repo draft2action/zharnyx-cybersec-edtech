@@ -43,6 +43,10 @@ export async function requireStudent() {
   return requireRole(["admin", "mentor", "student"]);
 }
 
+export async function requireRecruiter() {
+  return requireRole(["admin", "recruiter"]);
+}
+
 export async function getCurrentUser() {
   const session = await auth.api.getSession({
     headers: await headers(),

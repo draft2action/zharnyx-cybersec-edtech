@@ -1,28 +1,8 @@
 import { z } from "zod";
 
-// --- Sub-Schemas (Strict) ---
-
-export const AssessmentQuestionSchema = z.object({
-  id: z.string(),
-  type: z.enum(["mcq", "text"]),
-  question: z.string().min(1, "Question is required"),
-  options: z.array(z.string()).optional(), // Only for MCQ
-  correctAnswer: z.string().optional(), // For automated grading
-});
-
 export const WeekResourceSchema = z.object({
   title: z.string().min(1, "Resource title is required"),
   link: z.string().url("Invalid URL"),
-});
-
-// --- Draft Sub-Schemas (Relaxed Validation) ---
-
-export const AssessmentQuestionDraftSchema = z.object({
-  id: z.string(),
-  type: z.enum(["mcq", "text"]),
-  question: z.string().optional(),
-  options: z.array(z.string()).optional(),
-  correctAnswer: z.string().optional(),
 });
 
 export const WeekResourceDraftSchema = z.object({
@@ -30,20 +10,20 @@ export const WeekResourceDraftSchema = z.object({
   link: z.string().optional(),
 });
 
-// --- Main Schemas ---
-
 export const AssessmentSchema = z.object({
   title: z.string().min(1, "Assessment title is required"),
-  description: z.string().optional(),
+  topic: z.string().min(1, "Assessment topic is required"),
+  problem: z.string().min(1, "Problem statement is required"),
+  submissionFormat: z.string().default("pdf"),
   timer: z.number().min(0, "Timer must be positive").default(60), // In minutes
-  questions: z.array(AssessmentQuestionSchema).default([]),
 });
 
 export const AssessmentDraftSchema = z.object({
   title: z.string().optional(),
-  description: z.string().optional(),
+  topic: z.string().optional(),
+  problem: z.string().optional(),
+  submissionFormat: z.string().optional().default("pdf"),
   timer: z.number().optional(),
-  questions: z.array(AssessmentQuestionDraftSchema).optional().default([]),
 });
 
 export const CourseWeekSchema = z.object({

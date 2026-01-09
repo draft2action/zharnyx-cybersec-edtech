@@ -40,6 +40,13 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface WeekCardProps {
   monthIndex: number;
@@ -133,9 +140,10 @@ export function WeekCard({
         `months.${monthIndex}.weeks.${weekIndex}.assessment`,
         {
           title: "New Assessment",
-          description: "",
+          topic: "General Topic",
+          problem: "",
+          submissionFormat: "pdf",
           timer: 60,
-          questions: [], // Default empty array as per schema
         },
         {
           shouldValidate: true,
@@ -453,13 +461,45 @@ export function WeekCard({
                     placeholder="Assignment Title"
                     className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm focus:ring-white/20"
                   />
+                  <Input
+                    {...register(
+                      `months.${monthIndex}.weeks.${weekIndex}.assessment.topic`
+                    )}
+                    placeholder="Assessment Topic"
+                    className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm focus:ring-white/20"
+                  />
                   <Textarea
                     {...register(
-                      `months.${monthIndex}.weeks.${weekIndex}.assessment.description`
+                      `months.${monthIndex}.weeks.${weekIndex}.assessment.problem`
                     )}
-                    placeholder="Problem Statement / Description..."
+                    placeholder="Problem Statement..."
                     className="bg-black/40 border-white/10 text-white font-mono text-sm min-h-[100px] focus:ring-white/20"
                   />
+                  <div className="flex gap-4">
+                    <div className="flex-1">
+                      <Label className="text-xs text-gray-400 font-mono mb-1 block">Submission Format</Label>
+                      <Select
+                         onValueChange={(val) => setValue(`months.${monthIndex}.weeks.${weekIndex}.assessment.submissionFormat`, val)}
+                         defaultValue={watch(`months.${monthIndex}.weeks.${weekIndex}.assessment.submissionFormat`) || "pdf"}
+                      >
+                         <SelectTrigger className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm">
+                            <SelectValue placeholder="Format" />
+                         </SelectTrigger>
+                         <SelectContent className="bg-black border-white/10 text-white font-mono">
+                            <SelectItem value="pdf">PDF Upload</SelectItem>
+                            <SelectItem value="text">Text Input</SelectItem>
+                         </SelectContent>
+                      </Select>
+                    </div>
+                     <div className="w-24">
+                        <Label className="text-xs text-gray-400 font-mono mb-1 block">Timer (mins)</Label>
+                        <Input
+                          type="number"
+                          {...register(`months.${monthIndex}.weeks.${weekIndex}.assessment.timer`, { valueAsNumber: true })}
+                          className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm"
+                        />
+                     </div>
+                  </div>
                 </div>
               )}
             </div>

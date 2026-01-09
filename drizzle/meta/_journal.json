@@ -36,6 +36,13 @@
       "when": 1766920791436,
       "tag": "0004_rich_rogue",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1767938222460,
+      "tag": "0005_lyrical_hex",
+      "breakpoints": true
     }
   ]
 }

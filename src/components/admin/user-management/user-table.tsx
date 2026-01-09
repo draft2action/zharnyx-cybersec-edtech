@@ -97,6 +97,7 @@ export function UserTable() {
             <SelectItem value="all">All Roles</SelectItem>
             <SelectItem value="student">Student</SelectItem>
             <SelectItem value="mentor">Mentor</SelectItem>
+            <SelectItem value="recruiter">Recruiter</SelectItem>
             <SelectItem value="admin">Admin</SelectItem>
           </SelectContent>
         </Select>

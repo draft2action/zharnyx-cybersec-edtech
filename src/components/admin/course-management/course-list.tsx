@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { DataTable } from "./data-table";
 import { getColumns, Course } from "./columns";
-import { getAllCourses } from "@/actions/admin/course-management/action";
+import { getAllCourses, deleteCourse } from "@/actions/admin/course-management/action";
+import { toast } from "sonner";
 import {
   Select,
   SelectContent,
@@ -98,7 +99,19 @@ export function CourseList({ onEdit }: CourseListProps) {
     });
   };
 
-  const columns = getColumns({ onEdit });
+  const handleDelete = async (courseId: string) => {
+    if (confirm("Are you sure you want to delete this course?")) {
+      const result = await deleteCourse(courseId);
+      if (result.success) {
+        toast.success(result.message);
+        fetchCourses();
+      } else {
+        toast.error(result.error);
+      }
+    }
+  };
+
+  const columns = getColumns({ onEdit, onDelete: handleDelete });
 
   return (
     <div className="space-y-4">

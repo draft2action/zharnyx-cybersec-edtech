@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, Pencil } from "lucide-react";
+import { MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -22,11 +22,11 @@ export type Course = {
 
 interface ColumnsProps {
   onEdit: (courseId: string) => void;
+  onDelete: (courseId: string) => void;
 }
 
-export const getColumns = ({ onEdit }: ColumnsProps): ColumnDef<Course>[] => [
+export const getColumns = ({ onEdit, onDelete }: ColumnsProps): ColumnDef<Course>[] => [
   {
-    accessorKey: "title",
     header: "TITLE",
     cell: ({ row }) => (
       <span className="font-medium text-white">{row.getValue("title")}</span>
@@ -86,6 +86,13 @@ export const getColumns = ({ onEdit }: ColumnsProps): ColumnDef<Course>[] => [
             >
               <Pencil className="mr-2 h-4 w-4" />
               Edit Course
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => onDelete(course.id)}
+              className="cursor-pointer hover:bg-red-500/10 text-red-500 focus:bg-red-500/10 focus:text-red-500"
+            >
+              <Trash2 className="mr-2 h-4 w-4" />
+              Delete Course
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

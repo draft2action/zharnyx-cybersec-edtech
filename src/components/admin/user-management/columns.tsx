@@ -7,7 +7,7 @@ export type User = {
   id: string;
   name: string;
   email: string;
-  role: "admin" | "mentor" | "student";
+  role: "admin" | "mentor" | "student" | "recruiter";
   createdAt: Date;
   // Add other fields as necessary from specific DB schema return type
 };
