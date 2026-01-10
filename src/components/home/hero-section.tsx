@@ -1,111 +1,124 @@
 "use client";
 
 import { motion } from "motion/react";
-import { TransitionLink } from "@/components/shared/transition-link";
+import Link from "next/link";
+import { ArrowRight, Flame, Shield, Briefcase, Terminal, Crosshair } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <div className="relative flex min-h-screen items-center justify-center pointer-events-none overflow-hidden">
-      <main className="flex w-8xl max-w-8xl flex-col items-center justify-center gap-8 py-20 px-6 sm:px-16 pointer-events-auto z-10">
-        {/* Hero Section */}
-        <div className="flex flex-col items-center gap-6 text-center">
-          <motion.h1
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-6xl md:text-8xl font-extrabold text-white font-mono tracking-tighter"
-          >
-            Master the hack, lead the attack
-          </motion.h1>
+    <div className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-20 pb-10">
+      
+      {/* Background Grid Accent - subtle static noise or pattern could go here */}
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
+
+      <main className="relative z-10 w-full max-w-7xl px-4 sm:px-6 flex flex-col items-center gap-8">
+        
+        {/* Top Badge - Neo Brutalist */}
+        <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-3 px-4 py-1.5 bg-red-600 text-black font-bold uppercase tracking-widest text-xs border-2 border-red-600 shadow-[4px_4px_0px_0px_white]"
+        >
+            <Terminal size={14} strokeWidth={3} />
+            <span>Zharnyx 2.0 // Cyber-Agency</span>
+        </motion.div>
+
+        {/* Hero Content */}
+        <div className="flex flex-col items-center text-center max-w-5xl space-y-6">
+            
+            {/* Headline with Staggered Reveal */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1] uppercase">
+                <OverflowText text="From Student to" delay={0.1} />
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-white to-red-500 animate-gradient-x">
+                   <OverflowText text="Security Consultant" delay={0.2} />
+                </span>
+            </h1>
+
+            <motion.p 
+                initial={{ opacity: 0, scale: 0.95 }} 
+                animate={{ opacity: 1, scale: 1 }} 
+                transition={{ delay: 0.4 }}
+                className="text-base md:text-xl text-gray-300 max-w-2xl font-medium border-l-4 border-red-600 pl-4 text-left md:text-center md:border-l-0 md:border-b-4 md:pb-2"
+            >
+                A 6-month career residency producing <span className="bg-white text-black px-1">Day-1-ready engineers</span> via live war games & SOC operations.
+            </motion.p>
+            
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                 className="flex flex-wrap justify-center gap-4 text-xs font-bold uppercase tracking-widest text-red-500"
+            >
+                <span className="flex items-center gap-1"><Crosshair size={12}/> Live Operations</span>
+                <span className="text-gray-600">/</span>
+                <span className="flex items-center gap-1"><Shield size={12}/> Client Deployments</span>
+            </motion.div>
+
+            {/* Neo-Brutalist CTA Buttons */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="flex flex-col sm:flex-row gap-6 mt-6 w-full justify-center"
+            >
+                <Link
+                    href="/blueprint"
+                    className="group relative px-8 py-4 bg-red-600 text-black font-bold text-lg uppercase tracking-wider border-2 border-red-600 hover:translate-x-1 hover:translate-y-1 transition-transform"
+                >
+                    <span className="absolute inset-0 bg-white translate-x-1.5 translate-y-1.5 -z-10 border-2 border-white group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></span>
+                    <span className="flex items-center gap-2">
+                        View Blueprint <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                    </span>
+                </Link>
+                <Link
+                    href="/apply"
+                    className="group px-8 py-4 bg-transparent text-white font-bold text-lg uppercase tracking-wider border-2 border-white hover:bg-white hover:text-black transition-colors"
+                >
+                    Apply Now
+                </Link>
+            </motion.div>
         </div>
 
-        {/* Features */}
+        {/* Stats Grid - Neo Brutalist Box */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap items-center justify-center gap-8 mt-8 font-mono text-white text-lg"
+             initial={{ opacity: 0, y: 30 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.8, delay: 0.8 }}
+             className="grid grid-cols-2 md:grid-cols-4 w-full border-2 border-white/20 mt-12 bg-black/50 backdrop-blur-sm divide-x-2 divide-y-2 md:divide-y-0 divide-white/20"
         >
-          <div className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity duration-300">
-            <span
-              className="text-2xl"
-              style={{ fontVariantLigatures: "normal" }}
-            >
-              -&gt;
-            </span>
-            <span>1:1 Mentorship</span>
-          </div>
-          <div className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity duration-300">
-            <span
-              className="text-2xl"
-              style={{ fontVariantLigatures: "normal" }}
-            >
-              -&gt;
-            </span>
-            <span>Active Labs</span>
-          </div>
-          <div className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity duration-300">
-            <span
-              className="text-2xl"
-              style={{ fontVariantLigatures: "normal" }}
-            >
-              -&gt;
-            </span>
-            <span>Global Certificates</span>
-          </div>
+            <StatItem value="6 MONTHS" label="Duration" />
+            <StatItem value="3 LVL" label="Deployment" />
+            <StatItem value="100%" label="Exposure" />
+            <StatItem value="₹4.5K" label="Investment" />
         </motion.div>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4 mt-8"
-        >
-          <TransitionLink
-            href="/auth?mode=signup"
-            className="px-8 py-4 bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] text-black font-mono font-semibold transition-all duration-300 text-center border-2 border-white"
-            style={{ borderRadius: "0px" }}
-          >
-            Execute Learning
-          </TransitionLink>
-          <TransitionLink
-            href="/auth?mode=signup&role=mentor"
-            className="px-8 py-4 bg-transparent border-2 border-white/20 hover:border-white text-white font-mono font-semibold hover:bg-white/10 transition-all duration-300 text-center"
-            style={{ borderRadius: "0px" }}
-          >
-            Deploy as Mentor
-          </TransitionLink>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="text-white"
-          >
-            <path
-              d="M12 5V19M12 19L19 12M12 19L5 12"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span className="text-white text-xs font-mono tracking-widest">
-            SCROLL
-          </span>
-        </motion.div>
+       
       </main>
     </div>
   );
+}
+
+function OverflowText({ text, delay }: { text: string, delay: number }) {
+    return (
+        <span className="inline-block overflow-hidden align-bottom">
+            <motion.span
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.5, delay, ease: [0.33, 1, 0.68, 1] }}
+                className="inline-block"
+            >
+                {text}
+            </motion.span>
+        </span>
+    )
+}
+
+function StatItem({ value, label }: { value: string, label: string }) {
+    return (
+        <div className="flex flex-col items-center justify-center p-6 hover:bg-white/5 transition-colors group">
+            <span className="text-3xl font-bold text-white group-hover:text-red-500 transition-colors">{value}</span>
+            <span className="text-xs font-bold text-gray-500 uppercase tracking-widest mt-1 group-hover:text-white transition-colors">{label}</span>
+        </div>
+    )
 }

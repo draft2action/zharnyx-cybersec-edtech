@@ -1,25 +1,26 @@
-import { AnimatedBackground } from "@/components/shared/animated-background";
-import { MentorApplicationForm } from "@/components/mentor/application-form";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { requireAuth } from "@/lib/auth/role-guard";
+import { MentorApplicationForm } from "@/components/apply/mentor-form";
 
-export default function MentorApplyPage() {
+export default async function MentorApplyPage() {
+  await requireAuth();
+
   return (
-    <>
-      <AnimatedBackground />
-      <div className="relative min-h-screen flex flex-col items-center justify-center p-4">
-         <div className="absolute top-8 left-8 z-10">
-            <Link 
-                href="/dashboard" 
-                className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors mb-2 font-mono"
-            >
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Dashboard
-            </Link>
-         </div>
-        
+    <main className="min-h-screen bg-black text-white py-20 px-4">
+      {/* Decorative Grid */}
+      <div className="fixed inset-0 bg-[linear-gradient(to_right,#222_1px,transparent_1px),linear-gradient(to_bottom,#222_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none opacity-50" />
+
+      <div className="relative z-10 max-w-4xl mx-auto space-y-8">
+        <div className="text-center">
+          <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4">
+            Application: <span className="text-purple-500">Mentor</span>
+          </h1>
+          <p className="text-zinc-400 font-mono">
+            Initiate onboarding sequence for instructional operatives.
+          </p>
+        </div>
+
         <MentorApplicationForm />
       </div>
-    </>
+    </main>
   );
 }

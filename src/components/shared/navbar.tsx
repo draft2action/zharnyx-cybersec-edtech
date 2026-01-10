@@ -2,23 +2,34 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { motion } from "motion/react";
-import { useSession } from "@/lib/auth/auth-client";
-import { SignOutButton } from "@/components/auth/sign-out-button";
-import { Loader2 } from "lucide-react";
-import { TransitionLink } from "@/components/shared/transition-link";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
+import { useState } from "react";
+import { useSession, signOut } from "@/lib/auth/auth-client";
+import { Terminal } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 interface NavbarProps {
   className?: string;
 }
 
 export function Navbar({ className }: NavbarProps) {
-  const { data: session, isPending } = useSession();
+  const { scrollY } = useScroll();
+  const [scrolled, setScrolled] = useState(false);
+  const { data: session } = useSession();
+  const pathname = usePathname();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 50);
+  });
+
+  if (pathname?.startsWith("/dashboard")) {
+    return null;
+  }
 
   return (
     <div
       className={cn(
-        "fixed top-6 inset-x-0 max-w-full mx-auto z-50 px-4 font-mono",
+        "fixed top-0 inset-x-0 w-full z-50 font-mono transition-all duration-300",
         className
       )}
     >
@@ -26,75 +37,77 @@ export function Navbar({ className }: NavbarProps) {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative border border-white/20 bg-slate-900/80 backdrop-blur-md shadow-lg flex items-center justify-between px-8 py-4"
-        style={{ borderRadius: "0px" }} // 90-degree corners
+        className={cn(
+          "relative flex items-center justify-between px-6 md:px-12 py-5 border-b-2 transition-all duration-300",
+          scrolled
+            ? "bg-black/90 backdrop-blur-md border-red-900/40"
+            : "bg-transparent border-transparent py-8"
+        )}
       >
         {/* Left: Company Name */}
-        <Link href="/" className="flex items-center">
-          <span className="text-2xl font-bold text-white">Zharnyx Academy</span>
+        <Link href="/" className="flex items-center gap-3">
+          <div className="p-2 bg-red-600 text-black border-2 border-transparent transition-colors">
+            <Terminal size={20} strokeWidth={3} />
+          </div>
+          <span className="text-xl font-black text-white tracking-tighter uppercase transition-all duration-300">
+            Zharnyx <span className="text-red-500">Academy</span>
+          </span>
         </Link>
 
-        {/* Middle: Nav Links */}
-        <div className="flex items-center space-x-8">
-          <TransitionLink
-            href="/programs"
-            className="text-white hover:text-white/80 transition-colors text-sm font-medium"
-          >
-            Programs
-          </TransitionLink>
-
-          <TransitionLink
-            href="/projects"
-            className="text-white hover:text-white/80 transition-colors text-sm font-medium"
-          >
-            Projects
-          </TransitionLink>
-
-          <TransitionLink
-            href="/mentors"
-            className="text-white hover:text-white/80 transition-colors text-sm font-medium"
-          >
-            Mentors
-          </TransitionLink>
-
-          <TransitionLink
-            href="/contact"
-            className="text-white hover:text-white/80 transition-colors text-sm font-medium"
-          >
-            Contact
-          </TransitionLink>
+        {/* Middle: Nav Links - Desktop */}
+        <div className="hidden md:flex items-center gap-1">
+          <NavLink href="/" label="Home" />
+          <NavLink href="/about" label="About" />
+          <NavLink href="/curriculum" label="Curriculum" />
+          <NavLink href="/pricing" label="Pricing" />
+          <NavLink href="/apply" label="Join Us" />
+          <NavLink href="/contact" label="Contact" />
         </div>
 
-        {/* Right: Auth Buttons */}
+        {/* Right: CTA */}
         <div className="flex items-center gap-4">
-          {isPending ? (
-            <Loader2 className="h-5 w-5 animate-spin text-white" />
-          ) : session ? (
+          {session ? (
             <>
-              <TransitionLink
-                href="/dashboard"
-                className="text-white hover:text-white/80 transition-colors text-sm font-medium"
+              <Link
+                href={
+                  (session.user as any).role === "admin"
+                    ? "/dashboard/admin"
+                    : (session.user as any).role === "mentor"
+                    ? "/dashboard/mentor"
+                    : "/dashboard/student"
+                }
+                className="relative px-6 py-2.5 bg-blue-600 text-white font-bold text-sm uppercase tracking-wider border-2 border-blue-600 shadow-[4px_4px_0px_0px_white] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
               >
                 Dashboard
-              </TransitionLink>
-              <SignOutButton
-                variant="default"
-                className="px-6 py-2 bg-white text-black font-semibold hover:bg-transparent transition-colors text-sm hover:text-white border-2 border-white rounded-none"
+              </Link>
+              <button
+                onClick={() => signOut()}
+                className="relative px-6 py-2.5 bg-red-600 text-white font-bold text-sm uppercase tracking-wider border-2 border-red-600 shadow-[4px_4px_0px_0px_white] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
               >
                 Sign Out
-              </SignOutButton>
+              </button>
             </>
           ) : (
-            <TransitionLink
-              href="/auth?mode=signup"
-              className="px-6 py-2 bg-white text-black font-semibold hover:bg-transparent transition-colors text-sm hover:text-white border-2 border-white"
-              style={{ borderRadius: "0px" }} // 90-degree corners for button too
+            <Link
+              href="/apply"
+              className="relative px-6 py-2.5 bg-red-600 text-white font-bold text-sm uppercase tracking-wider border-2 border-red-600 shadow-[4px_4px_0px_0px_white] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
             >
-              Get Started
-            </TransitionLink>
+              Apply Now
+            </Link>
           )}
         </div>
       </motion.nav>
     </div>
+  );
+}
+
+function NavLink({ href, label }: { href: string; label: string }) {
+  return (
+    <Link
+      href={href}
+      className="px-5 py-2 text-sm font-medium text-gray-400 uppercase tracking-wide hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all rounded-none"
+    >
+      {label}
+    </Link>
   );
 }

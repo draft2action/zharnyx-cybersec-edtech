@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { submitMentorApplication } from "@/actions/public/mentor-applications/action";
+import { submitMentorApplication } from "@/actions/mentor/apply";
 import { toast } from "@/components/shared/toast";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
