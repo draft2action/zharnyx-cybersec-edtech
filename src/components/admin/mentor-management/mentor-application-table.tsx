@@ -45,7 +45,7 @@ export function MentorApplicationTable() {
   }, [pagination]);
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-10 pt-0">
       {loading ? (
         <div className="text-center py-10 text-gray-400 font-mono">
           Loading applications...

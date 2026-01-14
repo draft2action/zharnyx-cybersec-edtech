@@ -27,7 +27,7 @@ export function CourseManager() {
 
   if (view === "list") {
     return (
-      <div className="space-y-6">
+      <div className="space-y-6 px-4">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold tracking-tight text-white font-mono">
             Courses

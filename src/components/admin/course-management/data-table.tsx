@@ -75,7 +75,10 @@ export function DataTable<TData, TValue>({
               >
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className="text-gray-400">
+                    <TableHead
+                      key={header.id}
+                      className="text-gray-400 py-5 px-6 text-xs uppercase tracking-wider font-bold"
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -97,7 +100,7 @@ export function DataTable<TData, TValue>({
                   className="border-white/10 hover:bg-white/5 transition-colors"
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id} className="py-5 px-6">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

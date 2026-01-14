@@ -31,6 +31,7 @@ import {
   FileText,
   FolderKanban,
   HelpCircle,
+  Trophy,
 } from "lucide-react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth/auth-client";
@@ -81,6 +82,11 @@ const ADMIN_ITEMS = [
     title: "Course Management",
     id: "course-management",
     icon: BookOpen,
+  },
+  {
+    title: "Student Rankings",
+    id: "rankings",
+    icon: Trophy,
   },
 ];
 

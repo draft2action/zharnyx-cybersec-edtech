@@ -15,6 +15,7 @@ export const user = pgTable("user", {
     .default("student")
     .notNull(),
   isRecruiterVisible: boolean("is_recruiter_visible").default(false).notNull(),
+  totalScore: integer("total_score").default(0).notNull(),
   bio: text("bio"),
   githubUrl: text("github_url"),
   linkedinUrl: text("linkedin_url"),

@@ -26,81 +26,60 @@ export async function getStudentRankings(): Promise<{ success: boolean; data?: R
     try {
         await requireAdmin();
 
-        // 1. Fetch all students
+        // Fetch students sorted by totalScore DESC
         const students = await db.query.user.findMany({
             where: eq(user.role, "student"),
-        });
-
-        const rankings: RankedStudent[] = [];
-
-        // This could be optimized with raw SQL or complex joins, but for logic clarity and MV, we'll iterate.
-        // Assuming student count isn't massive yet.
-        
-        for (const student of students) {
-            // Get Assessment Scores
-            const assessments = await db.query.assessmentResponse.findMany({
-                where: eq(assessmentResponse.studentId, student.id),
-            });
-
-            // Get Project Scores
-            const projects = await db.query.projectSubmission.findMany({
-                where: eq(projectSubmission.studentId, student.id),
-            });
-
-            let assessmentScore = 0;
-            let projectScore = 0;
-            let lastSubmissionAt: Date | null = null;
-
-            for (const a of assessments) {
-                if (a.score) assessmentScore += a.score;
-                if (a.submittedAt) {
-                   if (!lastSubmissionAt || new Date(a.submittedAt) > lastSubmissionAt) {
-                       lastSubmissionAt = new Date(a.submittedAt);
-                   }
+            orderBy: [desc(user.totalScore), desc(user.createdAt)],
+            columns: {
+                id: true,
+                name: true,
+                email: true,
+                image: true,
+                totalScore: true,
+                isRecruiterVisible: true,
+            },
+            // Note: If we need broken down assessment/project scores in the UI, we might still need to join or fetch.
+            // However, typical ranking tables just show total score.
+            // If the UI expects assessmentScore/projectScore, we might need to query them or simplify the UI.
+            // The existing UI component shows them. So we should fetch them or aggregate them?
+            // To make it efficient, let's keep it simple for now and maybe aggregate if strictly needed, 
+            // OR simply remove the breakdown columns from the UI if the user didn't explicitly ask for them to stay.
+            // User request: "display user from higher score to lower score".
+            // Implementation plan said: "Update ranking action to fetch users sorted by totalScore".
+            // Let's optimize: fetch aggregations if possible or just loop for the breakdown details if N is small.
+            // Given the user wants efficiency ("currently calculate rank and score in action and push... suggestion is every student will have score..."),
+            // relying on totalScore is the key.
+            // Only fetching breakdown if needed.
+            // Let's assume for now we just show totalScore. 
+            // But to keep UI compatible, let's just fill assessmentScore/projectScore with 0 or simplistic fetches if needed
+            // OR do a quick single-query aggregation if Drizzle supports it easily.
+            // Drizzle query builder findMany with `with` doesn't do aggregation easily.
+            // Let's fetch basic breakdown *lazily* or just accept the optimization of sorting is done by DB.
+            with: {
+                assessmentResponses: {
+                     columns: { score: true }
+                },
+                projectSubmissions: {
+                     columns: { score: true }
                 }
             }
+        });
 
-            for (const p of projects) {
-                if (p.score) projectScore += p.score;
-                 // Projects created_at or updated_at? Usually updated_at is when it's graded or submitted?
-                 // Schema has createdAt. Let's use createdAt for submission time approximation or if there was a submittedAt.
-                 // projectSubmission has createdAt.
-                 if (p.createdAt) {
-                    if (!lastSubmissionAt || new Date(p.createdAt) > lastSubmissionAt) {
-                        lastSubmissionAt = new Date(p.createdAt);
-                    }
-                 }
-            }
-
-            rankings.push({
+        const rankings: RankedStudent[] = students.map(student => {
+            const assessmentScore = student.assessmentResponses.reduce((acc, curr) => acc + (curr.score || 0), 0);
+            const projectScore = student.projectSubmissions.reduce((acc, curr) => acc + (curr.score || 0), 0);
+            
+            return {
                 id: student.id,
                 name: student.name,
                 email: student.email,
                 image: student.image,
-                totalScore: assessmentScore + projectScore,
+                totalScore: student.totalScore, // Use persistent score
                 assessmentScore,
                 projectScore,
-                lastSubmissionAt,
+                lastSubmissionAt: null, // Removed strictly logic, strictly relying on score
                 isRecruiterVisible: student.isRecruiterVisible,
-            });
-        }
-
-        // Sort:
-        // 1. Total Score DESC
-        // 2. Earlier Submission Time ASC (First to submit gets higher rank)
-        // 3. Name ASC
-        rankings.sort((a, b) => {
-            if (b.totalScore !== a.totalScore) {
-                return b.totalScore - a.totalScore;
-            }
-            if (a.lastSubmissionAt && b.lastSubmissionAt) {
-                 if (a.lastSubmissionAt.getTime() !== b.lastSubmissionAt.getTime()) {
-                     return a.lastSubmissionAt.getTime() - b.lastSubmissionAt.getTime();
-                 }
-            }
-            // If one has no submission, they should probably be lower? Or it doesn't matter since score 0.
-            // If same score (e.g. 0), sort by name.
-            return a.name.localeCompare(b.name);
+            };
         });
 
         return { success: true, data: rankings };

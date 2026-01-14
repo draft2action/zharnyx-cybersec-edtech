@@ -6,6 +6,7 @@ import { CourseManager } from "@/components/admin/course-management/course-manag
 import { RecruiterApplicationTable } from "@/components/admin/recruiter-management/recruiter-application-table";
 import { ApprovedMentorsTable } from "@/components/admin/mentor-management/approved-mentors-table";
 import { ApprovedRecruitersTable } from "@/components/admin/recruiter-management/approved-recruiters-table";
+import { RankingTable } from "@/components/admin/ranking/ranking-table";
 import {
   Card,
   CardContent,
@@ -83,9 +84,9 @@ export default function AdminPage() {
             <div className="space-y-8">
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
                 {/* Mentor Applications */}
-                <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10]">
-                  <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4">
-                    <div className="flex items-start justify-between">
+                <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10] pt-0">
+                  <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4">
+                    <div className="flex items-start justify-between ">
                       <div>
                         <div className="flex items-center gap-2 mb-1">
                           <Terminal className="w-4 h-4 text-blue-500" />
@@ -105,8 +106,8 @@ export default function AdminPage() {
                 </Card>
 
                 {/* Recruiter Applications */}
-                <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10]">
-                  <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4">
+                <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10] pt-0">
+                  <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4">
                     <div className="flex items-start justify-between">
                       <div>
                         <div className="flex items-center gap-2 mb-1">
@@ -133,6 +134,27 @@ export default function AdminPage() {
             <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10]">
               <CardContent className="p-0">
                 <CourseManager />
+              </CardContent>
+            </Card>
+          )}
+
+          {activeSection === "rankings" && (
+            <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10] pt-0">
+              <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <Terminal className="w-4 h-4 text-yellow-500" />
+                  <CardTitle className="font-mono text-xl text-white uppercase tracking-wide">
+                    Student Rankings
+                  </CardTitle>
+                </div>
+                <CardDescription className="text-gray-400 font-mono text-xs uppercase tracking-wider">
+                  Global leaderboard of top performing students.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="p-6">
+                  <RankingTable />
+                </div>
               </CardContent>
             </Card>
           )}

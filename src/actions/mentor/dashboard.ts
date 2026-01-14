@@ -14,6 +14,7 @@ import {
 } from "@/lib/db/schema";
 import { eq, and, desc, inArray } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { updateStudentTotalScore } from "@/lib/utils/score";
 
 /**
  * Get weeks assigned to a mentor
@@ -201,13 +202,37 @@ export async function scoreAssignment(
   score: number
 ) {
   try {
+    // 1. Get the assessment deadline
+    const response = await db.query.assessmentResponse.findFirst({
+        where: eq(assessmentResponse.id, responseId),
+        with: {
+            assessment: true
+        }
+    });
+
+    if (!response) throw new Error("Response not found");
+
+    let finalScore = score;
+    
+    // Check for late penalty
+    if (response.assessment.deadline && response.submittedAt) {
+        const deadline = new Date(response.assessment.deadline);
+        const submittedAt = new Date(response.submittedAt);
+        if (submittedAt > deadline) {
+             finalScore = Math.max(0, score - 2); // Apply -2 penalty, min 0
+        }
+    }
+
     await db
       .update(assessmentResponse)
       .set({
-        score: score,
+        score: finalScore,
         status: "completed",
       })
       .where(eq(assessmentResponse.id, responseId));
+    
+    // Update total score
+    await updateStudentTotalScore(response.studentId);
 
     revalidatePath("/dashboard/mentor");
     return { success: true };
@@ -226,6 +251,10 @@ export async function scoreProject(
   review: string
 ) {
   try {
+    // For projects, we don't have a strict deadline logic in the user request, 
+    // but schema has it if we wanted. User request specially mentioned assessment.
+    // So just applying score.
+    
     await db
       .update(projectSubmission)
       .set({
@@ -234,6 +263,16 @@ export async function scoreProject(
         status: "graded",
       })
       .where(eq(projectSubmission.id, submissionId));
+      
+    // Fetch studentId to update total score
+    const submission = await db.query.projectSubmission.findFirst({
+        where: eq(projectSubmission.id, submissionId),
+        columns: { studentId: true }
+    });
+    
+    if(submission) {
+        await updateStudentTotalScore(submission.studentId);
+    }
 
     revalidatePath("/dashboard/mentor");
     return { success: true };
