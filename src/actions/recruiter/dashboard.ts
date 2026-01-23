@@ -2,7 +2,7 @@
 
 import { db } from "@/lib/db";
 import { user } from "@/lib/db/schema";
-import { eq, and } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { getCurrentSession } from "@/lib/auth/role-guard";
 
 export type Candidate = {
@@ -33,7 +33,7 @@ export async function getRecruiterCandidates() {
 
     // Fetch visible students
     const students = await db.query.user.findMany({
-      where: and(eq(user.role, "student"), eq(user.isRecruiterVisible, true)),
+      where: eq(user.isRecruiterVisible, true),
       with: {
         projectSubmissions: {
           with: {

@@ -8,120 +8,148 @@ import { revalidatePath } from "next/cache";
 
 // Get Mentor Applications
 export async function getMentorApplications({
-    page = 1,
-    limit = 10,
-    search = "",
-    status = "",
+  page = 1,
+  limit = 10,
+  search = "",
+  status = "",
 }: {
-    page?: number;
-    limit?: number;
-    search?: string;
-    status?: string | undefined;
+  page?: number;
+  limit?: number;
+  search?: string;
+  status?: string | undefined;
 }) {
-    try {
-        await requireAdmin();
+  try {
+    await requireAdmin();
 
-        const offset = (page - 1) * limit;
+    const offset = (page - 1) * limit;
 
-        const whereClause = and(
-            search
-                ? or(
-                    like(mentorApplication.fullName, `%${search}%`),
-                    like(mentorApplication.email, `%${search}%`)
-                )
-                : undefined,
-            status && status !== "all"
-                ? eq(mentorApplication.status, status as "pending" | "approved" | "rejected")
-                : undefined
-        );
+    const whereClause = and(
+      search
+        ? or(
+            like(mentorApplication.fullName, `%${search}%`),
+            like(mentorApplication.email, `%${search}%`)
+          )
+        : undefined,
+      status && status !== "all"
+        ? eq(
+            mentorApplication.status,
+            status as "pending" | "approved" | "rejected"
+          )
+        : undefined
+    );
 
-        const [applications, totalCountResult] = await Promise.all([
-            db
-                .select()
-                .from(mentorApplication)
-                .where(whereClause)
-                .limit(limit)
-                .offset(offset)
-                .orderBy(desc(mentorApplication.createdAt)),
-            db
-                .select({ count: sql<number>`count(*)` })
-                .from(mentorApplication)
-                .where(whereClause),
-        ]);
+    const [applications, totalCountResult] = await Promise.all([
+      db
+        .select()
+        .from(mentorApplication)
+        .where(whereClause)
+        .limit(limit)
+        .offset(offset)
+        .orderBy(desc(mentorApplication.createdAt)),
+      db
+        .select({ count: sql<number>`count(*)` })
+        .from(mentorApplication)
+        .where(whereClause),
+    ]);
 
-        const totalCount = Number(totalCountResult[0]?.count || 0);
-        const totalPages = Math.ceil(totalCount / limit);
+    const totalCount = Number(totalCountResult[0]?.count || 0);
+    const totalPages = Math.ceil(totalCount / limit);
 
-        return {
-            success: true,
-            data: applications,
-            meta: {
-                totalCount,
-                totalPages,
-                currentPage: page,
-                limit,
-            },
-        };
-    } catch (error) {
-        console.error("Error fetching mentor applications:", error);
-        return { success: false, error: "Failed to fetch mentor applications" };
-    }
+    return {
+      success: true,
+      data: applications,
+      meta: {
+        totalCount,
+        totalPages,
+        currentPage: page,
+        limit,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching mentor applications:", error);
+    return { success: false, error: "Failed to fetch mentor applications" };
+  }
 }
 
 // Update Mentor Application Status
 export async function updateMentorApplicationStatus(
-    applicationId: string,
-    newStatus: "approved" | "rejected"
+  applicationId: string,
+  newStatus: "approved" | "rejected"
 ) {
-    try {
-        await requireAdmin();
+  try {
+    await requireAdmin();
 
-        // Transaction to ensure atomicity
-        await db.transaction(async (tx) => {
-            // 1. Update Application Status
-            const [updatedApp] = await tx
-                .update(mentorApplication)
-                .set({ status: newStatus })
-                .where(eq(mentorApplication.id, applicationId))
-                .returning();
+    // Transaction to ensure atomicity
+    await db.transaction(async (tx) => {
+      // 1. Update Application Status
+      const [updatedApp] = await tx
+        .update(mentorApplication)
+        .set({ status: newStatus })
+        .where(eq(mentorApplication.id, applicationId))
+        .returning();
 
-            if (!updatedApp) {
-                throw new Error("Application not found");
-            }
+      if (!updatedApp) {
+        throw new Error("Application not found");
+      }
 
-            // 2. If Approved, Update User Role
-            if (newStatus === "approved") {
-                await tx
-                    .update(user)
-                    .set({ role: "mentor" })
-                    .where(eq(user.id, updatedApp.userId));
-            }
-        });
+      // 2. If Approved, Update User Role
+      if (newStatus === "approved") {
+        await tx
+          .update(user)
+          .set({ role: "mentor" })
+          .where(eq(user.id, updatedApp.userId));
+      }
+    });
 
-        revalidatePath("/dashboard/admin");
-        return { success: true, message: `Application ${newStatus} successfully` };
-    } catch (error) {
-        console.error("Error updating mentor application status:", error);
-        return {
-            success: false,
-            error: error instanceof Error ? error.message : "Failed to update status",
-        };
-    }
+    revalidatePath("/dashboard/admin");
+    return { success: true, message: `Application ${newStatus} successfully` };
+  } catch (error) {
+    console.error("Error updating mentor application status:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Failed to update status",
+    };
+  }
 }
 
 // Get Approved Mentors (for dropdowns)
 export async function getApprovedMentors() {
-    try {
-        await requireAdmin();
-        const mentors = await db.select({
-            id: user.id,
-            name: user.name,
-            email: user.email,
-        }).from(user).where(eq(user.role, "mentor"));
+  try {
+    await requireAdmin();
+    const mentors = await db
+      .select({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      })
+      .from(user)
+      .where(eq(user.role, "mentor"));
 
-        return { success: true, data: mentors };
-    } catch (error) {
-        console.error("Error fetching approved mentors:", error);
-        return { success: false, error: "Failed to fetch mentors" };
-    }
+    return { success: true, data: mentors };
+  } catch (error) {
+    console.error("Error fetching approved mentors:", error);
+    return { success: false, error: "Failed to fetch mentors" };
+  }
+}
+
+// Get Assignable Staff (Mentors + Admins)
+export async function getAssignableStaff() {
+  try {
+    await requireAdmin();
+    const staff = await db
+      .select({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      })
+      .from(user)
+      .where(or(eq(user.role, "mentor"), eq(user.role, "admin")));
+
+    return { success: true, data: staff };
+  } catch (error) {
+    console.error("Error fetching assignable staff:", error);
+    return { success: false, error: "Failed to fetch staff" };
+  }
 }

@@ -18,7 +18,7 @@ interface CurriculumBuilderProps {
   errors: FieldErrors<CourseFormValues>;
   watch: UseFormWatch<CourseFormValues>;
   setValue: UseFormSetValue<CourseFormValues>;
-  mentors?: { id: string; name: string }[];
+  mentors?: { id: string; name: string; role: string }[];
 }
 
 export function CurriculumBuilder({

@@ -67,7 +67,7 @@ interface WeekCardProps {
   remove: () => void;
   watch: UseFormWatch<CourseFormValues>;
   setValue: UseFormSetValue<CourseFormValues>;
-  mentors?: { id: string; name: string }[];
+  mentors?: { id: string; name: string; role: string }[];
 }
 
 export function WeekCard({
@@ -100,10 +100,11 @@ export function WeekCard({
   const hasAssessment = !!assessmentValue;
 
   const monthType = watch(`months.${monthIndex}.type`);
-  const assignedMentors = useWatch({
-    control,
-    name: `months.${monthIndex}.weeks.${weekIndex}.mentorIds`,
-  }) || [];
+  const assignedMentors =
+    useWatch({
+      control,
+      name: `months.${monthIndex}.weeks.${weekIndex}.mentorIds`,
+    }) || [];
 
   const [mentorSearch, setMentorSearch] = useState("");
   const [isMentorDialogOpen, setIsMentorDialogOpen] = useState(false);
@@ -177,20 +178,20 @@ export function WeekCard({
   const handleMentorToggle = (mentorId: string, checked: boolean) => {
     const current = assignedMentors || [];
     let newMentors: string[];
-    
+
     if (checked) {
       if (!current.includes(mentorId)) {
-          newMentors = [...current, mentorId];
-          // Auto close on selection
-          setIsMentorDialogOpen(false);
-          setMentorSearch(""); // Reset search
+        newMentors = [...current, mentorId];
+        // Auto close on selection
+        setIsMentorDialogOpen(false);
+        setMentorSearch(""); // Reset search
       } else {
-          newMentors = current;
+        newMentors = current;
       }
     } else {
       newMentors = current.filter((id) => id !== mentorId);
     }
-    
+
     setValue(`months.${monthIndex}.weeks.${weekIndex}.mentorIds`, newMentors, {
       shouldValidate: true,
       shouldDirty: true,
@@ -367,8 +368,9 @@ export function WeekCard({
           </Collapsible>
 
           {/* Mentor Assignment - Dialog Based */}
+          {/* Mentor Assignment - Dialog Based */}
           <div>
-            <div className="flex flex-wrap gap-2 mb-2 items-center">
+            <div className="flex flex-col gap-2 mb-2">
               <Dialog
                 open={isMentorDialogOpen}
                 onOpenChange={setIsMentorDialogOpen}
@@ -377,15 +379,37 @@ export function WeekCard({
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="justify-start text-sm text-gray-400 hover:text-black hover:bg-white font-mono h-9 transition-colors w-full"
+                    className="justify-between text-sm text-gray-400 hover:text-white hover:bg-white/5 font-mono h-auto py-2 transition-colors w-full border border-white/10"
                   >
-                    <UserPlus className="mr-2 h-4 w-4" />
-                    Assign Mentors ({assignedMentors.length})
+                    <div className="flex items-center">
+                      <UserPlus className="mr-2 h-4 w-4" />
+                      <span>Assign Mentors ({assignedMentors.length})</span>
+                    </div>
+                    {assignedMentors.length > 0 && (
+                      <div className="flex -space-x-2">
+                        {assignedMentors.slice(0, 3).map((mId) => (
+                          <div
+                            key={mId}
+                            className="w-6 h-6 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-[10px] text-zinc-400"
+                          >
+                            {mentors
+                              .find((m) => m.id === mId)
+                              ?.name.charAt(0)
+                              .toUpperCase()}
+                          </div>
+                        ))}
+                        {assignedMentors.length > 3 && (
+                          <div className="w-6 h-6 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-[10px] text-zinc-400">
+                            +{assignedMentors.length - 3}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="bg-black border-white/10 text-white sm:max-w-md">
+                <DialogContent className="bg-zinc-950 border-white/10 text-white sm:max-w-md shadow-2xl shadow-red-900/10">
                   <DialogHeader>
-                    <DialogTitle className="font-mono text-lg">
+                    <DialogTitle className="font-mono text-lg uppercase tracking-wider text-red-500">
                       Select Mentors
                     </DialogTitle>
                   </DialogHeader>
@@ -393,22 +417,22 @@ export function WeekCard({
                     <div className="relative">
                       <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
                       <Input
-                        placeholder="Search mentors..."
+                        placeholder="SEARCH MENTORS..."
                         value={mentorSearch}
                         onChange={(e) => setMentorSearch(e.target.value)}
-                        className="pl-8 bg-white/5 border-white/10 text-white font-mono focus:ring-white/20"
+                        className="pl-8 bg-zinc-900 border-white/10 text-white font-mono focus:ring-red-500/50 focus:border-red-500 uppercase placeholder:text-zinc-600 rounded-none h-10"
                       />
                     </div>
-                    <div className="max-h-[300px] overflow-y-auto space-y-1 pr-1">
+                    <div className="max-h-[300px] overflow-y-auto space-y-1 pr-1 custom-scrollbar">
                       {filteredMentors.length === 0 ? (
-                        <p className="text-gray-500 font-mono text-center py-4">
+                        <p className="text-gray-500 font-mono text-center py-4 uppercase text-xs">
                           No mentors found.
                         </p>
                       ) : (
                         filteredMentors.map((mentor) => (
                           <div
                             key={mentor.id}
-                            className="flex items-center justify-between p-2 rounded hover:bg-white/10 transition-colors cursor-pointer group"
+                            className="flex items-center justify-between p-3 border border-transparent hover:border-red-500/30 hover:bg-red-500/5 transition-all cursor-pointer group rounded-none"
                             onClick={() =>
                               handleMentorToggle(
                                 mentor.id,
@@ -416,9 +440,21 @@ export function WeekCard({
                               )
                             }
                           >
-                            <span className="font-mono text-sm text-gray-300 group-hover:text-white">
-                              {mentor.name}
-                            </span>
+                            <div className="flex flex-col gap-1">
+                              <span className="font-mono text-sm text-gray-300 group-hover:text-white font-bold">
+                                {mentor.name}
+                              </span>
+                              <span
+                                className={cn(
+                                  "text-[10px] uppercase tracking-wider px-1.5 py-0.5 w-fit font-bold",
+                                  mentor.role === "admin"
+                                    ? "bg-red-500/20 text-red-400"
+                                    : "bg-blue-500/20 text-blue-400"
+                                )}
+                              >
+                                {mentor.role === "admin" ? "Admin" : "Mentor"}
+                              </span>
+                            </div>
                             <Checkbox
                               checked={assignedMentors.includes(mentor.id)}
                               onCheckedChange={(checked) =>
@@ -427,7 +463,7 @@ export function WeekCard({
                                   checked as boolean
                                 )
                               }
-                              className="border-white/20 data-[state=checked]:bg-white data-[state=checked]:text-black"
+                              className="border-white/20 data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600 text-white rounded-none"
                             />
                           </div>
                         ))
@@ -438,28 +474,50 @@ export function WeekCard({
               </Dialog>
             </div>
 
-            {/* Selected Mentors Display */}
+            {/* Selected Mentors Display - Detailed View */}
             {assignedMentors.length > 0 && (
-              <div className="flex flex-wrap gap-2 pl-4">
+              <div className="flex flex-col gap-2 mt-3 p-3 bg-white/5 border border-white/5">
+                <span className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-1">
+                  Assigned Staff
+                </span>
                 {assignedMentors.map((mId) => {
                   const m = mentors.find((x) => x.id === mId);
                   if (!m) return null;
                   return (
-                    <Badge
+                    <div
                       key={mId}
-                      variant="secondary"
-                      className="bg-white/10 hover:bg-white/20 text-white font-mono text-xs flex items-center gap-1 pl-2 pr-1 py-1"
+                      className="flex items-center justify-between bg-black/40 p-2 border border-white/5 hover:border-white/20 transition-colors group"
                     >
-                      {m.name}
-                      <X
-                        className="h-3 w-3 cursor-pointer hover:text-red-400"
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={cn(
+                            "w-2 h-8",
+                            m.role === "admin" ? "bg-red-600" : "bg-blue-600"
+                          )}
+                        />
+                        <div className="flex flex-col">
+                          <span className="text-sm font-mono text-white">
+                            {m.name}
+                          </span>
+                          <span className="text-[10px] font-mono text-gray-500 uppercase">
+                            {m.role}
+                          </span>
+                        </div>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        type="button"
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
                           handleMentorToggle(mId, false);
                         }}
-                      />
-                    </Badge>
+                        className="opacity-0 group-hover:opacity-100 h-6 w-6 p-0 text-gray-500 hover:text-red-500"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
                   );
                 })}
               </div>
@@ -512,29 +570,42 @@ export function WeekCard({
                   />
                   <div className="flex gap-4">
                     <div className="flex-1">
-                      <Label className="text-xs text-gray-400 font-mono mb-1 block">Submission Format</Label>
+                      <Label className="text-xs text-gray-400 font-mono mb-1 block">
+                        Submission Format
+                      </Label>
                       <Select
-                         onValueChange={(val) => setValue(`months.${monthIndex}.weeks.${weekIndex}.assessment.submissionFormat`, val as "url" | "pdf")}
-                         defaultValue={watch(`months.${monthIndex}.weeks.${weekIndex}.assessment.submissionFormat`) || "pdf"}
+                        onValueChange={(val) =>
+                          setValue(
+                            `months.${monthIndex}.weeks.${weekIndex}.assessment.submissionFormat`,
+                            val as "url" | "pdf"
+                          )
+                        }
+                        defaultValue={
+                          watch(
+                            `months.${monthIndex}.weeks.${weekIndex}.assessment.submissionFormat`
+                          ) || "pdf"
+                        }
                       >
-                         <SelectTrigger className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm">
-                            <SelectValue placeholder="Format" />
-                         </SelectTrigger>
-                         <SelectContent className="bg-black border-white/10 text-white font-mono">
-                            <SelectItem value="pdf">PDF Upload</SelectItem>
-                            <SelectItem value="url">URL Link</SelectItem>
-                         </SelectContent>
+                        <SelectTrigger className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm">
+                          <SelectValue placeholder="Format" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-black border-white/10 text-white font-mono">
+                          <SelectItem value="pdf">PDF Upload</SelectItem>
+                          <SelectItem value="url">URL Link</SelectItem>
+                        </SelectContent>
                       </Select>
                     </div>
-                      <div className="flex-1">
-                        <Label className="text-xs text-gray-400 font-mono mb-1 block">Deadline</Label>
-                        <DeadlinePicker 
-                          control={control}
-                          setValue={setValue}
-                          monthIndex={monthIndex}
-                          weekIndex={weekIndex}
-                        />
-                     </div>
+                    <div className="flex-1">
+                      <Label className="text-xs text-gray-400 font-mono mb-1 block">
+                        Deadline
+                      </Label>
+                      <DeadlinePicker
+                        control={control}
+                        setValue={setValue}
+                        monthIndex={monthIndex}
+                        weekIndex={weekIndex}
+                      />
+                    </div>
                   </div>
                 </div>
               )}
@@ -546,15 +617,15 @@ export function WeekCard({
   );
 }
 
-function DeadlinePicker({ 
-  control, 
-  setValue, 
-  monthIndex, 
-  weekIndex 
-}: { 
+function DeadlinePicker({
+  control,
+  setValue,
+  monthIndex,
+  weekIndex,
+}: {
   control: Control<CourseFormValues>;
   setValue: UseFormSetValue<CourseFormValues>;
-  monthIndex: number; 
+  monthIndex: number;
   weekIndex: number;
 }) {
   const deadline = useWatch({
@@ -573,18 +644,23 @@ function DeadlinePicker({
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {deadline ? (
-            format(deadline, "PPP")
-          ) : (
-            <span>Pick a date</span>
-          )}
+          {deadline ? format(deadline, "PPP") : <span>Pick a date</span>}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0 bg-black border-white/10 text-white" align="start">
+      <PopoverContent
+        className="w-auto p-0 bg-black border-white/10 text-white"
+        align="start"
+      >
         <Calendar
           mode="single"
           selected={deadline || undefined}
-          onSelect={(date) => setValue(`months.${monthIndex}.weeks.${weekIndex}.assessment.deadline`, date, { shouldValidate: true })}
+          onSelect={(date) =>
+            setValue(
+              `months.${monthIndex}.weeks.${weekIndex}.assessment.deadline`,
+              date,
+              { shouldValidate: true }
+            )
+          }
           initialFocus
           className="bg-black text-white border-white/10"
         />

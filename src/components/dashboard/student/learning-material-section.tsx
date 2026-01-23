@@ -32,31 +32,67 @@ import {
   FileText,
   Upload,
   CheckCircle,
-  ChevronRight,
   Github,
   Globe,
   Play,
+  ExternalLink,
+  BookOpen,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 
 interface LearningMaterialSectionProps {
   studentId: string;
 }
 
+interface Resource {
+  title: string;
+  link: string;
+}
+
+interface Assessment {
+  id: string;
+  title: string;
+}
+
+interface Week {
+  id: string;
+  title: string;
+  description: string;
+  isLocked: boolean;
+  isCompleted: boolean;
+  content?: string;
+  resources?: Resource[];
+  assessments?: Assessment[];
+  projectTitle?: string;
+  projectDescription?: string;
+}
+
+interface Month {
+  id: string;
+  title: string;
+  weeks: Week[];
+}
+
+interface Course {
+  id: string;
+  title: string;
+}
+
 export function LearningMaterialSection({
   studentId,
 }: LearningMaterialSectionProps) {
-  const [courses, setCourses] = useState<any[]>([]);
+  const [courses, setCourses] = useState<Course[]>([]);
   const [selectedCourseId, setSelectedCourseId] = useState<string>("");
-  const [courseContent, setCourseContent] = useState<any[]>([]);
+  const [courseContent, setCourseContent] = useState<Month[]>([]);
   const [loadingContent, setLoadingContent] = useState(false);
 
   // States for submission dialogs
-  const [activeWeek, setActiveWeek] = useState<any>(null);
-  const [activeAssessment, setActiveAssessment] = useState<any>(null);
+  const [activeWeek, setActiveWeek] = useState<Week | null>(null);
+  const [activeAssessment, setActiveAssessment] = useState<Assessment | null>(
+    null
+  );
   const [submissionUrl, setSubmissionUrl] = useState("");
   const [projectData, setProjectData] = useState({
     githubUrl: "",
@@ -177,7 +213,7 @@ export function LearningMaterialSection({
               </h3>
 
               <div className="grid grid-cols-1 gap-4">
-                {month.weeks.map((week: any) => (
+                {month.weeks.map((week) => (
                   <div
                     key={week.id}
                     className={cn(
@@ -214,13 +250,48 @@ export function LearningMaterialSection({
                         <p className="text-gray-400 text-sm">
                           {week.description}
                         </p>
+
+                        {/* Week Content / Instructions */}
+                        {week.content && (
+                          <div className="mt-2 text-sm text-gray-300 font-mono bg-black/20 p-3 border border-white/5 rounded-sm whitespace-pre-wrap">
+                            {week.content}
+                          </div>
+                        )}
+
+                        {/* Resources */}
+                        {week.resources &&
+                          Array.isArray(week.resources) &&
+                          week.resources.length > 0 && (
+                            <div className="mt-3 space-y-2">
+                              <span className="text-xs text-blue-400 font-mono uppercase tracking-wider flex items-center gap-1">
+                                <BookOpen className="w-3 h-3" /> Learning
+                                Resources
+                              </span>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                {week.resources.map((res, idx) => (
+                                  <a
+                                    key={idx}
+                                    href={res.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 text-xs font-mono text-gray-300 hover:text-white bg-white/5 px-3 py-2 border border-transparent hover:border-white/20 transition-colors"
+                                  >
+                                    <ExternalLink className="w-3 h-3 text-blue-500" />
+                                    <span className="truncate">
+                                      {res.title || res.link}
+                                    </span>
+                                  </a>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                       </div>
 
                       <div className="flex items-center gap-2 flex-wrap">
                         {/* Assessments */}
                         {week.assessments &&
                           week.assessments.length > 0 &&
-                          week.assessments.map((assessment: any) => (
+                          week.assessments.map((assessment) => (
                             <Dialog
                               key={assessment.id}
                               open={
@@ -253,8 +324,9 @@ export function LearningMaterialSection({
                                     Submit Assessment
                                   </DialogTitle>
                                   <DialogDescription className="font-mono text-xs text-gray-400">
-                                    Submit your work for "{assessment.title}".
-                                    Only PDF or valid URLs allowed.
+                                    Submit your work for &quot;
+                                    {assessment.title}&quot;. Only PDF or valid
+                                    URLs allowed.
                                   </DialogDescription>
                                 </DialogHeader>
                                 <div className="space-y-4 py-4">
@@ -313,8 +385,8 @@ export function LearningMaterialSection({
                                   Submit Project
                                 </DialogTitle>
                                 <DialogDescription className="font-mono text-xs text-gray-400">
-                                  Submit your project deliverables for "
-                                  {week.projectTitle}".
+                                  Submit your project deliverables for &quot;
+                                  {week.projectTitle}&quot;.
                                 </DialogDescription>
                               </DialogHeader>
                               <div className="space-y-4 py-4">

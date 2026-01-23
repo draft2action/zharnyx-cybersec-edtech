@@ -31,7 +31,7 @@ interface MonthCardProps {
   remove: (index: number) => void;
   watch: UseFormWatch<CourseFormValues>;
   setValue: UseFormSetValue<CourseFormValues>; // For manual override if needed
-  mentors?: { id: string; name: string }[];
+  mentors?: { id: string; name: string; role: string }[];
 }
 
 export function MonthCard({

@@ -18,7 +18,7 @@ import { BasicInfo } from "./basic-info";
 import { CurriculumBuilder } from "./curriculum-builder";
 import { Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
-import { getApprovedMentors } from "@/actions/admin/mentor-management/action";
+import { getAssignableStaff } from "@/actions/admin/mentor-management/action";
 
 interface CourseBuilderProps {
   courseId?: string | null;
@@ -33,16 +33,19 @@ export function CourseBuilder({
 }: CourseBuilderProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(!!courseId);
-  const [mentors, setMentors] = useState<{ id: string; name: string }[]>([]);
+  const [mentors, setMentors] = useState<
+    { id: string; name: string; role: string }[]
+  >([]);
 
   useEffect(() => {
     async function loadMentors() {
-      const res = await getApprovedMentors();
+      const res = await getAssignableStaff();
       if (res.success && res.data) {
         setMentors(
           res.data.map((m) => ({
             id: m.id,
             name: m.name || m.email || "Unknown",
+            role: m.role || "mentor",
           }))
         );
       }
@@ -106,7 +109,9 @@ export function CourseBuilder({
               projectTitle: week.projectTitle || "",
               projectDescription: week.projectDescription || "",
               content: week.content || "",
-              resources: week.resources ? (week.resources as any) : [],
+              resources: week.resources
+                ? (week.resources as { title: string; link: string }[])
+                : [],
               assessment:
                 week.assessments && week.assessments.length > 0
                   ? {
