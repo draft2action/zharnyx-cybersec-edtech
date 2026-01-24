@@ -324,6 +324,7 @@ export const assessmentResponse = pgTable("assessment_response", {
     .references(() => user.id, { onDelete: "cascade" }),
   submissionUrl: text("submission_url"),
   score: integer("score"),
+  feedback: text("feedback"),
   status: text("status", { enum: ["pending", "completed"] })
     .default("pending")
     .notNull(),
