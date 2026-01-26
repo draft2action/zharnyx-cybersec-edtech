@@ -7,7 +7,7 @@ import { headers } from "next/headers";
 import { eq, and } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
-export async function enrollStudent(courseId: string) {
+export async function enrollStudent(courseId: string, couponCode?: string) {
     try {
         const session = await auth.api.getSession({
             headers: await headers(),
@@ -45,6 +45,12 @@ export async function enrollStudent(courseId: string) {
             paymentStatus: "paid",
             amount: 0, // Mock amount
         });
+
+        // Track coupon usage if provided
+        if (couponCode) {
+            const { trackCouponUsage } = await import("@/actions/coupon/verify");
+            await trackCouponUsage(couponCode);
+        }
 
         revalidatePath("/dashboard/student");
         return { success: true };

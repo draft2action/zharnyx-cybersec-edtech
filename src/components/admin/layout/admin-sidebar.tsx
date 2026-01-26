@@ -22,6 +22,8 @@ import {
   Settings,
   LogOut,
   Home,
+  FileText,
+  Handshake,
 } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -60,9 +62,19 @@ const items = [
     icon: DollarSign,
   },
   {
+    title: "Applications",
+    id: "applications",
+    icon: FileText,
+  },
+  {
     title: "Coupon Management",
     id: "coupon-management",
     icon: Ticket,
+  },
+  {
+    title: "Partner Management",
+    id: "partner-management",
+    icon: Handshake,
   },
 ];
 
