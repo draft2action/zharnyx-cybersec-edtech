@@ -33,6 +33,7 @@ import {
   HelpCircle,
   Trophy,
   Ticket,
+  Handshake,
 } from "lucide-react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth/auth-client";
@@ -99,6 +100,11 @@ const ADMIN_ITEMS = [
     id: "coupon-management",
     icon: Ticket,
   },
+  {
+    title: "Partner Management",
+    id: "partner-management",
+    icon: Handshake,
+  },
 ];
 
 const MENTOR_ITEMS = [
@@ -124,6 +130,24 @@ const MENTOR_ITEMS = [
   },
 ];
 
+const PARTNER_ITEMS = [
+  {
+    title: "Overview",
+    id: "overview", // Matches default
+    icon: LayoutDashboard,
+  },
+  {
+    title: "My Coupons",
+    id: "coupons",
+    icon: Ticket,
+  },
+  {
+    title: "Settings",
+    id: "settings",
+    icon: Settings,
+  },
+];
+
 interface DashboardSidebarProps {
   userRole?: string;
 }
@@ -141,8 +165,10 @@ export function DashboardSidebar({
       ? pathname?.startsWith("/dashboard/mentor")
         ? "mentor"
         : pathname?.startsWith("/dashboard/student")
-        ? "student"
-        : "admin"
+          ? "student"
+          : pathname?.startsWith("/dashboard/partner")
+            ? "partner_agency"
+            : "admin"
       : userRole;
 
   const currentSection =
@@ -150,8 +176,8 @@ export function DashboardSidebar({
     (effectiveRole === "mentor"
       ? "student-progress"
       : effectiveRole === "student"
-      ? "learning"
-      : "user-management");
+        ? "learning"
+        : "user-management");
 
   const handleLogout = async () => {
     await authClient.signOut();
@@ -171,12 +197,18 @@ export function DashboardSidebar({
     router.push(`/dashboard/student?section=${id}`);
   };
 
+  const handlePartnerClick = (id: string) => {
+    router.push(`/dashboard/partner?section=${id}`);
+  };
+
   const items =
     effectiveRole === "admin"
       ? []
       : effectiveRole === "mentor"
-      ? []
-      : STUDENT_ITEMS;
+        ? []
+        : effectiveRole === "partner_agency"
+          ? PARTNER_ITEMS
+          : STUDENT_ITEMS;
 
   return (
     <Sidebar
@@ -193,8 +225,10 @@ export function DashboardSidebar({
               effectiveRole === "mentor"
                 ? "bg-purple-600"
                 : effectiveRole === "student"
-                ? "bg-blue-600"
-                : "bg-red-600"
+                  ? "bg-blue-600"
+                  : effectiveRole === "partner_agency"
+                    ? "bg-green-600"
+                    : "bg-red-600"
             )}
           >
             <div
@@ -206,6 +240,8 @@ export function DashboardSidebar({
                 <GraduationCap strokeWidth={2.5} />
               ) : effectiveRole === "student" ? (
                 <BookOpen strokeWidth={2.5} />
+              ) : effectiveRole === "partner_agency" ? (
+                <Briefcase strokeWidth={2.5} />
               ) : (
                 <Terminal strokeWidth={2.5} />
               )}
@@ -228,15 +264,19 @@ export function DashboardSidebar({
                 effectiveRole === "mentor"
                   ? "text-purple-500"
                   : effectiveRole === "student"
-                  ? "text-blue-500"
-                  : "text-red-500"
+                    ? "text-blue-500"
+                    : effectiveRole === "partner_agency"
+                      ? "text-green-500"
+                      : "text-red-500"
               )}
             >
               {effectiveRole === "mentor"
                 ? "Mentor Zone"
                 : effectiveRole === "student"
-                ? "Student Portal"
-                : "Admin Console"}
+                  ? "Student Portal"
+                  : effectiveRole === "partner_agency"
+                    ? "Agency Portal"
+                    : "Admin Console"}
             </span>
           </div>
         </div>
@@ -268,7 +308,7 @@ export function DashboardSidebar({
                           "bg-transparent border-transparent text-gray-400 hover:bg-white/10 hover:text-white hover:border-white/20",
                           // Active
                           isActive &&
-                            "bg-red-600/10 border-red-600 text-red-500 hover:bg-red-600/20 hover:text-red-400 hover:border-red-500 shadow-[2px_2px_0px_0px_#dc2626]",
+                          "bg-red-600/10 border-red-600 text-red-500 hover:bg-red-600/20 hover:text-red-400 hover:border-red-500 shadow-[2px_2px_0px_0px_#dc2626]",
                           // Collapsed adjustments
                           "group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-2"
                         )}
@@ -320,7 +360,7 @@ export function DashboardSidebar({
                           "bg-transparent border-transparent text-gray-400 hover:bg-white/10 hover:text-white hover:border-white/20",
                           // Active - Purple
                           isActive &&
-                            "bg-purple-600/10 border-purple-600 text-purple-500 hover:bg-purple-600/20 hover:text-purple-400 hover:border-purple-500 shadow-[2px_2px_0px_0px_#9333ea]",
+                          "bg-purple-600/10 border-purple-600 text-purple-500 hover:bg-purple-600/20 hover:text-purple-400 hover:border-purple-500 shadow-[2px_2px_0px_0px_#9333ea]",
                           // Collapsed adjustments
                           "group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-2"
                         )}
@@ -347,8 +387,60 @@ export function DashboardSidebar({
           </SidebarGroup>
         )}
 
+        {/* Partner Menu */}
+        {effectiveRole === "partner_agency" && (
+          <SidebarGroup>
+            <SidebarGroupLabel className="text-gray-500 font-mono font-bold uppercase tracking-widest text-xs mb-4 pl-4 group-data-[collapsible=icon]:hidden">
+              Agency Controls
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu className="gap-2 px-2 group-data-[collapsible=icon]:px-0">
+                {items.map((item) => {
+                  const isActive =
+                    pathname === "/dashboard/partner" &&
+                    (currentSection === item.id || (item.id === "overview" && !currentSection));
+
+                  return (
+                    <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={isActive}
+                        onClick={() => handlePartnerClick(item.id)}
+                        className={cn(
+                          "font-mono font-bold text-sm border-2 transition-all duration-200 p-3 h-auto rounded-none mb-1",
+                          // Default
+                          "bg-transparent border-transparent text-gray-400 hover:bg-white/10 hover:text-white hover:border-white/20",
+                          // Active - Green
+                          isActive &&
+                          "bg-green-600/10 border-green-600 text-green-500 hover:bg-green-600/20 hover:text-green-400 hover:border-green-500 shadow-[2px_2px_0px_0px_#22c55e]",
+                          // Collapsed adjustments
+                          "group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-2"
+                        )}
+                      >
+                        <button className="flex items-center gap-3 w-full group-data-[collapsible=icon]:justify-center">
+                          <item.icon
+                            className={cn(
+                              "h-5 w-5 stroke-[1.5px] shrink-0",
+                              isActive
+                                ? "text-green-500"
+                                : "text-gray-400 group-hover:text-white"
+                            )}
+                          />
+                          <span className="uppercase tracking-wide text-xs group-data-[collapsible=icon]:hidden">
+                            {item.title}
+                          </span>
+                        </button>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  );
+                })}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
+
         {/* Student Menu */}
-        {effectiveRole !== "admin" && effectiveRole !== "mentor" && (
+        {effectiveRole !== "admin" && effectiveRole !== "mentor" && effectiveRole !== "partner_agency" && (
           <SidebarGroup>
             <SidebarGroupLabel className="text-gray-500 font-mono font-bold uppercase tracking-widest text-xs mb-4 pl-4 group-data-[collapsible=icon]:hidden">
               Learning Space
@@ -372,7 +464,7 @@ export function DashboardSidebar({
                           "bg-transparent border-transparent text-gray-400 hover:bg-white/10 hover:text-white hover:border-white/20",
                           // Active
                           isActive &&
-                            "bg-blue-600/10 border-blue-600 text-blue-500 hover:bg-blue-600/20 hover:text-blue-400 hover:border-blue-500 shadow-[2px_2px_0px_0px_#2563eb]",
+                          "bg-blue-600/10 border-blue-600 text-blue-500 hover:bg-blue-600/20 hover:text-blue-400 hover:border-blue-500 shadow-[2px_2px_0px_0px_#2563eb]",
                           // Collapsed
                           "group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-2"
                         )}
