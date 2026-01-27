@@ -50,6 +50,7 @@ import {
 
 interface LearningMaterialSectionProps {
   studentId: string;
+  courseId?: string;
 }
 
 function CountdownTimer({ targetDate }: { targetDate: Date | string }) {
@@ -86,6 +87,7 @@ function CountdownTimer({ targetDate }: { targetDate: Date | string }) {
 
 export function LearningMaterialSection({
   studentId,
+  courseId,
 }: LearningMaterialSectionProps) {
   const [courses, setCourses] = useState<DashboardCourse[]>([]);
   const [selectedCourseId, setSelectedCourseId] = useState<string>("");
@@ -111,11 +113,21 @@ export function LearningMaterialSection({
       if (result.success && result.data && result.data.length > 0) {
         console.log(result.data)
         setCourses(result.data);
-        setSelectedCourseId(result.data[0].id);
+        if (courseId) {
+          // Verify user is enrolled in the requested course
+          const requestedCourse = result.data.find(c => c.id === courseId);
+          if (requestedCourse) {
+            setSelectedCourseId(courseId);
+          } else {
+            setSelectedCourseId(result.data[0].id);
+          }
+        } else {
+          setSelectedCourseId(result.data[0].id);
+        }
       }
     };
     fetchCourses();
-  }, [studentId]);
+  }, [studentId, courseId]);
 
   useEffect(() => {
     if (!selectedCourseId) return;

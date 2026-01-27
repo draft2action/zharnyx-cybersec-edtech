@@ -29,7 +29,7 @@ export default function ApplyPage() {
 
         <div className="grid md:grid-cols-4 gap-6">
           {/* Student Card */}
-          <Link href="/pricing" className="group block text-left">
+          <Link href="/programs" className="group block text-left">
             <div className="h-full border-2 bg-zinc-950 p-8 border-red-500 shadow-[8px_8px_0px_0px_#ef4444] transition-all duration-300 relative overflow-hidden hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_0px_#ef4444]">
               <div className="absolute top-0 right-0 p-4 opacity-50">
                 <GraduationCap className="w-12 h-12 text-red-500/20 transition-colors" />

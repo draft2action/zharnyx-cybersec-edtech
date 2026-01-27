@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { motion } from "motion/react";
 import {
     Dialog,
@@ -22,10 +24,11 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { CourseEnrollmentDialog } from "@/components/programs/course-enrollment-dialog";
 
 interface ProgramsListProps {
-    courses: any[]; // Using any to avoid complex nested Drizzle type definition overhead for now, or we define interface
+    courses: any[];
+    enrolledCourseIds: string[];
 }
 
-export function ProgramsList({ courses }: ProgramsListProps) {
+export function ProgramsList({ courses, enrolledCourseIds }: ProgramsListProps) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -88,9 +91,16 @@ export function ProgramsList({ courses }: ProgramsListProps) {
                                                         <Clock className="w-4 h-4 mr-2 text-indigo-400" />
                                                         {duration}
                                                     </div>
-                                                    <div className="flex items-center text-indigo-400 group-hover:translate-x-1 transition-transform">
-                                                        View Details &rarr;
-                                                    </div>
+
+                                                    {enrolledCourseIds.includes(program.id) ? (
+                                                        <Link href={`/dashboard/student?section=learning&courseId=${program.id}`} className="flex items-center text-green-400 group-hover:translate-x-1 transition-transform">
+                                                            Continue Learning &rarr;
+                                                        </Link>
+                                                    ) : (
+                                                        <Link href={`/programs/${program.id}`} className="flex items-center text-indigo-400 group-hover:translate-x-1 transition-transform">
+                                                            View Details &rarr;
+                                                        </Link>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
@@ -215,7 +225,7 @@ export function ProgramsList({ courses }: ProgramsListProps) {
                                                     courseTitle={program.title}
                                                     price={program.price || 0}
                                                 >
-                                                    <Button className="font-mono bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all">
+                                                    <Button className="font-mono bg-red-600 hover:bg-red-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg shadow-red-500/20 hover:shadow-red-500/40 transition-all">
                                                         Enroll Now
                                                     </Button>
                                                 </CourseEnrollmentDialog>

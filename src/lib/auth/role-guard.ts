@@ -37,7 +37,7 @@ export async function requireMentor() {
 }
 
 export async function requireStudent() {
-  return requireRole(["admin", "mentor", "student"]);
+  return requireRole(["admin", "mentor", "student", "recruiter", "partner_agency"]);
 }
 
 export async function requireRecruiter() {

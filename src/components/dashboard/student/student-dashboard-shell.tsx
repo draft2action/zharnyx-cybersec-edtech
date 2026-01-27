@@ -21,11 +21,13 @@ import {
 
 interface StudentDashboardShellProps {
   section?: string;
+  courseId?: string;
   studentId: string;
 }
 
 export function StudentDashboardShell({
   section,
+  courseId,
   studentId,
 }: StudentDashboardShellProps) {
   const currentSection = section || "learning";
@@ -56,7 +58,7 @@ export function StudentDashboardShell({
               </CardDescription>
             </CardHeader>
             <CardContent className="p-0">
-              <LearningMaterialSection studentId={studentId} />
+              <LearningMaterialSection studentId={studentId} courseId={courseId} />
             </CardContent>
           </Card>
         );

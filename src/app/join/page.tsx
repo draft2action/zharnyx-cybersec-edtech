@@ -12,7 +12,7 @@ const roles = [
     icon: GraduationCap,
     description:
       "Join the residency. Train in live war games. Get deployed to top security firms.",
-    href: "/pricing",
+    href: "/programs",
     cta: "Start Residency",
     color: "text-red-500",
     hoverBorder: "hover:border-red-500",
@@ -88,11 +88,9 @@ export default function JoinPage() {
                   </div>
 
                   <Button
-                    className={`w-full bg-zinc-900 text-white border-2 border-white/10 hover:bg-${
-                      role.color.split("-")[1]
-                    }-600 group-hover:border-${
-                      role.color.split("-")[1]
-                    }-500 transition-all font-bold uppercase tracking-wider h-14`}
+                    className={`w-full bg-zinc-900 text-white border-2 border-white/10 hover:bg-${role.color.split("-")[1]
+                      }-600 group-hover:border-${role.color.split("-")[1]
+                      }-500 transition-all font-bold uppercase tracking-wider h-14`}
                   >
                     {role.cta}
                     <ArrowRight className="ml-2 w-4 h-4" />

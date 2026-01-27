@@ -13,6 +13,8 @@ export default async function StudentPage(props: PageProps) {
   const searchParams = await props.searchParams;
   const section =
     typeof searchParams.section === "string" ? searchParams.section : undefined;
+  const courseId =
+    typeof searchParams.courseId === "string" ? searchParams.courseId : undefined;
 
   return (
     <div className="flex min-h-screen w-full bg-black font-sans">
@@ -38,6 +40,7 @@ export default async function StudentPage(props: PageProps) {
 
         <StudentDashboardShell
           section={section}
+          courseId={courseId}
           studentId={session.user.id}
         />
       </div>
