@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { motion } from "motion/react";
 import {
@@ -26,9 +27,15 @@ import { CourseEnrollmentDialog } from "@/components/programs/course-enrollment-
 interface ProgramsListProps {
     courses: any[];
     enrolledCourseIds: string[];
+    isLoggedIn: boolean;
 }
 
-export function ProgramsList({ courses, enrolledCourseIds }: ProgramsListProps) {
+export function ProgramsList({ courses, enrolledCourseIds, isLoggedIn }: ProgramsListProps) {
+    const router = useRouter();
+
+    const handleLoginRedirect = () => {
+        router.push("/auth?callbackUrl=" + encodeURIComponent(window.location.pathname));
+    };
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -220,15 +227,24 @@ export function ProgramsList({ courses, enrolledCourseIds }: ProgramsListProps) 
                                             </div>
 
                                             <div className="flex justify-end pt-6 border-t border-white/10">
-                                                <CourseEnrollmentDialog
-                                                    courseId={program.id}
-                                                    courseTitle={program.title}
-                                                    price={program.price || 0}
-                                                >
-                                                    <Button className="font-mono bg-red-600 hover:bg-red-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg shadow-red-500/20 hover:shadow-red-500/40 transition-all">
+                                                {isLoggedIn ? (
+                                                    <CourseEnrollmentDialog
+                                                        courseId={program.id}
+                                                        courseTitle={program.title}
+                                                        price={program.price || 0}
+                                                    >
+                                                        <Button className="font-mono bg-red-600 hover:bg-red-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg shadow-red-500/20 hover:shadow-red-500/40 transition-all">
+                                                            Enroll Now
+                                                        </Button>
+                                                    </CourseEnrollmentDialog>
+                                                ) : (
+                                                    <Button
+                                                        onClick={handleLoginRedirect}
+                                                        className="font-mono bg-red-600 hover:bg-red-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg shadow-red-500/20 hover:shadow-red-500/40 transition-all"
+                                                    >
                                                         Enroll Now
                                                     </Button>
-                                                </CourseEnrollmentDialog>
+                                                )}
                                             </div>
                                         </div>
                                     </ScrollArea>

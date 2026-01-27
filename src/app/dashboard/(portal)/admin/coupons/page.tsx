@@ -12,6 +12,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+export const dynamic = "force-dynamic";
+
 export default async function CouponManagementPage() {
   const { data: coupons } = await getCoupons();
 
