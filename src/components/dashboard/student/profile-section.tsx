@@ -5,6 +5,7 @@ import {
   updateProfile,
   getApprovedProjects,
   getStudentStats,
+  getStudentProfile,
 } from "@/actions/student/dashboard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -49,19 +50,27 @@ export function ProfileSection({ studentId }: ProfileSectionProps) {
   const [approvedProjects, setApprovedProjects] = useState<any[]>([]);
 
   useEffect(() => {
-    // Ideally fetch current user profile data here.
-    // Since we don't have a direct 'getUser' action for the client exposed here,
-    // we might rely on the initial props or fetching it.
-    // For this task, I'll fetch projects.
     const fetchData = async () => {
+      // 1. Fetch approved projects
       const projects = await getApprovedProjects(studentId);
       if (projects.success && projects.data) {
         setApprovedProjects(projects.data);
       }
-      // NOTE: user data should be pre-filled.
-      // In a real app, pass user data as prop or fetch it.
-      // Assuming empty start for now as per previous pattern, or fetch via another action if needed.
-      // You requested input for these fields, so I will provide the inputs.
+
+      // 2. Fetch user profile data
+      const profile = await getStudentProfile(studentId);
+      if (profile.success && profile.data) {
+        const user = profile.data;
+        setFormData({
+          bio: user.bio || "",
+          githubUrl: user.githubUrl || "",
+          linkedinUrl: user.linkedinUrl || "",
+          websiteUrl: user.websiteUrl || "",
+          twitterUrl: user.twitterUrl || "",
+          contactEmail: user.contactEmail || "",
+          topProjects: user.topProjects || [],
+        });
+      }
     };
     fetchData();
   }, [studentId]);

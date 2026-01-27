@@ -1,0 +1,22 @@
+-- CREATE TABLE "partner_application" (
+-- 	"id" text PRIMARY KEY NOT NULL,
+-- 	"user_id" text NOT NULL,
+-- 	"agency_name" text NOT NULL,
+-- 	"email" text NOT NULL,
+-- 	"contact_no" text NOT NULL,
+-- 	"website_url" text,
+-- 	"description" text,
+-- 	"status" text DEFAULT 'pending' NOT NULL,
+-- 	"created_at" timestamp DEFAULT now() NOT NULL,
+-- 	"updated_at" timestamp DEFAULT now() NOT NULL
+-- );
+--> statement-breakpoint
+-- ALTER TABLE "coupon" ADD COLUMN "partner_id" text;--> statement-breakpoint
+-- ALTER TABLE "coupon" ADD COLUMN "partner_revenue" integer;--> statement-breakpoint
+-- ALTER TABLE "doubt_session" ADD COLUMN "course_id" text NOT NULL;--> statement-breakpoint
+-- ALTER TABLE "partner_application" ADD CONSTRAINT "partner_application_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+-- CREATE INDEX "partner_application_userId_idx" ON "partner_application" USING btree ("user_id");--> statement-breakpoint
+-- ALTER TABLE "coupon" ADD CONSTRAINT "coupon_partner_id_user_id_fk" FOREIGN KEY ("partner_id") REFERENCES "public"."user"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
+-- ALTER TABLE "doubt_session" ADD CONSTRAINT "doubt_session_course_id_course_id_fk" FOREIGN KEY ("course_id") REFERENCES "public"."course"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+-- CREATE INDEX "coupon_partnerId_idx" ON "coupon" USING btree ("partner_id");--> statement-breakpoint
+-- CREATE INDEX "doubt_session_courseId_idx" ON "doubt_session" USING btree ("course_id");

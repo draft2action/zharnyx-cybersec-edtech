@@ -22,7 +22,7 @@ export function Navbar({ className }: NavbarProps) {
     setScrolled(latest > 50);
   });
 
-  if (pathname?.startsWith("/dashboard")) {
+  if (pathname?.startsWith("/dashboard") || pathname?.startsWith("/profile")) {
     return null;
   }
 

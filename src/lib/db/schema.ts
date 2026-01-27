@@ -33,7 +33,7 @@ export const user = pgTable("user", {
   twitterUrl: text("twitter_url"),
   contactEmail: text("contact_email"),
   resumeUrl: text("resume_url"), // Link to resume (PDF/Drive)
-  topProjects: json("top_projects"), // Array of project submission IDs
+  topProjects: json("top_projects").$type<string[]>(), // Array of project submission IDs
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
@@ -197,7 +197,6 @@ export const recruiterApplication = pgTable(
   },
   (table) => [index("recruiter_application_userId_idx").on(table.userId)]
 );
-
 
 export const recruiterApplicationRelations = relations(
   recruiterApplication,
@@ -630,4 +629,3 @@ export const couponRelations = relations(coupon, ({ one }) => ({
     references: [user.id],
   }),
 }));
-
