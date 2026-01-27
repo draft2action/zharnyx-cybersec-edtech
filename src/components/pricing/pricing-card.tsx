@@ -18,8 +18,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { PaymentDialog } from "@/components/student/payment-dialog";
-import { useState } from "react";
+import { CourseEnrollmentDialog } from "@/components/programs/course-enrollment-dialog";
 
 interface Course {
   id: string;
@@ -50,7 +49,6 @@ const ICONS = [
 ];
 
 export function PricingCard({ course }: PricingCardProps) {
-  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
   const sellingPoints = Array.isArray(course.sellingPoints)
     ? (course.sellingPoints as string[])
     : [];
@@ -107,20 +105,16 @@ export function PricingCard({ course }: PricingCardProps) {
               {course.description}
             </p>
 
-            <Button
-              onClick={() => setIsPaymentOpen(true)}
-              className="w-full bg-red-600 hover:bg-red-700 text-black hover:text-white font-black uppercase tracking-wider h-16 text-lg border-2 border-red-600 hover:border-red-500 transition-all group"
-            >
-              Apply Now
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-
-            <PaymentDialog
-              open={isPaymentOpen}
-              onOpenChange={setIsPaymentOpen}
+            <CourseEnrollmentDialog
               courseId={course.id}
               courseTitle={course.title}
-            />
+              price={course.price || 0}
+            >
+              <Button className="w-full bg-red-600 hover:bg-red-700 text-black hover:text-white font-black uppercase tracking-wider h-16 text-lg border-2 border-red-600 hover:border-red-500 transition-all group">
+                Apply Now
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </CourseEnrollmentDialog>
 
             <div className="flex items-center gap-2 text-[10px] text-zinc-600 uppercase tracking-widest font-mono">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
