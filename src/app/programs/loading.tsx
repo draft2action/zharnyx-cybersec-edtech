@@ -1,9 +1,9 @@
-import { LoaderOne } from "@/components/ui/loader";
+import { LoaderCyber } from "@/components/ui/loader-cyber";
 
 export default function Loading() {
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md">
-            <LoaderOne />
+        <div className="flex h-screen w-full items-center justify-center bg-black">
+            <LoaderCyber />
         </div>
     );
 }

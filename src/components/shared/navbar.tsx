@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useSession, signOut } from "@/lib/auth/auth-client";
 import { Terminal } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { TransitionLink } from "@/components/shared/transition-link";
 
 interface NavbarProps {
   className?: string;
@@ -97,11 +98,11 @@ export function Navbar({ className }: NavbarProps) {
 
 function NavLink({ href, label }: { href: string; label: string }) {
   return (
-    <Link
+    <TransitionLink
       href={href}
       className="px-5 py-2 text-sm font-medium text-gray-400 uppercase tracking-wide hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all rounded-none"
     >
       {label}
-    </Link>
+    </TransitionLink>
   );
 }
