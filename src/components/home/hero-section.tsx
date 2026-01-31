@@ -31,7 +31,7 @@ export function HeroSection() {
         {/* Hero Content */}
         <div className="flex flex-col items-center text-center max-w-5xl space-y-6">
           {/* Headline */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1] uppercase flex flex-col items-center">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1] uppercase flex flex-col items-center">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-base md:text-xl text-gray-300 max-w-2xl font-medium border-l-4 border-red-600 pl-4 text-left md:text-center md:border-l-0 md:border-b-4 md:pb-2"
+            className="text-sm sm:text-base md:text-xl text-gray-300 max-w-2xl font-medium border-l-4 border-red-600 pl-4 text-left md:text-center md:border-l-0 md:border-b-4 md:pb-2"
           >
             A 6-month career residency producing{" "}
             <span className="bg-white text-black px-1">
@@ -111,7 +111,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}
-          className="grid grid-cols-2 md:grid-cols-4 w-full border-2 border-white/20 mt-12 bg-black/50 backdrop-blur-sm divide-x-2 divide-y-2 md:divide-y-0 divide-white/20"
+          className="grid grid-cols-2 lg:grid-cols-4 w-full border-2 border-white/20 mt-12 bg-black/50 backdrop-blur-sm divide-x-2 divide-y-2 lg:divide-y-0 divide-white/20"
         >
           <StatItem value="6 MONTHS" label="Duration" />
           <StatItem value="3 LVL" label="Deployment" />

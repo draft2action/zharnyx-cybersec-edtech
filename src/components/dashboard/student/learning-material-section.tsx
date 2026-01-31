@@ -246,7 +246,7 @@ export function LearningMaterialSection({
                     )}
                   >
                     <AccordionTrigger disabled={week.isLocked} className="w-full px-4 py-4 hover:no-underline">
-                      <div className="flex items-center gap-4 w-full">
+                      <div className="flex flex-wrap md:flex-nowrap items-center gap-4 w-full">
                         {week.isLocked ? (
                           <Lock className="w-5 h-5 text-gray-400" />
                         ) : (
@@ -327,7 +327,7 @@ export function LearningMaterialSection({
                                   {week.assessments.map((assessment: CourseAssessment) => (
                                     <div key={assessment.id} className="bg-zinc-900/40 border border-white/10 p-5 rounded-sm flex flex-col gap-3 relative overflow-hidden group/card hover:border-yellow-500/30 transition-colors">
                                       {/* Card Header */}
-                                      <div className="flex justify-between items-start gap-4">
+                                      <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
                                         <div className="space-y-1">
                                           <h4 className="text-white font-bold font-mono text-lg">{assessment.title}</h4>
                                           <div className="flex items-center gap-2">
@@ -523,7 +523,7 @@ export function LearningMaterialSection({
                                       )}
 
                                       {/* Footer Info */}
-                                      <div className="flex items-center gap-4 text-xs font-mono text-gray-500 pt-2 border-t border-white/5 mt-1">
+                                      <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-gray-500 pt-2 border-t border-white/5 mt-1">
                                         {!assessment.isCompleted && !week.isCompleted && (
                                           <div className="flex items-center gap-1.5">
                                             <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
@@ -638,7 +638,7 @@ export function LearningMaterialSection({
                                     </DialogDescription>
                                   </DialogHeader>
                                   <div className="space-y-4 py-4">
-                                    <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                       <div className="space-y-2">
                                         <Label className="text-xs font-mono uppercase flex items-center gap-2">
                                           <Github className="w-3 h-3" /> GitHub Repo

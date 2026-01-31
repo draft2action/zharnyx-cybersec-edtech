@@ -20,11 +20,11 @@ export function HubUserControls() {
   };
 
   return (
-    <div className="flex items-centergap-4">
+    <div className="flex items-center gap-4">
       <Link href="/" passHref>
         <Button
           variant="outline"
-          className="border-white/20 text-gray-400 hover:text-white hover:bg-white/10 font-mono hidden md:flex"
+          className="border-white/20 text-gray-400 hover:text-white hover:bg-white/10 font-mono flex"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Home
