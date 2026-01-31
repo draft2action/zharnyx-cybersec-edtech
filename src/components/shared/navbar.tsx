@@ -5,9 +5,10 @@ import { cn } from "@/lib/utils";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import { useState } from "react";
 import { useSession, signOut } from "@/lib/auth/auth-client";
-import { Terminal } from "lucide-react";
+import { Terminal, Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { TransitionLink } from "@/components/shared/transition-link";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
 interface NavbarProps {
   className?: string;
@@ -65,8 +66,8 @@ export function Navbar({ className }: NavbarProps) {
           <NavLink href="/contact" label="Contact" />
         </div>
 
-        {/* Right: CTA */}
-        <div className="flex items-center gap-4">
+        {/* Right: CTA - Desktop */}
+        <div className="hidden md:flex items-center gap-4">
           {session ? (
             <>
               <Link
@@ -91,6 +92,59 @@ export function Navbar({ className }: NavbarProps) {
             </Link>
           )}
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className="p-2 text-white border-2 border-white/20 hover:bg-white/10">
+                <Menu size={24} />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="right" className="bg-black border-l-2 border-white/20 p-0 w-[300px]">
+              <div className="flex flex-col h-full">
+                <div className="p-6 border-b border-white/10">
+                  <span className="text-xl font-black text-white tracking-tighter uppercase">
+                    Zharnyx <span className="text-red-500">Academy</span>
+                  </span>
+                </div>
+                <div className="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-4">
+                  <MobileNavLink href="/" label="Home" />
+                  <MobileNavLink href="/about" label="About" />
+                  <MobileNavLink href="/curriculum" label="Curriculum" />
+                  <MobileNavLink href="/pricing" label="Pricing" />
+                  <MobileNavLink href="/apply" label="Join Us" />
+                  <MobileNavLink href="/contact" label="Contact" />
+                </div>
+                <div className="p-6 border-t border-white/10 flex flex-col gap-4">
+                  {session ? (
+                    <>
+                      <Link
+                        href="/dashboard"
+                        className="w-full text-center px-6 py-3 bg-blue-600 text-white font-bold text-sm uppercase tracking-wider border-2 border-blue-600"
+                      >
+                        Command Center
+                      </Link>
+                      <button
+                        onClick={() => signOut()}
+                        className="w-full px-6 py-3 bg-red-600 text-white font-bold text-sm uppercase tracking-wider border-2 border-red-600"
+                      >
+                        Sign Out
+                      </button>
+                    </>
+                  ) : (
+                    <Link
+                      href="/apply"
+                      className="w-full text-center px-6 py-3 bg-red-600 text-white font-bold text-sm uppercase tracking-wider border-2 border-red-600"
+                    >
+                      Apply Now
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </motion.nav>
     </div>
   );
@@ -106,3 +160,15 @@ function NavLink({ href, label }: { href: string; label: string }) {
     </TransitionLink>
   );
 }
+
+function MobileNavLink({ href, label }: { href: string; label: string }) {
+  return (
+    <SheetClose asChild>
+      <Link href={href} className="block px-4 py-3 text-lg font-bold text-gray-300 uppercase hover:text-white hover:bg-white/5 border-l-2 border-transparent hover:border-red-500 transition-all">
+        {label}
+      </Link>
+    </SheetClose>
+  )
+}
+
+
