@@ -4,12 +4,19 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { ArrowRight, Shield, Terminal, Crosshair } from "lucide-react";
 
-export function HeroSection() {
-  // const fadeInUp = {
-  //   initial: { opacity: 0, y: 20 },
-  //   animate: { opacity: 1, y: 0 },
-  //   transition: { duration: 0.5 },
-  // };
+interface HeroSectionProps {
+  course?: {
+    months: any[];
+    level: string;
+    price: number | null;
+  };
+}
+
+export function HeroSection({ course }: HeroSectionProps) {
+  const duration = course?.months?.length ? `${course.months.length} MONTHS` : "6 MONTHS";
+  const level = course?.level === "All Levels" ? "3 LVL" : course?.level || "3 LVL"; // Just a heuristic mapping
+  const price = course?.price ? `₹${(course.price / 1000).toFixed(1)}K` : "₹4.5K";
+
 
   return (
     <div className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-20 pb-10">
@@ -113,10 +120,10 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.7 }}
           className="grid grid-cols-2 lg:grid-cols-4 w-full border-2 border-white/20 mt-12 bg-black/50 backdrop-blur-sm divide-x-2 divide-y-2 lg:divide-y-0 divide-white/20"
         >
-          <StatItem value="6 MONTHS" label="Duration" />
-          <StatItem value="3 LVL" label="Deployment" />
+          <StatItem value={duration} label="Duration" />
+          <StatItem value={level} label="Deployment" />
           <StatItem value="100%" label="Exposure" />
-          <StatItem value="₹4.5K" label="Investment" />
+          <StatItem value={price} label="Investment" />
         </motion.div>
       </main>
     </div>

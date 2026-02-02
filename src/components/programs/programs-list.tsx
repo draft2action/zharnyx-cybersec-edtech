@@ -57,7 +57,7 @@ export function ProgramsList({ courses, enrolledCourseIds, isLoggedIn }: Program
                 {courses.map((program, index) => {
                     // Calculate a safer duration if not present
                     const duration = program.months?.length ? `${program.months.length * 4} Weeks` : "Self Paced";
-                    const level = "Intermediate"; // Default or fetch from DB if we add 'level' column
+                    const level = program.level || "Intermediate";
 
                     return (
                         <motion.div

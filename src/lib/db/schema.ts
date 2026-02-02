@@ -254,6 +254,18 @@ export const course = pgTable("course", {
   image: text("image"),
   price: integer("price").default(0),
   sellingPoints: json("selling_points"),
+  level: text("level", {
+    enum: ["Beginner", "Intermediate", "Advanced", "All Levels"],
+  })
+    .default("All Levels")
+    .notNull(),
+  portfolioStats: json("portfolio_stats").$type<{
+    scripts?: number;
+    audits?: number;
+    caseStudies?: number;
+    certificates?: number;
+  }>(),
+  upcomingCohort: text("upcoming_cohort"),
   status: text("status", { enum: ["published", "unpublished"] })
     .default("unpublished")
     .notNull(),
