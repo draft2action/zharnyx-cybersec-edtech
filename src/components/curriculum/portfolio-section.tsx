@@ -3,7 +3,21 @@
 import React from "react";
 import { motion } from "motion/react";
 
-export function PortfolioSection() {
+interface PortfolioSectionProps {
+  stats?: {
+    scripts?: number;
+    audits?: number;
+    caseStudies?: number;
+    certificates?: number;
+  } | null;
+}
+
+export function PortfolioSection({ stats }: PortfolioSectionProps) {
+  const scripts = stats?.scripts?.toString() || "3";
+  const audits = stats?.audits?.toString() || "2";
+  const caseStudies = stats?.caseStudies?.toString() || "1";
+  const certificates = stats?.certificates?.toString() || "5";
+
   return (
     <section className="py-32 px-4 md:px-8 max-w-[1400px] mx-auto mb-20">
       <motion.div
@@ -23,25 +37,25 @@ export function PortfolioSection() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <PortfolioCard
-          number="3"
+          number={scripts}
           title="Python/Bash Scripts"
           subtitle="Tools you wrote yourself"
           delay={0.2}
         />
         <PortfolioCard
-          number="2"
+          number={audits}
           title="Audit Reports"
           subtitle="VAPT or IR reports"
           delay={0.4}
         />
         <PortfolioCard
-          number="1"
+          number={caseStudies}
           title="Purple Team Case Study"
           subtitle="The War Game documentation"
           delay={0.6}
         />
         <PortfolioCard
-          number="5"
+          number={certificates}
           title="Monthly Certificates"
           subtitle="One certificate per month"
           delay={0.8}

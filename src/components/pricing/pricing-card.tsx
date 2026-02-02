@@ -27,6 +27,7 @@ interface Course {
   price: number | null;
   sellingPoints: unknown;
   months: unknown[];
+  upcomingCohort: string | null;
 }
 
 interface PricingCardProps {
@@ -118,7 +119,7 @@ export function PricingCard({ course }: PricingCardProps) {
 
             <div className="flex items-center gap-2 text-[10px] text-zinc-600 uppercase tracking-widest font-mono">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              Jan 2026 Cohort: Open
+              {course.upcomingCohort || "Next"} Cohort: Open
             </div>
           </div>
         </div>
