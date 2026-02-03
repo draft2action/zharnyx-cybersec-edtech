@@ -79,16 +79,16 @@ export function PricingCard({ course }: PricingCardProps) {
               Career Residency
             </Badge>
 
-            <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight break-words hyphens-auto line-clamp-3 mb-2">
               {course.title}
             </h2>
 
             <div className="space-y-1">
-              <div className="flex items-baseline gap-2">
-                <span className="text-6xl md:text-7xl font-black text-white">
+              <div className="flex flex-wrap items-baseline gap-2">
+                <span className="text-4xl md:text-6xl font-black text-white break-all">
                   ₹{course.price?.toLocaleString() ?? "0"}
                 </span>
-                <span className="text-xl text-zinc-500 font-mono">/ total</span>
+                <span className="text-lg md:text-xl text-zinc-500 font-mono whitespace-nowrap">/ total</span>
               </div>
               <p className="text-sm text-purple-400 font-bold font-mono uppercase tracking-wide">
                 ~₹

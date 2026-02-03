@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { requireMentor } from "@/lib/auth/role-guard";
 import { MentorDashboardShell } from "@/components/dashboard/mentor/mentor-dashboard-shell";
 import { AnimatedBackground } from "@/components/shared/animated-background";
@@ -24,20 +25,23 @@ export default async function MentorPage(props: PageProps) {
         <main className="w-full max-w-[95%] mx-auto px-4 sm:px-6 lg:px-8 pointer-events-auto">
           {/* Header Section */}
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 pt-8">
-            <div>
-              <Link
-                href="/"
-                className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors mb-2 font-mono"
-              >
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Home
-              </Link>
-              <h1 className="text-4xl font-bold tracking-tight text-white font-mono">
-                Mentor Portal
-              </h1>
-              <p className="text-gray-400 font-mono mt-2 text-lg">
-                Manage your courses and students
-              </p>
+            <div className="flex items-start gap-4">
+              <SidebarTrigger className="text-white hover:bg-white/10 md:hidden border-2 border-white/20 rounded-none h-10 w-10 shrink-0" />
+              <div>
+                <Link
+                  href="/"
+                  className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors mb-2 font-mono"
+                >
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to Home
+                </Link>
+                <h1 className="text-4xl font-bold tracking-tight text-white font-mono">
+                  Mentor Portal
+                </h1>
+                <p className="text-gray-400 font-mono mt-2 text-lg">
+                  Manage your courses and students
+                </p>
+              </div>
             </div>
           </div>
 

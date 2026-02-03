@@ -1,5 +1,6 @@
 import { getCurrentSession } from "@/lib/auth/role-guard";
 import { redirect } from "next/navigation";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { db } from "@/lib/db";
 import { coupon } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
@@ -44,18 +45,21 @@ export default async function PartnerDashboardPage(props: {
             <div className="relative flex flex-col flex-1 z-10 w-full pl-6 pr-6 pb-6 pt-4">
                 {/* Header */}
                 <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-4 border-b-2 border-white/20">
-                    <div className="flex flex-col">
-                        <h1 className="text-4xl font-black font-mono text-white uppercase tracking-tighter leading-none">
-                            Partner Portal
-                        </h1>
-                        <div className="flex items-center gap-2 mt-2">
-                            <span className="bg-green-600 text-black text-[10px] font-bold uppercase tracking-widest px-2 py-0.5">
-                                Active
-                            </span>
-                            <span className="text-gray-500 font-mono text-xs uppercase tracking-widest">
-                                {"// Agency: "}
-                                {session.user.name}
-                            </span>
+                    <div className="flex items-start gap-4">
+                        <SidebarTrigger className="text-white hover:bg-white/10 md:hidden border-2 border-white/20 rounded-none h-10 w-10 shrink-0" />
+                        <div className="flex flex-col">
+                            <h1 className="text-4xl font-black font-mono text-white uppercase tracking-tighter leading-none">
+                                Partner Portal
+                            </h1>
+                            <div className="flex items-center gap-2 mt-2">
+                                <span className="bg-green-600 text-black text-[10px] font-bold uppercase tracking-widest px-2 py-0.5">
+                                    Active
+                                </span>
+                                <span className="text-gray-500 font-mono text-xs uppercase tracking-widest">
+                                    {"// Agency: "}
+                                    {session.user.name}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </header>

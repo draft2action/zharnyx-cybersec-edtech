@@ -34,11 +34,11 @@ export default async function DashboardPage() {
 
   return (
     <div className="flex min-h-screen w-full bg-black font-sans">
-      <div className="relative flex flex-col flex-1 z-10 w-full pl-6 pr-6 pb-6 pt-4">
+      <div className="relative flex flex-col flex-1 z-10 w-full px-3 pb-3 pt-2 md:pl-6 md:pr-6 md:pb-6 md:pt-4">
         {/* Header - Hub Style */}
-        <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-4 border-b-2 border-white/20">
+        <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 md:mb-8 pb-2 md:pb-4 border-b-2 border-white/20">
           <div className="flex flex-col">
-            <h1 className="text-4xl font-black font-mono text-white uppercase tracking-tighter leading-none">
+            <h1 className="text-2xl md:text-4xl font-black font-mono text-white uppercase tracking-tighter leading-none">
               Command Center
             </h1>
             <div className="flex items-center gap-2 mt-2">
@@ -73,7 +73,7 @@ export default async function DashboardPage() {
                       Complete system control.
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="p-6">
+                  <CardContent className="p-3 md:p-6">
                     <p className="text-sm text-gray-400 font-mono">
                       Manage users, courses, mentors, and platform settings.
                     </p>
@@ -100,7 +100,7 @@ export default async function DashboardPage() {
                       Student management & grading.
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="p-6">
+                  <CardContent className="p-3 md:p-6">
                     <p className="text-sm text-gray-400 font-mono">
                       Track student progress, grade assignments, and clear
                       doubts.
@@ -127,7 +127,7 @@ export default async function DashboardPage() {
                     Learning & submissions.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="p-6">
+                <CardContent className="p-3 md:p-6">
                   <p className="text-sm text-gray-400 font-mono">
                     Access course materials, submit work, and view progress.
                   </p>
@@ -153,7 +153,7 @@ export default async function DashboardPage() {
                       Talent acquisition.
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="p-6">
+                  <CardContent className="p-3 md:p-6">
                     <p className="text-sm text-gray-400 font-mono">
                       Search for candidates and manage job postings.
                     </p>
@@ -180,7 +180,7 @@ export default async function DashboardPage() {
                       Agency Stats & Revenue.
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="p-6">
+                  <CardContent className="p-3 md:p-6">
                     <p className="text-sm text-gray-400 font-mono">
                       Track coupon usage and revenue share.
                     </p>
@@ -207,7 +207,7 @@ export default async function DashboardPage() {
                   Current Session Details
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-6 space-y-6">
+              <CardContent className="p-3 md:p-6 space-y-4 md:space-y-6">
                 <div className="space-y-1">
                   <label className="text-[10px] text-gray-500 font-mono uppercase tracking-widest block">
                     Full Name

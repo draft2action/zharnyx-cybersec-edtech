@@ -19,7 +19,7 @@ export function HeroSection({ course }: HeroSectionProps) {
 
 
   return (
-    <div className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-20 pb-10">
+    <div className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-36 pb-10">
       {/* Background Grid Accent - subtle static noise or pattern could go here */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
 

@@ -90,9 +90,9 @@ export function UserTable() {
   }
 
   return (
-    <div className="container mx-auto py-10">
-      <div className="flex items-center py-4 gap-4">
-        <div className="flex flex-1 items-center gap-2">
+    <div className="w-full py-4 md:py-10">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center py-4 gap-4">
+        <div className="flex flex-1 flex-col sm:flex-row items-center gap-2">
           <input
             placeholder="SEARCH USERS..."
             value={query}
@@ -113,7 +113,7 @@ export function UserTable() {
             setPagination((prev) => ({ ...prev, pageIndex: 0 }));
           }}
         >
-          <SelectTrigger className="w-[180px] h-10 border-2 border-white/20 bg-black text-white font-mono rounded-none uppercase text-xs font-bold tracking-wide focus:border-red-500">
+          <SelectTrigger className="w-full md:w-[180px] h-10 border-2 border-white/20 bg-black text-white font-mono rounded-none uppercase text-xs font-bold tracking-wide focus:border-red-500">
             <SelectValue placeholder="All Roles" />
           </SelectTrigger>
           <SelectContent className="bg-black border-2 border-white/20 text-white font-mono rounded-none">

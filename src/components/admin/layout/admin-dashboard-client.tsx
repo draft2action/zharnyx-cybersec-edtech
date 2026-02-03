@@ -29,13 +29,13 @@ export default function AdminPage() {
     <div className="flex min-h-screen w-full bg-black font-sans">
       {/* Removed AnimatedBackground for better visibility/contrast */}
 
-      <div className="relative flex flex-col flex-1 z-10 w-full pl-6 pr-6 pb-6 pt-4">
+      <div className="relative flex flex-col flex-1 z-10 w-full px-3 pb-3 pt-2 md:pl-6 md:pr-6 md:pb-6 md:pt-4">
         {/* Header - Neo Brutalist */}
-        <header className="flex items-center gap-4 mb-8 pb-4 border-b-2 border-white/20">
+        <header className="flex items-center gap-2 md:gap-4 mb-4 md:mb-8 pb-2 md:pb-4 border-b-2 border-white/20">
           <SidebarTrigger className="text-white hover:bg-white/10 md:hidden border-2 border-white/20 rounded-none h-10 w-10" />
 
           <div className="flex flex-col">
-            <h1 className="text-4xl font-black font-mono text-white uppercase tracking-tighter leading-none">
+            <h1 className="text-2xl md:text-4xl font-black font-mono text-white uppercase tracking-tighter leading-none">
               {activeSection.replace(/-/g, " ")}
             </h1>
             <div className="flex items-center gap-2 mt-2">
@@ -54,8 +54,8 @@ export default function AdminPage() {
             <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10] pt-0">
               <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4">
                 <div className="flex items-center gap-2 mb-1">
-                  <Terminal className="w-4 h-4 text-red-500" />
-                  <CardTitle className="font-mono text-xl text-white uppercase tracking-wide">
+                  <Terminal className="w-3 h-3 md:w-4 md:h-4 text-red-500" />
+                  <CardTitle className="font-mono text-lg md:text-xl text-white uppercase tracking-wide">
                     User Database
                   </CardTitle>
                 </div>
@@ -64,7 +64,7 @@ export default function AdminPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="p-0">
-                <div className="p-6">
+                <div className="p-3 md:p-6">
                   <UserTable />
                 </div>
               </CardContent>
@@ -103,7 +103,7 @@ export default function AdminPage() {
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="p-6">
+                  <CardContent className="p-3 md:p-6">
                     <MentorApplicationTable />
                   </CardContent>
                 </Card>
@@ -125,7 +125,7 @@ export default function AdminPage() {
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="p-6">
+                  <CardContent className="p-3 md:p-6">
                     <RecruiterApplicationTable />
                   </CardContent>
                 </Card>
@@ -147,7 +147,7 @@ export default function AdminPage() {
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="p-6">
+                  <CardContent className="p-3 md:p-6">
                     <PartnerApplicationTable />
                   </CardContent>
                 </Card>
@@ -177,7 +177,7 @@ export default function AdminPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="p-0">
-                <div className="p-6">
+                <div className="p-3 md:p-6">
                   <RankingTable />
                 </div>
               </CardContent>

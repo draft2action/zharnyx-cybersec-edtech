@@ -36,7 +36,7 @@ export function StudentDashboardShell({
     switch (currentSection) {
       case "overview":
         return (
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             <h2 className="text-xl font-bold text-white font-mono flex items-center gap-2">
               <LayoutDashboard className="h-5 w-5 text-blue-500" /> OVERVIEW
             </h2>
@@ -49,11 +49,11 @@ export function StudentDashboardShell({
             <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4">
               <div className="flex items-center gap-2 mb-1">
                 <GraduationCap className="w-4 h-4 text-blue-500" />
-                <CardTitle className="font-mono text-xl text-white uppercase tracking-wide">
+                <CardTitle className="font-mono text-lg md:text-xl text-white uppercase tracking-wide">
                   Learning Material
                 </CardTitle>
               </div>
-              <CardDescription className="text-gray-400 font-mono text-xs uppercase tracking-wider">
+              <CardDescription className="text-gray-400 font-mono text-[10px] md:text-xs uppercase tracking-wider">
                 Access your course content and submit assignments.
               </CardDescription>
             </CardHeader>
@@ -76,7 +76,7 @@ export function StudentDashboardShell({
                 View status of all your assessments and projects.
               </CardDescription>
             </CardHeader>
-            <CardContent className="p-6">
+            <CardContent className="p-3 md:p-6">
               <SubmissionsHistorySection studentId={studentId} />
             </CardContent>
           </Card>
@@ -95,7 +95,7 @@ export function StudentDashboardShell({
                 Update your public information and links.
               </CardDescription>
             </CardHeader>
-            <CardContent className="p-6">
+            <CardContent className="p-3 md:p-6">
               <ProfileSection studentId={studentId} />
             </CardContent>
           </Card>
@@ -104,7 +104,7 @@ export function StudentDashboardShell({
         return <DoubtSessionsView studentId={studentId} />;
       default:
         return (
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             <OverviewSection studentId={studentId} />
           </div>
         );
@@ -112,7 +112,7 @@ export function StudentDashboardShell({
   };
 
   return (
-    <div className="space-y-6 animate-in fade-in duration-500 w-full">
+    <div className="space-y-4 md:space-y-6 animate-in fade-in duration-500 w-full">
       {renderContent()}
     </div>
   );

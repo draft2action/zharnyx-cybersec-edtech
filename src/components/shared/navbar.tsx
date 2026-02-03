@@ -31,7 +31,7 @@ export function Navbar({ className }: NavbarProps) {
   return (
     <div
       className={cn(
-        "fixed top-0 inset-x-0 w-full z-50 font-mono transition-all duration-300",
+        "fixed top-0 inset-x-0 w-full z-[100] font-mono transition-all duration-300",
         className
       )}
     >
@@ -41,9 +41,7 @@ export function Navbar({ className }: NavbarProps) {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={cn(
           "relative flex items-center justify-between px-6 md:px-12 py-5 border-b-2 transition-all duration-300",
-          scrolled
-            ? "bg-black/90 backdrop-blur-md border-red-900/40"
-            : "bg-transparent border-transparent py-8"
+          "bg-black border-red-900/40"
         )}
       >
         {/* Left: Company Name */}
