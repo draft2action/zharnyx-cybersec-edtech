@@ -50,7 +50,7 @@ export function DoubtSessionsView({ studentId }: DoubtSessionsViewProps) {
   return (
     <div className="space-y-6">
       <Card className="bg-black border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10]">
-        <CardHeader className="flex flex-row items-center justify-between border-b-2 border-white/20 pb-4">
+        <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between border-b-2 border-white/20 pb-4 gap-4 md:gap-0">
           <div className="flex items-center gap-2">
             <HelpCircle className="w-6 h-6 text-purple-500" />
             <CardTitle className="font-mono text-2xl uppercase tracking-tight">

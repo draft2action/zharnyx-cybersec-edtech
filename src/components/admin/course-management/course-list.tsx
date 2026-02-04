@@ -152,8 +152,8 @@ export function CourseList({ onEdit }: CourseListProps) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center py-4 gap-4">
-        <div className="flex flex-1 items-center gap-2">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center py-4 gap-4">
+        <div className="flex flex-col md:flex-row flex-1 items-stretch md:items-center gap-2">
           <input
             placeholder="SEARCH COURSES..."
             value={query}
@@ -173,7 +173,7 @@ export function CourseList({ onEdit }: CourseListProps) {
             setStatusFilter(value);
           }}
         >
-          <SelectTrigger className="w-[180px] h-10 border-2 border-white/20 bg-black text-white font-mono rounded-none uppercase text-xs font-bold tracking-wide focus:border-red-500">
+          <SelectTrigger className="w-full md:w-[180px] h-10 border-2 border-white/20 bg-black text-white font-mono rounded-none uppercase text-xs font-bold tracking-wide focus:border-red-500">
             <SelectValue placeholder="ALL STATUS" />
           </SelectTrigger>
           <SelectContent className="bg-black border-2 border-white/20 text-white font-mono rounded-none">

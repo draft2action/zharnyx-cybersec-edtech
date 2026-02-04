@@ -56,6 +56,7 @@ interface LearningMaterialSectionProps {
 function CountdownTimer({ targetDate }: { targetDate: Date | string }) {
   const [timeLeft, setTimeLeft] = useState("");
 
+
   useEffect(() => {
     const calculateTimeLeft = () => {
       const difference = new Date(targetDate).getTime() - new Date().getTime();
@@ -171,6 +172,7 @@ export function LearningMaterialSection({
       toast.error("Failed to submit");
     }
   };
+  console.log(courseContent)
 
   const handleSubmitProject = async () => {
     if (!projectData.description) {
@@ -290,27 +292,46 @@ export function LearningMaterialSection({
                         {/* Plan / Content */}
                         <div className="space-y-4 mb-6">
                           <div className="flex flex-col gap-3 items-center">
-                            <h5 className="text-gray-400 font-mono text-xs uppercase font-bold tracking-widest text-center">Learning Plan</h5>
-                            <div className="flex justify-center w-full">
-                              <Button
-                                variant="outline"
-                                asChild
-                                className="font-mono text-xs border-white/10 bg-zinc-900/50 hover:bg-zinc-800 text-gray-300 hover:text-white h-9 px-3 flex items-center gap-2 max-w-[200px] md:max-w-xs justify-start rounded-sm transition-all group/btn"
-                              >
-                                <a
-                                  href={week.content?.startsWith('http') ? week.content : '#'}
-                                  target={week.content?.startsWith('http') ? "_blank" : "_self"}
-                                  rel={week.content?.startsWith('http') ? "noopener noreferrer" : undefined}
-                                  className={cn(!week.content && "pointer-events-none opacity-50")}
-                                >
-                                  <FileText className="w-3 h-3 text-blue-500 group-hover/btn:text-blue-400 transition-colors shrink-0" />
-                                  <span className="truncate">{week.content || "No Plan Linked"}</span>
-                                  {week.content?.startsWith('http') && (
-                                    <ExternalLink className="w-3 h-3 ml-auto opacity-0 group-hover/btn:opacity-50 transition-opacity shrink-0" />
+                            {week.projectTitle ? (
+                              <>
+                                <h5 className="text-gray-400 font-mono text-xs uppercase font-bold tracking-widest text-center">Project Brief</h5>
+                                <div className="text-center space-y-2 max-w-2xl mx-auto">
+                                  <h4 className="text-white font-mono text-lg font-bold">{week.projectTitle}</h4>
+                                  {week.projectDescription && (
+                                    <p className="text-gray-300 font-mono text-sm whitespace-pre-wrap">
+                                      {week.projectDescription}
+                                    </p>
                                   )}
-                                </a>
-                              </Button>
-                            </div>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <h5 className="text-gray-400 font-mono text-xs uppercase font-bold tracking-widest text-center">Learning Plan</h5>
+                                <div className="flex justify-center w-full">
+                                  {week.content ? (
+                                    week.content.startsWith('http') ? (
+                                      <a
+                                        href={week.content}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="font-mono text-sm text-gray-300 hover:text-white flex items-center gap-2 transition-colors border-b border-white/10 pb-1 hover:border-white/50"
+                                      >
+                                        <FileText className="w-4 h-4 text-blue-500 shrink-0" />
+                                        <span className="break-all">{week.content}</span>
+                                        <ExternalLink className="w-3 h-3 text-gray-500 shrink-0" />
+                                      </a>
+                                    ) : (
+                                      <div className="font-mono text-sm text-gray-300 flex items-start gap-2">
+                                        <FileText className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                                        <span className="whitespace-pre-wrap">{week.content}</span>
+                                      </div>
+                                    )
+                                  ) : (
+                                    <span className="text-gray-500 font-mono text-xs italic">No plan content.</span>
+                                  )}
+                                </div>
+                              </>
+                            )}
                           </div>
 
                           {/* Resources */}

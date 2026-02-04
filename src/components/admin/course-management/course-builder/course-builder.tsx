@@ -115,17 +115,17 @@ export function CourseBuilder({
               assessment:
                 week.assessments && week.assessments.length > 0
                   ? {
-                      title: week.assessments[0].title,
-                      topic: week.assessments[0].topic || "",
-                      problem: week.assessments[0].problem || "",
-                      submissionFormat:
-                        (week.assessments[0].submissionFormat as
-                          | "pdf"
-                          | "url") || "pdf",
-                      deadline: week.assessments[0].deadline
-                        ? new Date(week.assessments[0].deadline)
-                        : undefined,
-                    }
+                    title: week.assessments[0].title,
+                    topic: week.assessments[0].topic || "",
+                    problem: week.assessments[0].problem || "",
+                    submissionFormat:
+                      (week.assessments[0].submissionFormat as
+                        | "pdf"
+                        | "url") || "pdf",
+                    deadline: week.assessments[0].deadline
+                      ? new Date(week.assessments[0].deadline)
+                      : undefined,
+                  }
                   : null,
               mentorIds: week.mentors.map((wm) => wm.mentorId),
             })),
@@ -239,7 +239,7 @@ export function CourseBuilder({
       onSubmit={(e) => e.preventDefault()}
       className="space-y-8 w-full max-w-screen mx-auto"
     >
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4 md:gap-0">
         <h3 className="text-2xl font-bold font-mono text-white">
           {courseId ? "Edit Course" : "Create New Course"}
         </h3>

@@ -57,7 +57,7 @@ export function CouponManager() {
 
   return (
     <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10] pt-0">
-      <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4 flex flex-row items-center justify-between">
+      <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2 mb-1">
             <Ticket className="w-4 h-4 text-green-500" />

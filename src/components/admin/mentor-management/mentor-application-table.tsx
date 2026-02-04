@@ -74,7 +74,7 @@ export function MentorApplicationTable() {
   }
 
   return (
-    <div className="container mx-auto py-10 pt-0">
+    <div className="container mx-auto py-10 pt-0 overflow-x-auto">
       <div className="flex items-center py-4 gap-4">
         <div className="flex flex-1 items-center gap-2">
           <input

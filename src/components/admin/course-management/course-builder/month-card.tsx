@@ -58,12 +58,12 @@ export function MonthCard({
 
   return (
     <Card className="bg-black/20 border-white/10 mb-4">
-      <CardHeader className="p-4 flex flex-row items-center gap-4 space-y-0">
+      <CardHeader className="p-4 flex flex-col md:flex-row items-start md:items-center gap-4 space-y-0">
         <div className="cursor-move text-gray-500">
           <GripVertical className="h-5 w-5" />
         </div>
 
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
           <div className="flex flex-col gap-1">
             <Input
               {...register(`months.${index}.title`)}
@@ -164,7 +164,7 @@ export function MonthCard({
       </CardHeader>
 
       {isExpanded && (
-        <CardContent className="p-4 pt-0 pl-10">
+        <CardContent className="p-4 pt-0 pl-4 md:pl-10">
           <div className="space-y-4 border-l-2 border-white/5 pl-4 ml-2">
             {weekFields.map((week, wIndex) => (
               <WeekCard

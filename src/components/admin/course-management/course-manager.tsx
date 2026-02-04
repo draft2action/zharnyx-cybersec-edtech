@@ -28,7 +28,7 @@ export function CourseManager() {
   if (view === "list") {
     return (
       <div className="space-y-6 px-4">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-0">
           <h2 className="text-2xl font-bold tracking-tight text-white font-mono">
             Courses
           </h2>
