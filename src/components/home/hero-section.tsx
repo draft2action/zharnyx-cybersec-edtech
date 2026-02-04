@@ -92,7 +92,7 @@ export function HeroSection({ course }: HeroSectionProps) {
             className="flex flex-col sm:flex-row gap-6 mt-6 w-full justify-center"
           >
             <Link
-              href="/blueprint"
+              href="/#master-plan"
               className="group relative px-8 py-4 bg-red-600 text-black font-bold text-lg uppercase tracking-wider border-2 border-red-600 hover:translate-x-1 hover:translate-y-1 transition-transform"
             >
               <span className="absolute inset-0 bg-white translate-x-1.5 translate-y-1.5 -z-10 border-2 border-white group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></span>

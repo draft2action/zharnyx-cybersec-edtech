@@ -60,7 +60,7 @@ export function Navbar({ className }: NavbarProps) {
           <NavLink href="/about" label="About" />
           <NavLink href="/curriculum" label="Curriculum" />
           <NavLink href="/pricing" label="Pricing" />
-          <NavLink href="/apply" label="Join Us" />
+          <NavLink href="/#why-us" label="why us" />
           <NavLink href="/contact" label="Contact" />
         </div>
 

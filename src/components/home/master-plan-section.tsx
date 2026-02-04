@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export function MasterPlanSection() {
   return (
-    <section className="py-24 relative bg-black border-t-2 border-white/20">
+    <section id="master-plan" className="py-24 relative bg-black border-t-2 border-white/20">
       <div className="container mx-auto px-4 max-w-4xl relative">
         {/* Background Connector Line */}
         <div className="absolute left-4 md:left-1/2 top-32 bottom-32 w-1 bg-white/10 -translate-x-1/2 hidden md:block" />
@@ -53,7 +53,7 @@ export function MasterPlanSection() {
             alignment="left"
             delay={0.1}
           />
-          
+
           <TimelineItem
             phase="Phase 2"
             title="Red vs Blue Combat"
@@ -90,22 +90,22 @@ export function MasterPlanSection() {
 
         {/* Footer Badge */}
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-            className="flex justify-center mt-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+          className="flex justify-center mt-20"
         >
-             <div className="flex items-center gap-3 px-6 py-3 bg-white/5 border-2 border-white/10 rounded-full">
-                <div className="flex gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                    <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse delay-100" />
-                    <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse delay-200" />
-                </div>
-                <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">
-                    War Rooms • Tribunal Gatekeeping • 3-Tier Deployment
-                </span>
-             </div>
+          <div className="flex items-center gap-3 px-6 py-3 bg-white/5 border-2 border-white/10 rounded-full">
+            <div className="flex gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse delay-100" />
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse delay-200" />
+            </div>
+            <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">
+              War Rooms • Tribunal Gatekeeping • 3-Tier Deployment
+            </span>
+          </div>
         </motion.div>
 
       </div>
@@ -126,7 +126,7 @@ interface TimelineItemProps {
 
 function TimelineItem({ phase, title, period, description, icon, color, alignment, delay }: TimelineItemProps) {
   const isLeft = alignment === "left";
-  
+
   const colorMap = {
     blue: {
       border: "border-blue-600",
@@ -164,12 +164,12 @@ function TimelineItem({ phase, title, period, description, icon, color, alignmen
       {/* Content Card */}
       <div className={cn("flex-1 md:w-1/2", isLeft ? "md:pr-24" : "md:pl-24 pl-16")}>
         <div className={cn(
-            "p-6 bg-black border-2 relative group hover:-translate-y-1 transition-transform",
-            "border-white", // Base border white
-            theme.shadow
+          "p-6 bg-black border-2 relative group hover:-translate-y-1 transition-transform",
+          "border-white", // Base border white
+          theme.shadow
         )}>
-           {/* Colored Top Bar */}
-            <div className={cn("absolute top-0 left-0 w-full h-1", theme.bg)} />
+          {/* Colored Top Bar */}
+          <div className={cn("absolute top-0 left-0 w-full h-1", theme.bg)} />
 
           <div className="flex flex-col gap-2">
             <span className={cn("font-mono text-xs uppercase tracking-widest", theme.text)}>
@@ -188,11 +188,11 @@ function TimelineItem({ phase, title, period, description, icon, color, alignmen
       {/* Center Icon Node */}
       <div className="absolute left-4 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
         <div className={cn(
-            "w-12 h-12 bg-black border-2 flex items-center justify-center z-10",
-            theme.border,
-            theme.text
+          "w-12 h-12 bg-black border-2 flex items-center justify-center z-10",
+          theme.border,
+          theme.text
         )}>
-            {icon}
+          {icon}
         </div>
       </div>
 
