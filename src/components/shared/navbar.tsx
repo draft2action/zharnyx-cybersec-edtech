@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { motion, useScroll, useMotionValueEvent } from "motion/react";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { useSession, signOut } from "@/lib/auth/auth-client";
 import { Terminal, Menu, ChevronDown } from "lucide-react";
@@ -153,11 +153,42 @@ export function Navbar({ className }: NavbarProps) {
                 </div>
                 <div className="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-4">
                   <MobileNavLink href="/" label="Home" />
-                  <MobileNavLink href="/about" label="About" />
-                  <MobileNavLink href="/curriculum" label="Curriculum" />
+
+                  {/* About Mobile Dropdown */}
+                  <MobileNavDropdown label="About">
+                    <MobileNavLink href="/about" label="Overview" />
+                    <MobileNavLink href="/about#mission" label="Mission" isChild />
+                    <MobileNavLink href="/about#core-pillars" label="Core Pillars" isChild />
+                    <MobileNavLink href="/about#leadership" label="Leadership" isChild />
+                    <MobileNavLink href="/about#journey" label="Our Journey" isChild />
+                  </MobileNavDropdown>
+
+                  {/* Curriculum Mobile Dropdown */}
+                  <MobileNavDropdown label="Curriculum">
+                    <MobileNavLink href="/curriculum" label="Overview" />
+                    <MobileNavLink href="/curriculum#foundation" label="Foundation" isChild />
+                    <MobileNavLink href="/curriculum#specialization" label="Specialization" isChild />
+                    <MobileNavLink href="/curriculum#convergence" label="Convergence" isChild />
+                    <MobileNavLink href="/curriculum#internship" label="Internship" isChild />
+                    <MobileNavLink href="/curriculum#portfolio" label="Portfolio" isChild />
+                  </MobileNavDropdown>
+
+                  <MobileNavLink href="/programs" label="Courses" />
+
+                  {/* Why Us Mobile Dropdown */}
+                  <MobileNavDropdown label="Why Us">
+                    <MobileNavLink href="/#why-us" label="Architecture" isChild />
+                    <MobileNavLink href="/#master-plan" label="Master Plan" isChild />
+                    <MobileNavLink href="/#methodology" label="Methodology" isChild />
+                    <MobileNavLink href="/#war-room" label="War Rooms" isChild />
+                    <MobileNavLink href="/#agency-ops" label="Agency Ops" isChild />
+                    <MobileNavLink href="/#gatekeeping" label="Gatekeeping" isChild />
+                    <MobileNavLink href="/#deployment-tiers" label="Deployment" isChild />
+                  </MobileNavDropdown>
+
+                  <MobileNavLink href="/contact" label="Contact" />
                   <MobileNavLink href="/pricing" label="Pricing" />
                   <MobileNavLink href="/apply" label="Join Us" />
-                  <MobileNavLink href="/contact" label="Contact" />
                 </div>
                 <div className="p-6 border-t border-white/10 flex flex-col gap-4">
                   {session ? (
@@ -228,13 +259,47 @@ function DropdownItem({ href, label }: { href: string; label: string }) {
     </Link>
   );
 }
-function MobileNavLink({ href, label }: { href: string; label: string }) {
+function MobileNavLink({ href, label, isChild }: { href: string; label: string; isChild?: boolean }) {
   return (
     <SheetClose asChild>
-      <Link href={href} className="block px-4 py-3 text-lg font-bold text-gray-300 uppercase hover:text-white hover:bg-white/5 border-l-2 border-transparent hover:border-red-500 transition-all">
+      <Link
+        href={href}
+        className={cn(
+          "block py-3 font-bold uppercase hover:text-white hover:bg-white/5 border-l-2 border-transparent hover:border-red-500 transition-all",
+          isChild ? "px-8 text-base text-gray-400" : "px-4 text-lg text-gray-300"
+        )}
+      >
         {label}
       </Link>
     </SheetClose>
+  )
+}
+
+function MobileNavDropdown({ label, children }: { label: string; children: React.ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="w-full">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between px-4 py-3 text-lg font-bold text-gray-300 uppercase hover:text-white hover:bg-white/5 border-l-2 border-transparent hover:border-red-500 transition-all"
+      >
+        {label}
+        <ChevronDown size={20} className={cn("transition-transform duration-300", isOpen && "rotate-180")} />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden bg-white/5"
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
