@@ -6,28 +6,17 @@ import { LoaderProvider } from "@/components/shared/loader-context";
 import { Suspense } from "react";
 import { Navbar } from "@/components/shared/navbar";
 import { Footer } from "@/components/shared/footer";
-import { db } from "@/lib/db";
-import { course } from "@/lib/db/schema";
-import { eq } from "drizzle-orm";
 
 export const metadata: Metadata = {
   title: "Zharnyx Academy",
   description: "The Cyber-Agency",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const courses = await db.query.course.findMany({
-    where: eq(course.status, "published"),
-    columns: {
-      id: true,
-      title: true,
-    },
-  });
-
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
@@ -37,7 +26,7 @@ export default async function RootLayout({
           <Suspense fallback={null}>
             <GlobalLoader />
           </Suspense>
-          <Navbar courses={courses} />
+          <Navbar />
           {children}
           <Footer />
           <Toaster position="bottom-right" expand={false} />

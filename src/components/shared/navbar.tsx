@@ -12,10 +12,9 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/s
 
 interface NavbarProps {
   className?: string;
-  courses?: { id: string; title: string }[];
 }
 
-export function Navbar({ className, courses = [] }: NavbarProps) {
+export function Navbar({ className }: NavbarProps) {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const { data: session } = useSession();
@@ -83,31 +82,7 @@ export function Navbar({ className, courses = [] }: NavbarProps) {
               </div>
             </div>
           </div>
-          {/* Courses Dropdown */}
-          <div className="relative group">
-            <NavLink href="/programs" label="courses" hasDropdown />
-            <div className="absolute top-full left-0 w-64 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
-              <div className="bg-black border-2 border-white/20 shadow-[8px_8px_0px_0px_white] flex flex-col p-2 gap-1 max-h-[400px] overflow-y-auto">
-                {courses.length > 0 ? (
-                  <>
-                    {courses.map((course) => (
-                      <DropdownItem
-                        key={course.id}
-                        href={`/programs/${course.id}`}
-                        label={course.title}
-                      />
-                    ))}
-                    <div className="h-px bg-white/10 my-1" />
-                    <DropdownItem href="/programs" label="View All Programs" />
-                  </>
-                ) : (
-                  <div className="px-4 py-2 text-sm text-gray-500 font-mono text-center">
-                    No active courses
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          <NavLink href="/programs" label="courses" />
           {/* Why Us Dropdown */}
           <div className="relative group">
             <NavLink href="/#why-us" label="why us" hasDropdown />
