@@ -239,16 +239,16 @@ export function CourseBuilder({
       onSubmit={(e) => e.preventDefault()}
       className="space-y-8 w-full max-w-screen mx-auto"
     >
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4 md:gap-0">
-        <h3 className="text-2xl font-bold font-mono text-white">
+      <div className="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
+        <h3 className="text-2xl font-bold font-mono text-white text-center md:text-left w-full md:w-auto">
           {courseId ? "Edit Course" : "Create New Course"}
         </h3>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap items-center justify-center md:justify-end gap-2 w-full md:w-auto">
           <Button
             type="button"
             variant="ghost"
             onClick={onComplete}
-            className="font-mono text-gray-400 hover:text-white hover:bg-white/10"
+            className="font-mono text-gray-400 hover:text-white hover:bg-white/10 text-xs sm:text-sm px-2 sm:px-4"
           >
             Cancel
           </Button>
@@ -257,10 +257,10 @@ export function CourseBuilder({
             variant="outline"
             disabled={isSubmitting}
             onClick={handleSaveDraft}
-            className="font-mono border-white/20 text-white bg-transparent hover:bg-white/10"
+            className="font-mono border-white/20 text-white bg-transparent hover:bg-white/10 text-xs sm:text-sm px-2 sm:px-4"
           >
             {isSubmitting ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <Loader2 className="mr-2 h-3 w-3 sm:h-4 sm:w-4 animate-spin" />
             ) : null}
             Save Draft
           </Button>
@@ -268,11 +268,11 @@ export function CourseBuilder({
             type="button"
             disabled={isSubmitting}
             onClick={handlePublish}
-            className="font-mono bg-white text-black hover:bg-gray-200"
+            className="font-mono bg-white text-black hover:bg-gray-200 text-xs sm:text-sm px-2 sm:px-4"
           >
             {isSubmitting ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="mr-2 h-3 w-3 sm:h-4 sm:w-4 animate-spin" />
                 Saving...
               </>
             ) : courseId ? (
@@ -286,7 +286,7 @@ export function CourseBuilder({
 
       <div className="space-y-8">
         {/* Step 1: Basic Info */}
-        <section className="bg-black/40 border border-white/10 p-6 rounded-lg backdrop-blur-sm">
+        <section className="bg-black/40 border border-white/10 p-3 sm:p-6 rounded-lg backdrop-blur-sm">
           <h4 className="text-xl font-mono text-white mb-4 border-b border-white/10 pb-2">
             Basic Information
           </h4>
@@ -294,7 +294,7 @@ export function CourseBuilder({
         </section>
 
         {/* Step 2: Curriculum (Deep Nested) */}
-        <section className="bg-black/40 border border-white/10 p-6 rounded-lg backdrop-blur-sm">
+        <section className="bg-black/40 border border-white/10 p-3 sm:p-6 rounded-lg backdrop-blur-sm">
           <h4 className="text-xl font-mono text-white mb-4 border-b border-white/10 pb-2">
             Curriculum
           </h4>

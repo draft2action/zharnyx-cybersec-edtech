@@ -161,15 +161,15 @@ export function DashboardSidebar({
   const { toggleSidebar, state } = useSidebar();
 
   const effectiveRole =
-    userRole === "admin"
-      ? pathname?.startsWith("/dashboard/mentor")
-        ? "mentor"
-        : pathname?.startsWith("/dashboard/student")
-          ? "student"
+    pathname?.startsWith("/dashboard/student")
+      ? "student"
+      : userRole === "admin"
+        ? pathname?.startsWith("/dashboard/mentor")
+          ? "mentor"
           : pathname?.startsWith("/dashboard/partner")
             ? "partner_agency"
             : "admin"
-      : userRole;
+        : userRole;
 
   const currentSection =
     searchParams.get("section") ||
