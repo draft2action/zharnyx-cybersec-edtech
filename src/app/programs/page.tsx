@@ -33,8 +33,7 @@ export default async function ProgramsPage() {
 
   return (
     <>
-      <AnimatedBackground />
-      <main className="relative z-10 min-h-screen pt-32 pb-20 px-4 md:px-8 container mx-auto max-w-[95%]">
+      <main className="relative z-10 min-h-screen bg-black pt-32 pb-20 px-4 md:px-8 container mx-auto max-w-[95%]">
         <ProgramsList courses={courses} enrolledCourseIds={enrolledCourseIds} isLoggedIn={!!session} />
       </main>
     </>

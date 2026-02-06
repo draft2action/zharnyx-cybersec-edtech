@@ -205,7 +205,7 @@ export function WeekCard({
 
   return (
     <Card className="bg-black/30 border-white/5">
-      <CardHeader className="p-4 flex flex-row items-center gap-4 space-y-0">
+      <CardHeader className="p-2 sm:p-4 flex flex-row items-center gap-2 sm:gap-4 space-y-0">
         <div className="cursor-move text-gray-500 hover:text-white transition-colors">
           <GripVertical className="h-5 w-5" />
         </div>
@@ -229,9 +229,8 @@ export function WeekCard({
             {monthType === "team" && (
               <div className="px-3 py-2 bg-black/40 border border-white/10 rounded-md">
                 <span
-                  className={`text-sm font-mono ${
-                    weekIndex < 4 ? "text-red-400" : "text-blue-400"
-                  }`}
+                  className={`text-sm font-mono ${weekIndex < 4 ? "text-red-400" : "text-blue-400"
+                    }`}
                 >
                   {weekIndex < 4 ? "Red Team" : "Blue Team"}
                 </span>
@@ -260,7 +259,7 @@ export function WeekCard({
           <Trash2 className="h-4 w-4" />
         </Button>
       </CardHeader>
-      <CardContent className="p-4 pt-0 space-y-4">
+      <CardContent className="p-2 sm:p-4 pt-0 space-y-4">
         {/* Project Details - ONLY Show if isProject */}
         {isProject && (
           <div className="p-4 border border-indigo-500/20 rounded-md bg-indigo-500/5 space-y-4">
@@ -527,7 +526,7 @@ export function WeekCard({
           {/* Assessment - HIDE if Project Week */}
           {!isProject && (
             <div className="border-t border-white/5 pt-4 mt-2">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3 gap-2">
                 <div className="flex items-center gap-2">
                   <CheckSquare className="h-4 w-4 text-gray-400" />
                   <span className="text-sm font-mono text-gray-300">
@@ -539,7 +538,7 @@ export function WeekCard({
                   variant={hasAssessment ? "destructive" : "secondary"}
                   size="sm"
                   onClick={toggleAssessment}
-                  className="h-7 text-xs px-3 font-mono"
+                  className="h-8 py-0 text-xs px-3 font-mono w-full sm:w-auto"
                 >
                   {hasAssessment ? "Remove" : "Add Assessment"}
                 </Button>
@@ -568,8 +567,8 @@ export function WeekCard({
                     placeholder="Problem Statement..."
                     className="bg-black/40 border-white/10 text-white font-mono text-sm min-h-[100px] focus:ring-white/20"
                   />
-                  <div className="flex gap-4">
-                    <div className="flex-1">
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex-1 min-w-0">
                       <Label className="text-xs text-gray-400 font-mono mb-1 block">
                         Submission Format
                       </Label>
@@ -586,7 +585,7 @@ export function WeekCard({
                           ) || "pdf"
                         }
                       >
-                        <SelectTrigger className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm">
+                        <SelectTrigger className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm w-full">
                           <SelectValue placeholder="Format" />
                         </SelectTrigger>
                         <SelectContent className="bg-black border-white/10 text-white font-mono">
@@ -595,7 +594,7 @@ export function WeekCard({
                         </SelectContent>
                       </Select>
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <Label className="text-xs text-gray-400 font-mono mb-1 block">
                         Deadline
                       </Label>

@@ -105,10 +105,10 @@ export function HeroSection({ course }: HeroSectionProps) {
               </span>
             </Link>
             <Link
-              href="/apply"
+              href="/auth?mode=signup"
               className="group px-8 py-4 bg-transparent text-white font-bold text-lg uppercase tracking-wider border-2 border-white hover:bg-white hover:text-black transition-colors"
             >
-              Apply Now
+              Get Started
             </Link>
           </motion.div>
         </div>

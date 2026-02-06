@@ -59,7 +59,7 @@ export function Navbar({ className }: NavbarProps) {
           <NavLink href="/" label="Home" />
           <NavLink href="/about" label="About" />
           <NavLink href="/curriculum" label="Curriculum" />
-          <NavLink href="/pricing" label="Pricing" />
+          <NavLink href="/programs" label="courses" />
           <NavLink href="/#why-us" label="why us" />
           <NavLink href="/contact" label="Contact" />
         </div>
@@ -82,12 +82,20 @@ export function Navbar({ className }: NavbarProps) {
               </button>
             </>
           ) : (
-            <Link
-              href="/apply"
-              className="relative px-6 py-2.5 bg-red-600 text-white font-bold text-sm uppercase tracking-wider border-2 border-red-600 shadow-[4px_4px_0px_0px_white] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
-            >
-              Apply Now
-            </Link>
+            <>
+              <Link
+                href="/auth?mode=signin"
+                className="px-6 py-2.5 text-white font-bold text-sm uppercase tracking-wider hover:text-red-500 transition-colors"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/auth?mode=signup"
+                className="relative px-6 py-2.5 bg-red-600 text-white font-bold text-sm uppercase tracking-wider border-2 border-red-600 shadow-[4px_4px_0px_0px_white] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+              >
+                Get Started
+              </Link>
+            </>
           )}
         </div>
 
@@ -131,12 +139,20 @@ export function Navbar({ className }: NavbarProps) {
                       </button>
                     </>
                   ) : (
-                    <Link
-                      href="/apply"
-                      className="w-full text-center px-6 py-3 bg-red-600 text-white font-bold text-sm uppercase tracking-wider border-2 border-red-600"
-                    >
-                      Apply Now
-                    </Link>
+                    <>
+                      <Link
+                        href="/auth?mode=signin"
+                        className="w-full text-center px-6 py-3 text-white font-bold text-sm uppercase tracking-wider border-2 border-white/20 hover:bg-white/10"
+                      >
+                        Sign In
+                      </Link>
+                      <Link
+                        href="/auth?mode=signup"
+                        className="w-full text-center px-6 py-3 bg-red-600 text-white font-bold text-sm uppercase tracking-wider border-2 border-red-600"
+                      >
+                        Get Started
+                      </Link>
+                    </>
                   )}
                 </div>
               </div>
