@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export function JourneySection() {
   return (
-    <section className="py-32 px-4 md:px-8 max-w-5xl mx-auto border-b-2 border-white/10">
+    <section id="journey" className="py-32 px-4 md:px-8 max-w-5xl mx-auto border-b-2 border-white/10">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -108,9 +108,8 @@ function TimelineItem({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className={`flex flex-col md:flex-row items-center w-full relative ${
-        isLeft ? "md:flex-row-reverse" : ""
-      } group`}
+      className={`flex flex-col md:flex-row items-center w-full relative ${isLeft ? "md:flex-row-reverse" : ""
+        } group`}
     >
       {/* Spacer for desktop alignment */}
       <div className="hidden md:block w-1/2"></div>
@@ -125,9 +124,8 @@ function TimelineItem({
 
       {/* Content */}
       <div
-        className={`w-full md:w-1/2 pl-14 md:pl-0 ${
-          isLeft ? "md:pr-16 md:text-right" : "md:pl-16 md:text-left"
-        }`}
+        className={`w-full md:w-1/2 pl-14 md:pl-0 ${isLeft ? "md:pr-16 md:text-right" : "md:pl-16 md:text-left"
+          }`}
       >
         <div
           className={cn(

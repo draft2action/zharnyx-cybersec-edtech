@@ -5,16 +5,17 @@ import { cn } from "@/lib/utils";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import { useState } from "react";
 import { useSession, signOut } from "@/lib/auth/auth-client";
-import { Terminal, Menu } from "lucide-react";
+import { Terminal, Menu, ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { TransitionLink } from "@/components/shared/transition-link";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
 interface NavbarProps {
   className?: string;
+  courses?: { id: string; title: string }[];
 }
 
-export function Navbar({ className }: NavbarProps) {
+export function Navbar({ className, courses = [] }: NavbarProps) {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const { data: session } = useSession();
@@ -57,10 +58,71 @@ export function Navbar({ className }: NavbarProps) {
         {/* Middle: Nav Links - Desktop */}
         <div className="hidden md:flex items-center gap-1">
           <NavLink href="/" label="Home" />
-          <NavLink href="/about" label="About" />
-          <NavLink href="/curriculum" label="Curriculum" />
-          <NavLink href="/programs" label="courses" />
-          <NavLink href="/#why-us" label="why us" />
+          {/* About Dropdown */}
+          <div className="relative group">
+            <NavLink href="/about" label="About" hasDropdown />
+            <div className="absolute top-full left-0 w-56 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
+              <div className="bg-black border-2 border-white/20 shadow-[8px_8px_0px_0px_white] flex flex-col p-2 gap-1">
+                <DropdownItem href="/about#mission" label="Mission" />
+                <DropdownItem href="/about#core-pillars" label="Core Pillars" />
+                <DropdownItem href="/about#leadership" label="Leadership" />
+                <DropdownItem href="/about#journey" label="Our Journey" />
+              </div>
+            </div>
+          </div>
+          {/* Curriculum Dropdown */}
+          <div className="relative group">
+            <NavLink href="/curriculum" label="Curriculum" hasDropdown />
+            <div className="absolute top-full left-0 w-56 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
+              <div className="bg-black border-2 border-white/20 shadow-[8px_8px_0px_0px_white] flex flex-col p-2 gap-1">
+                <DropdownItem href="/curriculum#foundation" label="Foundation" />
+                <DropdownItem href="/curriculum#specialization" label="Specialization" />
+                <DropdownItem href="/curriculum#convergence" label="Convergence" />
+                <DropdownItem href="/curriculum#internship" label="Internship" />
+                <DropdownItem href="/curriculum#portfolio" label="Portfolio" />
+              </div>
+            </div>
+          </div>
+          {/* Courses Dropdown */}
+          <div className="relative group">
+            <NavLink href="/programs" label="courses" hasDropdown />
+            <div className="absolute top-full left-0 w-64 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
+              <div className="bg-black border-2 border-white/20 shadow-[8px_8px_0px_0px_white] flex flex-col p-2 gap-1 max-h-[400px] overflow-y-auto">
+                {courses.length > 0 ? (
+                  <>
+                    {courses.map((course) => (
+                      <DropdownItem
+                        key={course.id}
+                        href={`/programs/${course.id}`}
+                        label={course.title}
+                      />
+                    ))}
+                    <div className="h-px bg-white/10 my-1" />
+                    <DropdownItem href="/programs" label="View All Programs" />
+                  </>
+                ) : (
+                  <div className="px-4 py-2 text-sm text-gray-500 font-mono text-center">
+                    No active courses
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+          {/* Why Us Dropdown */}
+          <div className="relative group">
+            <NavLink href="/#why-us" label="why us" hasDropdown />
+            <div className="absolute top-full left-0 w-64 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
+              <div className="bg-black border-2 border-white/20 shadow-[8px_8px_0px_0px_white] flex flex-col p-2 gap-1">
+                <DropdownItem href="/#why-us" label="Architecture" />
+                <DropdownItem href="/#master-plan" label="Master Plan" />
+                <DropdownItem href="/#methodology" label="Methodology" />
+                <DropdownItem href="/#war-room" label="War Rooms" />
+                <DropdownItem href="/#agency-ops" label="Agency Ops" />
+                <DropdownItem href="/#gatekeeping" label="Gatekeeping" />
+                <DropdownItem href="/#deployment-tiers" label="Deployment" />
+              </div>
+            </div>
+          </div>
           <NavLink href="/contact" label="Contact" />
         </div>
 
@@ -164,17 +226,33 @@ export function Navbar({ className }: NavbarProps) {
   );
 }
 
-function NavLink({ href, label }: { href: string; label: string }) {
+function NavLink({ href, label, hasDropdown }: { href: string; label: string; hasDropdown?: boolean }) {
   return (
     <TransitionLink
       href={href}
-      className="px-5 py-2 text-sm font-medium text-gray-400 uppercase tracking-wide hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all rounded-none"
+      className="px-5 py-2 text-sm font-medium text-gray-400 uppercase tracking-wide hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all rounded-none flex items-center gap-1.5"
     >
       {label}
+      {hasDropdown && (
+        <ChevronDown
+          size={14}
+          className="transition-transform duration-300 group-hover:-rotate-180"
+        />
+      )}
     </TransitionLink>
   );
 }
 
+function DropdownItem({ href, label }: { href: string; label: string }) {
+  return (
+    <Link
+      href={href}
+      className="block px-4 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/10 transition-colors uppercase tracking-wide"
+    >
+      {label}
+    </Link>
+  );
+}
 function MobileNavLink({ href, label }: { href: string; label: string }) {
   return (
     <SheetClose asChild>

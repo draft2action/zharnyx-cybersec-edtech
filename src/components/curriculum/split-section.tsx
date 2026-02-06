@@ -7,7 +7,7 @@ import { motion } from "motion/react";
 
 export function SplitSection() {
   return (
-    <section className="py-32 px-4 md:px-8 max-w-[1400px] mx-auto border-b-2 border-white/10">
+    <section id="specialization" className="py-32 px-4 md:px-8 max-w-[1400px] mx-auto border-b-2 border-white/10">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

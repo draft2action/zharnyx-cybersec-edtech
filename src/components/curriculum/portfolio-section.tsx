@@ -19,7 +19,7 @@ export function PortfolioSection({ stats }: PortfolioSectionProps) {
   const certificates = stats?.certificates?.toString() || "5";
 
   return (
-    <section className="py-32 px-4 md:px-8 max-w-[1400px] mx-auto mb-20">
+    <section id="portfolio" className="py-32 px-4 md:px-8 max-w-[1400px] mx-auto mb-20">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}

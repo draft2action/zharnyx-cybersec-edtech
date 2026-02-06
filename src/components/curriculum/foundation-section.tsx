@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 
 export function FoundationSection() {
   return (
-    <section className="py-32 px-4 md:px-8 max-w-[1400px] mx-auto border-b-2 border-white/10">
+    <section id="foundation" className="py-32 px-4 md:px-8 max-w-[1400px] mx-auto border-b-2 border-white/10">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -140,29 +140,26 @@ function ModuleCard({
 }) {
   return (
     <div
-      className={`p-6 border-2 transition-colors duration-200 ${
-        isProject
+      className={`p-6 border-2 transition-colors duration-200 ${isProject
           ? "border-purple-500 bg-purple-500/5 hover:bg-purple-500/10"
           : "border-white/10 bg-white/5 hover:border-white/40 hover:bg-white/10"
-      }`}
+        }`}
     >
       <div className="flex flex-col sm:flex-row gap-5 items-start">
         <div className="shrink-0 pt-1">
           <span
-            className={`text-xs font-black uppercase px-3 py-1.5 border-2 ${
-              isProject
+            className={`text-xs font-black uppercase px-3 py-1.5 border-2 ${isProject
                 ? "bg-purple-500 text-white border-purple-500"
                 : "bg-black text-gray-300 border-gray-600"
-            }`}
+              }`}
           >
             {week}
           </span>
         </div>
         <div>
           <h4
-            className={`font-black uppercase text-lg mb-2 leading-tight ${
-              isProject ? "text-white" : "text-gray-100"
-            }`}
+            className={`font-black uppercase text-lg mb-2 leading-tight ${isProject ? "text-white" : "text-gray-100"
+              }`}
           >
             {title}
           </h4>
