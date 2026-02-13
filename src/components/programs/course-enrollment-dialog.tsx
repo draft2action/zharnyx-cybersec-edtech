@@ -43,10 +43,15 @@ export function CourseEnrollmentDialog({
     const [appliedCoupon, setAppliedCoupon] = useState<CodeData | null>(null);
     const router = useRouter(); // Hook for navigation
 
-    const calculateTotal = () => {
-        if (!appliedCoupon) return price;
+    const studentPrice = 4999;
 
-        let discount = (price * appliedCoupon.discountPercent) / 100;
+    const calculateTotal = () => {
+        // Base calculation on the student price
+        let basePrice = studentPrice;
+
+        if (!appliedCoupon) return basePrice;
+
+        let discount = (basePrice * appliedCoupon.discountPercent) / 100;
         if (
             appliedCoupon.maxDiscountAmount !== null &&
             discount > appliedCoupon.maxDiscountAmount
@@ -54,7 +59,7 @@ export function CourseEnrollmentDialog({
             discount = appliedCoupon.maxDiscountAmount;
         }
 
-        return Math.max(0, price - discount);
+        return Math.max(0, basePrice - discount);
     };
 
     const handleApplyCoupon = async () => {
@@ -104,7 +109,8 @@ export function CourseEnrollmentDialog({
     };
 
     const total = calculateTotal();
-    const discountAmount = price - total;
+    // discountAmount here refers to coupon discount on top of student price
+    const couponDiscountAmount = studentPrice - total;
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -170,12 +176,16 @@ export function CourseEnrollmentDialog({
                     <div className="space-y-3 font-mono">
                         <div className="flex justify-between text-gray-400">
                             <span>Course Price</span>
-                            <span>₹{price.toLocaleString()}</span>
+                            <span className="line-through decoration-red-500/50">₹{price.toLocaleString()}</span>
+                        </div>
+                        <div className="flex justify-between text-green-400">
+                            <span>Student Residency</span>
+                            <span>₹{studentPrice.toLocaleString()}</span>
                         </div>
                         {appliedCoupon && (
                             <div className="flex justify-between text-green-400">
-                                <span>Discount</span>
-                                <span>- ₹{Math.round(discountAmount).toLocaleString()}</span>
+                                <span>Coupon Discount</span>
+                                <span>- ₹{Math.round(couponDiscountAmount).toLocaleString()}</span>
                             </div>
                         )}
                         <div className="flex justify-between text-xl font-bold text-white pt-2 border-t border-white/10">

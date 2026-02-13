@@ -37,7 +37,8 @@ export function CoursePreview({ course, isLoggedIn }: CoursePreviewProps) {
         router.push("/auth?callbackUrl=" + encodeURIComponent(window.location.pathname));
     };
 
-    const duration = course.months?.length ? `${course.months.length * 4} Weeks` : "Self Paced";
+    const duration = "6 Months";
+    const actualDurationMonths = course.months?.length || 0;
     // Mock level for now
     const level = "Intermediate";
 
@@ -64,7 +65,14 @@ export function CoursePreview({ course, isLoggedIn }: CoursePreviewProps) {
                             <div className="flex flex-wrap gap-6 pt-4 text-sm font-mono text-gray-400">
                                 <div className="flex items-center gap-2">
                                     <Clock className="w-4 h-4 text-indigo-400" />
-                                    {duration}
+                                    <div className="flex flex-col">
+                                        <span>{duration}</span>
+                                        {actualDurationMonths < 6 && (
+                                            <span className="text-[10px] text-zinc-500 italic leading-tight">
+                                                * More content to update
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <BookOpen className="w-4 h-4 text-indigo-400" />
@@ -80,11 +88,24 @@ export function CoursePreview({ course, isLoggedIn }: CoursePreviewProps) {
                         {/* Sticky Enrollment Card (Desktop) */}
                         <div className="hidden md:block w-full max-w-sm sticky top-24">
                             <div className="bg-zinc-900/50 border border-white/10 rounded-xl p-6 backdrop-blur-sm shadow-xl">
-                                <div className="flex items-end gap-2 mb-6">
+                                <div className="flex items-end gap-2 mb-2">
                                     <span className="text-3xl font-bold text-white font-mono">
                                         ₹{(course.price || 0).toLocaleString()}
                                     </span>
                                     <span className="text-gray-500 mb-1 line-through text-sm">₹{((course.price || 0) * 1.5).toLocaleString()}</span>
+                                </div>
+
+                                {/* Student Price Banner */}
+                                <div className="mb-6 border border-green-500/30 bg-green-950/20 rounded-lg p-3">
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <span className="bg-green-500 text-black text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded">
+                                            Students
+                                        </span>
+                                    </div>
+                                    <div className="flex items-baseline gap-1.5">
+                                        <span className="text-2xl font-black text-green-400 font-mono">₹4,999</span>
+                                        <span className="text-xs text-green-500/70 font-mono">/ total</span>
+                                    </div>
                                 </div>
 
                                 {isLoggedIn ? (

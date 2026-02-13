@@ -22,7 +22,7 @@ import {
     DollarSign,
 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { CourseEnrollmentDialog } from "@/components/programs/course-enrollment-dialog";
+
 
 interface ProgramsListProps {
     courses: any[];
@@ -69,7 +69,8 @@ export function ProgramsList({ courses, enrolledCourseIds, isLoggedIn }: Program
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center w-full">
                     {courses.map((program, index) => {
                         // Calculate a safer duration if not present
-                        const duration = program.months?.length ? `${program.months.length * 4} Weeks` : "Self Paced";
+                        const duration = "6 Months";
+                        const actualDurationMonths = program.months?.length || 0;
                         const level = program.level || "Intermediate";
 
                         return (
@@ -93,8 +94,13 @@ export function ProgramsList({ courses, enrolledCourseIds, isLoggedIn }: Program
                                                 >
                                                     {level}
                                                 </Badge>
-                                                <div className="text-xl font-black text-white font-mono tracking-tighter flex items-center bg-blue-600 px-2 py-1 border-2 border-blue-600 transform -rotate-2">
-                                                    <span>₹{(program.price || 0).toLocaleString()}</span>
+                                                <div className="flex flex-col items-end gap-1.5">
+                                                    <div className="text-xl font-black text-white font-mono tracking-tighter flex items-center bg-blue-600 px-2 py-1 border-2 border-blue-600 transform -rotate-2">
+                                                        <span>₹{(program.price || 0).toLocaleString()}</span>
+                                                    </div>
+                                                    <div className="text-[10px] font-black text-green-400 font-mono uppercase tracking-wider bg-green-950/50 border border-green-500/30 px-2 py-0.5">
+                                                        For Students: ₹4,999
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -110,7 +116,14 @@ export function ProgramsList({ courses, enrolledCourseIds, isLoggedIn }: Program
                                             <div className="mt-auto pt-6 border-t-2 border-white/20 flex items-center justify-between text-xs font-bold uppercase tracking-widest">
                                                 <div className="flex items-center text-gray-300">
                                                     <Clock className="w-4 h-4 mr-2 text-red-500" />
-                                                    {duration}
+                                                    <div className="flex flex-col">
+                                                        <span>{duration}</span>
+                                                        {actualDurationMonths < 6 && (
+                                                            <span className="text-[10px] text-zinc-500 italic leading-tight">
+                                                                * More content to update
+                                                            </span>
+                                                        )}
+                                                    </div>
                                                 </div>
 
                                                 <span className={`flex items-center group-hover:translate-x-1 transition-transform ${enrolledCourseIds.includes(program.id) ? "text-green-400" : "text-red-500"}`}>

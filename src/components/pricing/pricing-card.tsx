@@ -90,13 +90,26 @@ export function PricingCard({ course }: PricingCardProps) {
                 </span>
                 <span className="text-lg md:text-xl text-zinc-500 font-mono whitespace-nowrap">/ total</span>
               </div>
-              <p className="text-sm text-purple-400 font-bold font-mono uppercase tracking-wide">
-                ~₹
-                {course.price
-                  ? Math.round(course.price / monthlyDivisor).toLocaleString()
-                  : 0}{" "}
-                per month • {durationInMonths} months duration
+              <p className="text-sm text-red-400 font-bold font-mono uppercase tracking-wide">
+                6 MONTHS DURATION
               </p>
+              {durationInMonths < 6 && (
+                <p className="text-xs text-zinc-500 font-mono italic mt-1">
+                  * More course content is yet to update
+                </p>
+              )}
+            </div>
+
+            {/* Student Price Banner */}
+            <div className="mt-4 relative overflow-hidden border-2 border-green-500/50 bg-green-950/30 p-4">
+              <div className="absolute top-0 right-0 bg-green-500 text-black text-[10px] font-black uppercase tracking-widest px-3 py-1">
+                Students
+              </div>
+              <p className="text-xs text-green-400 font-mono uppercase tracking-wider mb-1">For Students</p>
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl md:text-4xl font-black text-green-400">₹4,999</span>
+                <span className="text-sm text-green-500/70 font-mono">/ total (6 months)</span>
+              </div>
             </div>
           </div>
 

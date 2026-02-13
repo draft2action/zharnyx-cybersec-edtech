@@ -72,7 +72,8 @@ export async function enrollStudent(courseId: string, couponCode?: string) {
             return { success: false, error: "Course not found" };
         }
 
-        let finalPrice = courseData.price || 0;
+        // Override price for student enrollment update
+        let finalPrice = 4999; // courseData.price || 0;
         let appliedCouponId = null;
 
         if (couponCode) {

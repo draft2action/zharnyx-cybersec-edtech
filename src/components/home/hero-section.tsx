@@ -13,9 +13,9 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ course }: HeroSectionProps) {
-  const duration = course?.months?.length ? `${course.months.length} MONTHS` : "6 MONTHS";
+  const duration = "6 MONTHS";
   const level = course?.level === "All Levels" ? "3 LVL" : course?.level || "3 LVL"; // Just a heuristic mapping
-  const price = course?.price ? `₹${(course.price / 1000).toFixed(1)}K` : "₹4.5K";
+  const price = "₹4,999";
 
 
   return (
