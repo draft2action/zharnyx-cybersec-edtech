@@ -43,15 +43,7 @@ export function ProgramsList({ courses, enrolledCourseIds, isLoggedIn }: Program
             transition={{ duration: 0.5 }}
             className="space-y-12"
         >
-            <div className="text-center space-y-4">
-                <h1 className="text-4xl md:text-5xl font-bold font-mono text-white">
-                    Our Training Programs
-                </h1>
-                <p className="text-gray-400 max-w-2xl mx-auto font-mono">
-                    Industry-standard cybersecurity training designed to take you from
-                    a beginner to a professional.
-                </p>
-            </div>
+
 
             {courses.length === 0 ? (
                 <div className="col-span-full flex flex-col items-center justify-center p-12 border-2 border-white bg-black/50 text-center space-y-4 shadow-[8px_8px_0px_0px_white]">

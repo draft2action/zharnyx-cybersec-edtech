@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { course } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { ProgramsList } from "../../components/programs/programs-list";
+import { ProgramsHero } from "@/components/programs/programs-hero";
 
 export const dynamic = "force-dynamic";
 
@@ -33,8 +34,11 @@ export default async function ProgramsPage() {
 
   return (
     <>
-      <main className="relative z-10 min-h-screen bg-black pt-32 pb-20 px-4 md:px-8 container mx-auto max-w-[95%]">
-        <ProgramsList courses={courses} enrolledCourseIds={enrolledCourseIds} isLoggedIn={!!session} />
+      <main className="relative z-10 min-h-screen bg-black">
+        <ProgramsHero />
+        <div className="pb-20 px-4 md:px-8 container mx-auto max-w-[95%]">
+          <ProgramsList courses={courses} enrolledCourseIds={enrolledCourseIds} isLoggedIn={!!session} />
+        </div>
       </main>
     </>
   );
