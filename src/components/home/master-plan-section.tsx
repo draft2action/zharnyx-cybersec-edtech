@@ -162,7 +162,7 @@ function TimelineItem({ phase, title, period, description, icon, color, alignmen
       )}
     >
       {/* Content Card */}
-      <div className={cn("flex-1 md:w-1/2", isLeft ? "md:pr-24" : "md:pl-24 pl-16")}>
+      <div className={cn("flex-1 md:w-1/2 pl-16 md:pl-0", isLeft ? "md:pr-24" : "md:pl-24")}>
         <div className={cn(
           "p-6 bg-black border-2 relative group hover:-translate-y-1 transition-transform",
           "border-white", // Base border white
@@ -197,7 +197,7 @@ function TimelineItem({ phase, title, period, description, icon, color, alignmen
       </div>
 
       {/* Empty Space for Grid Layout */}
-      <div className="flex-1 md:w-1/2" />
+      <div className="hidden md:block flex-1 md:w-1/2" />
     </motion.div>
   );
 }
