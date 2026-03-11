@@ -67,28 +67,28 @@ export function RecruiterApplicationTable() {
   }
 
   return (
-    <div className="rounded-md border border-white/10 overflow-x-auto">
+    <div className="rounded-md border border-[#1a1a1a] overflow-x-auto">
       <Table>
-        <TableHeader className="bg-white/5">
-          <TableRow className="border-white/10 hover:bg-white/5">
-            <TableHead className="font-mono text-white">Recruiter</TableHead>
-            <TableHead className="font-mono text-white">Company</TableHead>
-            <TableHead className="font-mono text-white">Contact</TableHead>
-            <TableHead className="font-mono text-white">Links</TableHead>
-            <TableHead className="font-mono text-white">Status</TableHead>
-            <TableHead className="font-mono text-white text-right">Actions</TableHead>
+        <TableHeader className="bg-[#0a0a0a]">
+          <TableRow className="border-[#1a1a1a] hover:bg-[#0a0a0a]">
+            <TableHead className="font-sans text-white">Recruiter</TableHead>
+            <TableHead className="font-sans text-white">Company</TableHead>
+            <TableHead className="font-sans text-white">Contact</TableHead>
+            <TableHead className="font-sans text-white">Links</TableHead>
+            <TableHead className="font-sans text-white">Status</TableHead>
+            <TableHead className="font-sans text-white text-right">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {data.length === 0 ? (
-            <TableRow className="border-white/10 hover:bg-white/5">
-              <TableCell colSpan={6} className="h-24 text-center font-mono text-gray-400">
+            <TableRow className="border-[#1a1a1a] hover:bg-[#0a0a0a]">
+              <TableCell colSpan={6} className="h-24 text-center font-sans text-gray-400">
                 No applications found.
               </TableCell>
             </TableRow>
           ) : (
             data.map((app) => (
-              <TableRow key={app.id} className="border-white/10 hover:bg-white/5 font-mono">
+              <TableRow key={app.id} className="border-[#1a1a1a] hover:bg-[#0a0a0a] font-sans">
                 <TableCell>
                   <div className="flex flex-col">
                     <span className="font-medium text-white">{app.fullName}</span>

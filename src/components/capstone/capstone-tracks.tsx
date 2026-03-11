@@ -43,7 +43,7 @@ export function CapstoneTracks() {
                 className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-[32px] md:p-[48px] flex flex-col"
               >
                 <div className="mb-[24px]">
-                  <Icon className="w-4 h-4 md:w-6 md:h-6 text-[#ea384c]" strokeWidth={1.5} />
+                  <Icon className="w-4 h-4 md:w-6 md:h-6 text-red-500" strokeWidth={1.5} />
                 </div>
                 <h3 className="text-[#ffffff] text-[16px] md:text-[20px] font-bold mb-[16px]">
                   {track.role}

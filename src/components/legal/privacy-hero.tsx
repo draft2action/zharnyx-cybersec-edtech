@@ -20,7 +20,7 @@ export function PrivacyHero() {
           animate={{ opacity: 1, y: 0 }}
           className="text-[48px] md:text-[64px] font-bold text-[#ffffff] leading-[1.1] tracking-tight mb-[16px]"
         >
-          Privacy <span className="text-[#ea384c]">Policy</span>
+          Privacy <span className="text-red-500">Policy</span>
         </motion.h1>
 
         <motion.p

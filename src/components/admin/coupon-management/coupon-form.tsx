@@ -78,7 +78,7 @@ export function CouponForm({ coupon, onSuccess }: CouponFormProps) {
       <div className="space-y-2">
         <Label
           htmlFor="code"
-          className="text-xs font-mono uppercase tracking-widest text-gray-500"
+          className="text-xs font-sans uppercase tracking-widest text-gray-500"
         >
           Coupon Code
         </Label>
@@ -90,7 +90,7 @@ export function CouponForm({ coupon, onSuccess }: CouponFormProps) {
             placeholder="e.g. SUMMER2024"
             defaultValue={coupon?.code}
             required
-            className="pl-9 font-mono uppercase"
+            className="pl-9 font-sans uppercase"
           />
         </div>
         <p className="text-[10px] text-muted-foreground">
@@ -103,7 +103,7 @@ export function CouponForm({ coupon, onSuccess }: CouponFormProps) {
         <div className="space-y-2">
           <Label
             htmlFor="discountPercent"
-            className="text-xs font-mono uppercase tracking-widest text-gray-500"
+            className="text-xs font-sans uppercase tracking-widest text-gray-500"
           >
             Discount %
           </Label>
@@ -127,7 +127,7 @@ export function CouponForm({ coupon, onSuccess }: CouponFormProps) {
         <div className="space-y-2">
           <Label
             htmlFor="maxDiscountAmount"
-            className="text-xs font-mono uppercase tracking-widest text-gray-500"
+            className="text-xs font-sans uppercase tracking-widest text-gray-500"
           >
             Max Amount (₹)
           </Label>
@@ -154,7 +154,7 @@ export function CouponForm({ coupon, onSuccess }: CouponFormProps) {
         <div className="space-y-2">
           <Label
             htmlFor="maxUses"
-            className="text-xs font-mono uppercase tracking-widest text-gray-500"
+            className="text-xs font-sans uppercase tracking-widest text-gray-500"
           >
             Max Uses
           </Label>
@@ -179,7 +179,7 @@ export function CouponForm({ coupon, onSuccess }: CouponFormProps) {
         <div className="space-y-2">
           <Label
             htmlFor="expiresAt"
-            className="text-xs font-mono uppercase tracking-widest text-gray-500"
+            className="text-xs font-sans uppercase tracking-widest text-gray-500"
           >
             Expiry Date
           </Label>
@@ -204,11 +204,11 @@ export function CouponForm({ coupon, onSuccess }: CouponFormProps) {
       </div>
 
       {/* Partner Agency Section */}
-      <div className="grid grid-cols-2 gap-4 border-t border-white/10 pt-4 mt-4">
+      <div className="grid grid-cols-2 gap-4 border-t border-[#1a1a1a] pt-4 mt-4">
         <div className="space-y-2">
           <Label
             htmlFor="partnerId"
-            className="text-xs font-mono uppercase tracking-widest text-gray-500"
+            className="text-xs font-sans uppercase tracking-widest text-gray-500"
           >
             Partner Agency
           </Label>
@@ -239,7 +239,7 @@ export function CouponForm({ coupon, onSuccess }: CouponFormProps) {
           <div className="space-y-2">
             <Label
               htmlFor="partnerRevenue"
-              className="text-xs font-mono uppercase tracking-widest text-gray-500"
+              className="text-xs font-sans uppercase tracking-widest text-gray-500"
             >
               Partner Revenue (₹)
             </Label>
@@ -262,7 +262,7 @@ export function CouponForm({ coupon, onSuccess }: CouponFormProps) {
         )}
       </div>
 
-      <div className="flex items-center justify-between rounded-lg border p-3 border-white/10 bg-white/5">
+      <div className="flex items-center justify-between rounded-lg border p-3 border-[#1a1a1a] bg-[#0a0a0a]">
         <div className="space-y-0.5">
           <Label htmlFor="isActive" className="text-sm font-medium">
             Active Status
@@ -282,7 +282,7 @@ export function CouponForm({ coupon, onSuccess }: CouponFormProps) {
 
       <Button
         type="submit"
-        className="w-full bg-white text-black hover:bg-gray-200 font-mono font-bold"
+        className="w-full bg-white text-black hover:bg-gray-200 font-sans font-bold"
         disabled={isLoading}
       >
         {isLoading ? (

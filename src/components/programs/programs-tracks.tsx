@@ -26,28 +26,28 @@ function CustomCheckIcon({ className }: { className?: string }) {
 
 const tracks = [
   {
-    icon: <Monitor className="w-[32px] h-[32px] text-[#ea384c]" />, // Red for SOC
+    icon: <Monitor className="w-[32px] h-[32px] text-red-500" />, // Red for SOC
     title: "Foundation + SOC + Placement",
     duration: "7 Months",
     weeks: "28 Weeks",
     features: ["SIEM Operations", "Threat Hunting", "Incident Response"],
   },
   {
-    icon: <Radio className="w-[32px] h-[32px] text-[#ea384c]" />, // Red for VAPT
+    icon: <Radio className="w-[32px] h-[32px] text-red-500" />, // Red for VAPT
     title: "Foundation + VAPT + Placement",
     duration: "7 Months",
     weeks: "28 Weeks",
     features: ["Web App Pentesting", "Network Exploitation", "Mobile VAPT"],
   },
   {
-    icon: <Cloud className="w-[32px] h-[32px] text-[#ea384c]" />, // Red for Cloud
+    icon: <Cloud className="w-[32px] h-[32px] text-red-500" />, // Red for Cloud
     title: "Foundation + Cloud + Placement",
     duration: "7 Months",
     weeks: "28 Weeks",
     features: ["AWS/Azure Security", "Container Security", "DevSecOps"],
   },
   {
-    icon: <Search className="w-[32px] h-[32px] text-[#ea384c]" />, // Red for DFIR
+    icon: <Search className="w-[32px] h-[32px] text-red-500" />, // Red for DFIR
     title: "Foundation + DFIR + Placement",
     duration: "7 Months",
     weeks: "28 Weeks",
@@ -65,7 +65,7 @@ export function ProgramsTracks() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-[#ea384c] text-[12px] font-semibold uppercase tracking-[0.15em] mb-[16px]"
+            className="text-red-500 text-[12px] font-semibold uppercase tracking-[0.15em] mb-[16px]"
           >
             CHOOSE YOUR PATH
           </motion.p>
@@ -76,7 +76,7 @@ export function ProgramsTracks() {
             transition={{ delay: 0.1 }}
             className="text-[36px] md:text-[44px] font-bold text-[#f2f2f2] tracking-tight"
           >
-            4 Complete <span className="text-[#ea384c]">Packages</span>
+            4 Complete <span className="text-red-500">Packages</span>
           </motion.h2>
         </div>
 
@@ -86,9 +86,9 @@ export function ProgramsTracks() {
             <motion.div
               key={track.title}
               id={
-                track.features[0].includes("SIEM") ? "soc-analyst" : 
+                track.features[0].includes("SIEM") ? "soc" : 
                 track.features[0].includes("Web App") ? "vapt" : 
-                track.features[0].includes("AWS") ? "cloud-security" : "dfir"
+                track.features[0].includes("AWS") ? "cloud" : "dfir"
               }
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -111,7 +111,7 @@ export function ProgramsTracks() {
               <div className="space-y-[16px] mb-[40px] flex-grow">
                 {track.features.map((feature, j) => (
                   <div key={j} className="flex items-center gap-3">
-                    <CustomCheckIcon className="w-[14px] h-[14px] text-[#ea384c] flex-shrink-0" />
+                    <CustomCheckIcon className="w-[14px] h-[14px] text-red-500 flex-shrink-0" />
                     <span className="text-[#737373] text-[13px]">
                       {feature}
                     </span>
@@ -121,7 +121,7 @@ export function ProgramsTracks() {
 
               <a 
                 href="/enroll" 
-                className="inline-flex items-center gap-2 text-[#ea384c] hover:text-[#f87171] transition-colors text-[13px] font-medium group mt-auto"
+                className="inline-flex items-center gap-2 text-red-500 hover:text-[#f87171] transition-colors text-[13px] font-medium group mt-auto"
               >
                 Explore Track
                 <ArrowRight className="w-[14px] h-[14px] group-hover:translate-x-1 transition-transform" />

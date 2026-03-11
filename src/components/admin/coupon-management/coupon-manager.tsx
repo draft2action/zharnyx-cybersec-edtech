@@ -56,23 +56,23 @@ export function CouponManager() {
   }, [fetchCoupons]);
 
   return (
-    <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10] pt-0">
-      <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
+    <Card className="bg-[#0a0a0a] border border-[#1a1a1a] text-white rounded-xl  pt-0">
+      <CardHeader className="bg-[#0a0a0a] border-b border-[#1a1a1a] pb-4 pt-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2 mb-1">
             <Ticket className="w-4 h-4 text-green-500" />
-            <CardTitle className="font-mono text-xl text-white uppercase tracking-wide">
+            <CardTitle className="font-sans text-xl text-white uppercase tracking-wide">
               Coupon Management
             </CardTitle>
           </div>
-          <CardDescription className="text-gray-400 font-mono text-xs uppercase tracking-wider">
+          <CardDescription className="text-gray-400 font-sans text-xs uppercase tracking-wider">
             Create and manage discount coupons.
           </CardDescription>
         </div>
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button className="font-mono bg-white text-black hover:bg-gray-200">
+            <Button className="font-sans bg-white text-black hover:bg-gray-200">
               <Plus className="mr-2 h-4 w-4" /> Create Coupon
             </Button>
           </SheetTrigger>

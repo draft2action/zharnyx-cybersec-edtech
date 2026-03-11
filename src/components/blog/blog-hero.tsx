@@ -22,7 +22,7 @@ export function BlogHero() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-[#ea384c] text-[11px] md:text-[13px] font-semibold uppercase tracking-[0.15em] mb-[24px]"
+          className="text-red-500 text-[11px] md:text-[13px] font-semibold uppercase tracking-[0.15em] mb-[24px]"
         >
           BLOG & RESOURCES
         </motion.p>
@@ -33,7 +33,7 @@ export function BlogHero() {
           transition={{ delay: 0.1 }}
           className="text-[36px] md:text-[48px] lg:text-[64px] font-bold text-[#f2f2f2] leading-[1.1] tracking-tight mb-[24px]"
         >
-          Cybersecurity <span className="text-[#ea384c]">Insights</span>
+          Cybersecurity <span className="text-red-500">Insights</span>
         </motion.h1>
 
         <motion.p
@@ -56,7 +56,7 @@ export function BlogHero() {
             <button
               key={filter}
               className={`px-[20px] py-[8px] rounded-full text-[14px] font-medium transition-colors border ${filter === "All"
-                  ? "bg-[#ea384c] text-white border-[#ea384c]"
+                  ? "bg-red-500 text-white border-red-500"
                   : "bg-transparent text-[#a3a3a3] border-[#262626] hover:bg-[#1f1f1f] hover:text-[#f2f2f2]"
                 }`}
             >

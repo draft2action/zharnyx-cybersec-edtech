@@ -98,7 +98,7 @@ function DeploymentCard({ tier, title, icon, description, color, delay, isTopTie
       border: "border-red-600",
       text: "text-red-500",
       bg: "bg-red-500/10",
-      shadow: "hover:shadow-[8px_8px_0px_0px_#ef4444]"
+      shadow: "hover:shadow-[8px_8px_0px_0px_#ea384c]"
     },
     blue: {
       border: "border-blue-600",

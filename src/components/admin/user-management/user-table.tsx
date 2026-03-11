@@ -97,11 +97,11 @@ export function UserTable() {
             placeholder="SEARCH USERS..."
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            className="h-10 flex-1 rounded-none border-2 border-white/20 bg-black px-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-red-500 font-mono uppercase tracking-wide transition-colors"
+            className="h-10 flex-1 rounded-xl border border-[#1a1a1a] bg-black px-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-red-500 font-sans uppercase tracking-wide transition-colors"
           />
           <button
             disabled={loading}
-            className="h-10 px-6 rounded-none bg-white text-black hover:bg-gray-200 transition-colors text-xs font-black uppercase tracking-widest border-2 border-white disabled:opacity-50 disabled:cursor-not-allowed"
+            className="h-10 px-6 rounded-xl bg-white text-black hover:bg-gray-200 transition-colors text-xs font-bold uppercase tracking-widest border border-white disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? "SEARCHING..." : "SEARCH"}
           </button>
@@ -113,10 +113,10 @@ export function UserTable() {
             setPagination((prev) => ({ ...prev, pageIndex: 0 }));
           }}
         >
-          <SelectTrigger className="w-full md:w-[180px] h-10 border-2 border-white/20 bg-black text-white font-mono rounded-none uppercase text-xs font-bold tracking-wide focus:border-red-500">
+          <SelectTrigger className="w-full md:w-[180px] h-10 border border-[#1a1a1a] bg-black text-white font-sans rounded-xl uppercase text-xs font-bold tracking-wide focus:border-red-500">
             <SelectValue placeholder="All Roles" />
           </SelectTrigger>
-          <SelectContent className="bg-black border-2 border-white/20 text-white font-mono rounded-none">
+          <SelectContent className="bg-black border border-[#1a1a1a] text-white font-sans rounded-xl">
             <SelectItem value="all">ALL ROLES</SelectItem>
             <SelectItem value="student">STUDENT</SelectItem>
             <SelectItem value="mentor">MENTOR</SelectItem>

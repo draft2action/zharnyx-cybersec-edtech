@@ -64,7 +64,7 @@ export function BlogGrid() {
             >
               {/* Badges */}
               <div className="flex justify-between items-center mb-[24px]">
-                <span className="text-[#ea384c] text-[11px] font-mono uppercase tracking-wider bg-[#ea384c]/10 px-[10px] py-[4px] rounded-sm">
+                <span className="text-red-500 text-[11px] font-mono uppercase tracking-wider bg-red-500/10 px-[10px] py-[4px] rounded-sm">
                   {post.tag}
                 </span>
                 <span className="text-[#525252] text-[12px] font-mono uppercase">
@@ -73,7 +73,7 @@ export function BlogGrid() {
               </div>
               
               {/* Content */}
-              <h2 className="text-[20px] font-bold text-[#f2f2f2] leading-snug mb-[16px] group-hover:text-[#ea384c] transition-colors">
+              <h2 className="text-[20px] font-bold text-[#f2f2f2] leading-snug mb-[16px] group-hover:text-red-500 transition-colors">
                 {post.title}
               </h2>
               <p className="text-[#a3a3a3] text-[14px] leading-relaxed mt-auto">

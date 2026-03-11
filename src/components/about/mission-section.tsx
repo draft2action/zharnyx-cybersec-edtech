@@ -26,7 +26,7 @@ export function MissionSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="relative bg-black border-2 border-white/20 p-10 md:p-14 shadow-[16px_16px_0px_0px_#ef4444] hover:-translate-y-1 hover:border-white transition-all duration-300 max-w-5xl mx-auto group"
+        className="relative bg-black border-2 border-white/20 p-10 md:p-14 shadow-[16px_16px_0px_0px_#ea384c] hover:-translate-y-1 hover:border-white transition-all duration-300 max-w-5xl mx-auto group"
       >
         <div className="absolute top-0 left-0 bg-white text-black text-xs font-black uppercase px-4 py-2 border-b-2 border-r-2 border-white">
           Manifesto

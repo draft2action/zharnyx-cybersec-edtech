@@ -37,15 +37,15 @@ export function MentorDashboardShell({
       case "student-progress":
         return (
           <div className="space-y-6">
-            <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10]">
-              <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4">
+            <Card className="bg-[#0a0a0a] border border-[#1a1a1a] text-white rounded-xl ">
+              <CardHeader className="bg-[#0a0a0a] border-b border-[#1a1a1a] pb-4 pt-4">
                 <div className="flex items-center gap-2 mb-1">
                   <GraduationCap className="w-4 h-4 text-purple-500" />
-                  <CardTitle className="font-mono text-xl text-white uppercase tracking-wide">
+                  <CardTitle className="font-sans text-xl text-white uppercase tracking-wide">
                     Assigned Sessions
                   </CardTitle>
                 </div>
-                <CardDescription className="text-gray-400 font-mono text-xs uppercase tracking-wider">
+                <CardDescription className="text-gray-400 font-sans text-xs uppercase tracking-wider">
                   View your assigned course weeks and sessions.
                 </CardDescription>
               </CardHeader>
@@ -57,15 +57,15 @@ export function MentorDashboardShell({
         );
       case "score-assignments":
         return (
-          <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10]">
-            <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4">
+          <Card className="bg-[#0a0a0a] border border-[#1a1a1a] text-white rounded-xl ">
+            <CardHeader className="bg-[#0a0a0a] border-b border-[#1a1a1a] pb-4 pt-4">
               <div className="flex items-center gap-2 mb-1">
                 <FileText className="w-4 h-4 text-purple-500" />
-                <CardTitle className="font-mono text-xl text-white uppercase tracking-wide">
+                <CardTitle className="font-sans text-xl text-white uppercase tracking-wide">
                   Score Assignments
                 </CardTitle>
               </div>
-              <CardDescription className="text-gray-400 font-mono text-xs uppercase tracking-wider">
+              <CardDescription className="text-gray-400 font-sans text-xs uppercase tracking-wider">
                 Review and grade pending student assignments.
               </CardDescription>
             </CardHeader>
@@ -76,15 +76,15 @@ export function MentorDashboardShell({
         );
       case "score-projects":
         return (
-          <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10]">
-            <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4">
+          <Card className="bg-[#0a0a0a] border border-[#1a1a1a] text-white rounded-xl ">
+            <CardHeader className="bg-[#0a0a0a] border-b border-[#1a1a1a] pb-4 pt-4">
               <div className="flex items-center gap-2 mb-1">
                 <FolderKanban className="w-4 h-4 text-purple-500" />
-                <CardTitle className="font-mono text-xl text-white uppercase tracking-wide">
+                <CardTitle className="font-sans text-xl text-white uppercase tracking-wide">
                   Score Projects
                 </CardTitle>
               </div>
-              <CardDescription className="text-gray-400 font-mono text-xs uppercase tracking-wider">
+              <CardDescription className="text-gray-400 font-sans text-xs uppercase tracking-wider">
                 Evaluate capstone and module projects.
               </CardDescription>
             </CardHeader>
@@ -95,15 +95,15 @@ export function MentorDashboardShell({
         );
       case "doubt-sessions":
         return (
-          <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10]">
-            <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4">
+          <Card className="bg-[#0a0a0a] border border-[#1a1a1a] text-white rounded-xl ">
+            <CardHeader className="bg-[#0a0a0a] border-b border-[#1a1a1a] pb-4 pt-4">
               <div className="flex items-center gap-2 mb-1">
                 <HelpCircle className="w-4 h-4 text-purple-500" />
-                <CardTitle className="font-mono text-xl text-white uppercase tracking-wide">
+                <CardTitle className="font-sans text-xl text-white uppercase tracking-wide">
                   Doubt Sessions
                 </CardTitle>
               </div>
-              <CardDescription className="text-gray-400 font-mono text-xs uppercase tracking-wider">
+              <CardDescription className="text-gray-400 font-sans text-xs uppercase tracking-wider">
                 Manage student doubt clearing requests.
               </CardDescription>
             </CardHeader>
@@ -116,15 +116,15 @@ export function MentorDashboardShell({
         // Default to student progress or empty state
         return (
           <div className="space-y-6">
-            <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10]">
-              <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4">
+            <Card className="bg-[#0a0a0a] border border-[#1a1a1a] text-white rounded-xl ">
+              <CardHeader className="bg-[#0a0a0a] border-b border-[#1a1a1a] pb-4 pt-4">
                 <div className="flex items-center gap-2 mb-1">
                   <GraduationCap className="w-4 h-4 text-purple-500" />
-                  <CardTitle className="font-mono text-xl text-white uppercase tracking-wide">
+                  <CardTitle className="font-sans text-xl text-white uppercase tracking-wide">
                     Assigned Sessions
                   </CardTitle>
                 </div>
-                <CardDescription className="text-gray-400 font-mono text-xs uppercase tracking-wider">
+                <CardDescription className="text-gray-400 font-sans text-xs uppercase tracking-wider">
                   View your assigned course weeks and sessions.
                 </CardDescription>
               </CardHeader>

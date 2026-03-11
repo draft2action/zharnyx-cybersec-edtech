@@ -216,7 +216,7 @@ export function WeekCard({
               <Input
                 {...register(`months.${monthIndex}.weeks.${weekIndex}.title`)}
                 placeholder="Week Title"
-                className="bg-black/40 border-white/10 text-white font-mono h-10 text-base w-full focus:ring-white/20"
+                className="bg-black/40 border-[#1a1a1a] text-white font-sans h-10 text-base w-full focus:ring-white/20"
               />
               {errors.months?.[monthIndex]?.weeks?.[weekIndex]?.title && (
                 <span className="text-red-500 text-xs">
@@ -227,9 +227,9 @@ export function WeekCard({
 
             {/* Team Display - Read Only / Auto-set */}
             {monthType === "team" && (
-              <div className="px-3 py-2 bg-black/40 border border-white/10 rounded-md">
+              <div className="px-3 py-2 bg-black/40 border border-[#1a1a1a] rounded-md">
                 <span
-                  className={`text-sm font-mono ${weekIndex < 4 ? "text-red-400" : "text-blue-400"
+                  className={`text-sm font-sans ${weekIndex < 4 ? "text-red-400" : "text-blue-400"
                     }`}
                 >
                   {weekIndex < 4 ? "Red Team" : "Blue Team"}
@@ -241,7 +241,7 @@ export function WeekCard({
             {isFourthWeek && (
               <Badge
                 variant="outline"
-                className="text-indigo-400 border-indigo-500/30 bg-indigo-500/10 font-mono"
+                className="text-indigo-400 border-indigo-500/30 bg-indigo-500/10 font-sans"
               >
                 Project Week
               </Badge>
@@ -265,7 +265,7 @@ export function WeekCard({
           <div className="p-4 border border-indigo-500/20 rounded-md bg-indigo-500/5 space-y-4">
             <div className="flex items-center gap-2 mb-1">
               <FileText className="h-4 w-4 text-indigo-400" />
-              <span className="text-sm font-bold font-mono text-indigo-400">
+              <span className="text-sm font-bold font-sans text-indigo-400">
                 Project Details
               </span>
             </div>
@@ -274,14 +274,14 @@ export function WeekCard({
                 `months.${monthIndex}.weeks.${weekIndex}.projectTitle`
               )}
               placeholder="Project Name"
-              className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm focus:ring-indigo-500/30"
+              className="bg-black/40 border-[#1a1a1a] text-white font-sans h-9 text-sm focus:ring-indigo-500/30"
             />
             <Textarea
               {...register(
                 `months.${monthIndex}.weeks.${weekIndex}.projectDescription`
               )}
               placeholder="Describe what they are building..."
-              className="bg-black/40 border-white/10 text-white font-mono text-sm min-h-[80px] focus:ring-indigo-500/30"
+              className="bg-black/40 border-[#1a1a1a] text-white font-sans text-sm min-h-[80px] focus:ring-indigo-500/30"
             />
           </div>
         )}
@@ -294,7 +294,7 @@ export function WeekCard({
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="w-full justify-start text-sm text-gray-400 hover:text-black hover:bg-white font-mono h-9 transition-colors"
+                  className="w-full justify-start text-sm text-gray-400 hover:text-black hover:bg-white font-sans h-9 transition-colors"
                 >
                   <FileText className="mr-2 h-4 w-4" />
                   Edit Content Description
@@ -306,7 +306,7 @@ export function WeekCard({
                     `months.${monthIndex}.weeks.${weekIndex}.content`
                   )}
                   placeholder="Enter week content description or instructions..."
-                  className="bg-black/40 border-white/10 text-gray-300 font-mono text-sm min-h-[120px]"
+                  className="bg-black/40 border-[#1a1a1a] text-gray-300 font-sans text-sm min-h-[120px]"
                 />
               </CollapsibleContent>
             </Collapsible>
@@ -318,7 +318,7 @@ export function WeekCard({
               <Button
                 variant="ghost"
                 size="sm"
-                className="w-full justify-start text-sm text-gray-400 hover:text-black hover:bg-white font-mono h-9 transition-colors"
+                className="w-full justify-start text-sm text-gray-400 hover:text-black hover:bg-white font-sans h-9 transition-colors"
               >
                 <LinkIcon className="mr-2 h-4 w-4" />
                 Learning Resources ({resourceFields.length})
@@ -333,14 +333,14 @@ export function WeekCard({
                         `months.${monthIndex}.weeks.${weekIndex}.resources.${rIndex}.title`
                       )}
                       placeholder="Resource Title"
-                      className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm"
+                      className="bg-black/40 border-[#1a1a1a] text-white font-sans h-9 text-sm"
                     />
                     <Input
                       {...register(
                         `months.${monthIndex}.weeks.${weekIndex}.resources.${rIndex}.link`
                       )}
                       placeholder="URL (https://...)"
-                      className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm"
+                      className="bg-black/40 border-[#1a1a1a] text-white font-sans h-9 text-sm"
                     />
                   </div>
                   <Button
@@ -359,7 +359,7 @@ export function WeekCard({
                 variant="outline"
                 size="sm"
                 onClick={() => appendResource({ title: "", link: "" })}
-                className="w-full h-9 text-sm font-mono border-dashed border-white/10 text-gray-400 hover:text-black hover:bg-white transition-colors"
+                className="w-full h-9 text-sm font-sans border-dashed border-[#1a1a1a] text-gray-400 hover:text-black hover:bg-white transition-colors"
               >
                 <Plus className="mr-2 h-4 w-4" /> Add Resource
               </Button>
@@ -378,7 +378,7 @@ export function WeekCard({
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="justify-between text-sm text-gray-400 hover:text-white hover:bg-white/5 font-mono h-auto py-2 transition-colors w-full border border-white/10"
+                    className="justify-between text-sm text-gray-400 hover:text-white hover:bg-[#0a0a0a] font-sans h-auto py-2 transition-colors w-full border border-[#1a1a1a]"
                   >
                     <div className="flex items-center">
                       <UserPlus className="mr-2 h-4 w-4" />
@@ -406,9 +406,9 @@ export function WeekCard({
                     )}
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="bg-zinc-950 border-white/10 text-white sm:max-w-md shadow-2xl shadow-red-900/10">
+                <DialogContent className="bg-[#0a0a0a] border-[#1a1a1a] text-white sm:max-w-md shadow-2xl shadow-red-900/10">
                   <DialogHeader>
-                    <DialogTitle className="font-mono text-lg uppercase tracking-wider text-red-500">
+                    <DialogTitle className="font-sans text-lg uppercase tracking-wider text-red-500">
                       Select Mentors
                     </DialogTitle>
                   </DialogHeader>
@@ -419,19 +419,19 @@ export function WeekCard({
                         placeholder="SEARCH MENTORS..."
                         value={mentorSearch}
                         onChange={(e) => setMentorSearch(e.target.value)}
-                        className="pl-8 bg-zinc-900 border-white/10 text-white font-mono focus:ring-red-500/50 focus:border-red-500 uppercase placeholder:text-zinc-600 rounded-none h-10"
+                        className="pl-8 bg-zinc-900 border-[#1a1a1a] text-white font-sans focus:ring-red-500/50 focus:border-red-500 uppercase placeholder:text-zinc-600 rounded-xl h-10"
                       />
                     </div>
                     <div className="max-h-[300px] overflow-y-auto space-y-1 pr-1 custom-scrollbar">
                       {filteredMentors.length === 0 ? (
-                        <p className="text-gray-500 font-mono text-center py-4 uppercase text-xs">
+                        <p className="text-gray-500 font-sans text-center py-4 uppercase text-xs">
                           No mentors found.
                         </p>
                       ) : (
                         filteredMentors.map((mentor) => (
                           <div
                             key={mentor.id}
-                            className="flex items-center justify-between p-3 border border-transparent hover:border-red-500/30 hover:bg-red-500/5 transition-all cursor-pointer group rounded-none"
+                            className="flex items-center justify-between p-3 border border-transparent hover:border-red-500/30 hover:bg-red-500/5 transition-all cursor-pointer group rounded-xl"
                             onClick={() =>
                               handleMentorToggle(
                                 mentor.id,
@@ -440,7 +440,7 @@ export function WeekCard({
                             }
                           >
                             <div className="flex flex-col gap-1">
-                              <span className="font-mono text-sm text-gray-300 group-hover:text-white font-bold">
+                              <span className="font-sans text-sm text-gray-300 group-hover:text-white font-bold">
                                 {mentor.name}
                               </span>
                               <span
@@ -462,7 +462,7 @@ export function WeekCard({
                                   checked as boolean
                                 )
                               }
-                              className="border-white/20 data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600 text-white rounded-none"
+                              className="border-[#1a1a1a] data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600 text-white rounded-xl"
                             />
                           </div>
                         ))
@@ -475,8 +475,8 @@ export function WeekCard({
 
             {/* Selected Mentors Display - Detailed View */}
             {assignedMentors.length > 0 && (
-              <div className="flex flex-col gap-2 mt-3 p-3 bg-white/5 border border-white/5">
-                <span className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-1">
+              <div className="flex flex-col gap-2 mt-3 p-3 bg-[#0a0a0a] border border-white/5">
+                <span className="text-xs font-sans text-gray-500 uppercase tracking-wider mb-1">
                   Assigned Staff
                 </span>
                 {assignedMentors.map((mId) => {
@@ -485,7 +485,7 @@ export function WeekCard({
                   return (
                     <div
                       key={mId}
-                      className="flex items-center justify-between bg-black/40 p-2 border border-white/5 hover:border-white/20 transition-colors group"
+                      className="flex items-center justify-between bg-black/40 p-2 border border-white/5 hover:border-[#1a1a1a] transition-colors group"
                     >
                       <div className="flex items-center gap-3">
                         <div
@@ -495,10 +495,10 @@ export function WeekCard({
                           )}
                         />
                         <div className="flex flex-col">
-                          <span className="text-sm font-mono text-white">
+                          <span className="text-sm font-sans text-white">
                             {m.name}
                           </span>
-                          <span className="text-[10px] font-mono text-gray-500 uppercase">
+                          <span className="text-[10px] font-sans text-gray-500 uppercase">
                             {m.role}
                           </span>
                         </div>
@@ -529,7 +529,7 @@ export function WeekCard({
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3 gap-2">
                 <div className="flex items-center gap-2">
                   <CheckSquare className="h-4 w-4 text-gray-400" />
-                  <span className="text-sm font-mono text-gray-300">
+                  <span className="text-sm font-sans text-gray-300">
                     Assessment (Assignment)
                   </span>
                 </div>
@@ -538,7 +538,7 @@ export function WeekCard({
                   variant={hasAssessment ? "destructive" : "secondary"}
                   size="sm"
                   onClick={toggleAssessment}
-                  className="h-8 py-0 text-xs px-3 font-mono w-full sm:w-auto"
+                  className="h-8 py-0 text-xs px-3 font-sans w-full sm:w-auto"
                 >
                   {hasAssessment ? "Remove" : "Add Assessment"}
                 </Button>
@@ -551,25 +551,25 @@ export function WeekCard({
                       `months.${monthIndex}.weeks.${weekIndex}.assessment.title`
                     )}
                     placeholder="Assignment Title"
-                    className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm focus:ring-white/20"
+                    className="bg-black/40 border-[#1a1a1a] text-white font-sans h-9 text-sm focus:ring-white/20"
                   />
                   <Input
                     {...register(
                       `months.${monthIndex}.weeks.${weekIndex}.assessment.topic`
                     )}
                     placeholder="Assessment Topic"
-                    className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm focus:ring-white/20"
+                    className="bg-black/40 border-[#1a1a1a] text-white font-sans h-9 text-sm focus:ring-white/20"
                   />
                   <Textarea
                     {...register(
                       `months.${monthIndex}.weeks.${weekIndex}.assessment.problem`
                     )}
                     placeholder="Problem Statement..."
-                    className="bg-black/40 border-white/10 text-white font-mono text-sm min-h-[100px] focus:ring-white/20"
+                    className="bg-black/40 border-[#1a1a1a] text-white font-sans text-sm min-h-[100px] focus:ring-white/20"
                   />
                   <div className="flex flex-col sm:flex-row gap-4">
                     <div className="flex-1 min-w-0">
-                      <Label className="text-xs text-gray-400 font-mono mb-1 block">
+                      <Label className="text-xs text-gray-400 font-sans mb-1 block">
                         Submission Format
                       </Label>
                       <Select
@@ -585,17 +585,17 @@ export function WeekCard({
                           ) || "pdf"
                         }
                       >
-                        <SelectTrigger className="bg-black/40 border-white/10 text-white font-mono h-9 text-sm w-full">
+                        <SelectTrigger className="bg-black/40 border-[#1a1a1a] text-white font-sans h-9 text-sm w-full">
                           <SelectValue placeholder="Format" />
                         </SelectTrigger>
-                        <SelectContent className="bg-black border-white/10 text-white font-mono">
+                        <SelectContent className="bg-black border-[#1a1a1a] text-white font-sans">
                           <SelectItem value="pdf">PDF Upload</SelectItem>
                           <SelectItem value="url">URL Link</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <Label className="text-xs text-gray-400 font-mono mb-1 block">
+                      <Label className="text-xs text-gray-400 font-sans mb-1 block">
                         Deadline
                       </Label>
                       <DeadlinePicker
@@ -638,7 +638,7 @@ function DeadlinePicker({
         <Button
           variant={"outline"}
           className={cn(
-            "w-full justify-start text-left font-normal bg-black/40 border-white/10 text-white font-mono h-9 text-sm",
+            "w-full justify-start text-left font-normal bg-black/40 border-[#1a1a1a] text-white font-sans h-9 text-sm",
             !deadline && "text-muted-foreground"
           )}
         >
@@ -647,7 +647,7 @@ function DeadlinePicker({
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="w-auto p-0 bg-black border-white/10 text-white"
+        className="w-auto p-0 bg-black border-[#1a1a1a] text-white"
         align="start"
       >
         <Calendar
@@ -661,7 +661,7 @@ function DeadlinePicker({
             )
           }
           initialFocus
-          className="bg-black text-white border-white/10"
+          className="bg-black text-white border-[#1a1a1a]"
         />
       </PopoverContent>
     </Popover>

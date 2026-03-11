@@ -17,7 +17,7 @@ export function PricingHero() {
         transition={{ duration: 0.5, delay: 0.1 }}
         className="mb-[16px]"
       >
-        <span className="text-[14px] font-semibold text-[#ea384c] uppercase tracking-[0.1em] cursor-default">
+        <span className="text-[14px] font-semibold text-red-500 uppercase tracking-[0.1em] cursor-default">
           PRICING
         </span>
       </motion.div>
@@ -29,7 +29,7 @@ export function PricingHero() {
         className="text-[48px] font-bold tracking-tight mb-[24px] max-w-7xl mx-auto text-[#f2f2f2] leading-none"
       >
         Affordable{" "}
-        <span className="text-[#ea384c]">
+        <span className="text-red-500">
           By Design
         </span>
       </motion.h1>

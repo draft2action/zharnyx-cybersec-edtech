@@ -29,12 +29,12 @@ export function CourseManager() {
     return (
       <div className="space-y-6 px-4">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-0">
-          <h2 className="text-2xl font-bold tracking-tight text-white font-mono">
+          <h2 className="text-2xl font-bold tracking-tight text-white font-sans">
             Courses
           </h2>
           <Button
             onClick={handleCreate}
-            className="font-mono bg-white text-black hover:bg-gray-200"
+            className="font-sans bg-white text-black hover:bg-gray-200"
           >
             <Plus className="mr-2 h-4 w-4" />
             Create Course
@@ -51,7 +51,7 @@ export function CourseManager() {
         <Button
           variant="outline"
           onClick={handleBack}
-          className="font-mono border-white/10 text-black hover:bg-white/10"
+          className="font-sans border-[#1a1a1a] text-black hover:bg-white/10"
         >
           Back to List
         </Button>

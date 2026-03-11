@@ -26,7 +26,7 @@ function CustomCheckIcon({ className }: { className?: string }) {
 
 const phases = [
   {
-    icon: <BookOpen className="w-[32px] h-[32px] text-[#ea384c]" />,
+    icon: <BookOpen className="w-[32px] h-[32px] text-red-500" />,
     phase: "Phase 1",
     duration: "3 Months",
     weeks: "Weeks 1-12",
@@ -41,7 +41,7 @@ const phases = [
     ],
   },
   {
-    icon: <Shield className="w-[32px] h-[32px] text-[#ea384c]" />,
+    icon: <Shield className="w-[32px] h-[32px] text-red-500" />,
     phase: "Phase 2",
     duration: "3 Months",
     weeks: "Weeks 13-24",
@@ -56,7 +56,7 @@ const phases = [
     ],
   },
   {
-    icon: <Briefcase className="w-[32px] h-[32px] text-[#ea384c]" />,
+    icon: <Briefcase className="w-[32px] h-[32px] text-red-500" />,
     phase: "Phase 3",
     duration: "1 Month",
     weeks: "Weeks 25-28",
@@ -91,7 +91,7 @@ export function ProgramsPhases() {
                 {phase.icon}
               </div>
               
-              <div className="text-[#ea384c] text-[10px] font-mono mb-[12px] uppercase tracking-wider">
+              <div className="text-red-500 text-[10px] font-mono mb-[12px] uppercase tracking-wider">
                 {phase.phase} · {phase.duration} · {phase.weeks}
               </div>
               
@@ -106,7 +106,7 @@ export function ProgramsPhases() {
               <div className="space-y-[16px] mb-[40px] flex-grow">
                 {phase.features.map((feature, j) => (
                   <div key={j} className="flex items-start gap-3">
-                    <CustomCheckIcon className="w-[16px] h-[16px] text-[#ea384c] flex-shrink-0 mt-0.5" />
+                    <CustomCheckIcon className="w-[16px] h-[16px] text-red-500 flex-shrink-0 mt-0.5" />
                     <span className="text-[#a3a3a3] text-[13px]">
                       {feature}
                     </span>

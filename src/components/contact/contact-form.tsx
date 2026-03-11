@@ -20,11 +20,11 @@ export function ContactForm() {
       {/* Decorative Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#222_1px,transparent_1px),linear-gradient(to_bottom,#222_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none opacity-50" />
 
-      <div className="max-w-6xl w-full mx-auto border-2 border-white bg-black relative z-10 grid grid-cols-1 lg:grid-cols-3 shadow-[8px_8px_0px_0px_#ef4444]">
+      <div className="max-w-6xl w-full mx-auto border-2 border-white bg-black relative z-10 grid grid-cols-1 lg:grid-cols-3 shadow-[8px_8px_0px_0px_#ea384c]">
         {/* Left Panel: Contact Details */}
         <div className="border-b-2 lg:border-b-0 lg:border-r-2 border-white p-8 md:p-12 space-y-12 bg-black">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 border-2 border-red-600 bg-red-600/10 text-red-500 text-xs font-mono font-bold uppercase tracking-widest mb-6 shadow-[4px_4px_0px_0px_#ef4444]">
+            <div className="inline-flex items-center gap-2 px-3 py-1 border-2 border-red-600 bg-red-600/10 text-red-500 text-xs font-mono font-bold uppercase tracking-widest mb-6 shadow-[4px_4px_0px_0px_#ea384c]">
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
               Comm Link Active
             </div>
@@ -112,7 +112,7 @@ export function ContactForm() {
                 </label>
                 <Input
                   placeholder="ENTER_FULL_NAME"
-                  className="bg-black border-2 border-white text-white font-mono placeholder:text-zinc-700 h-14 rounded-none focus-visible:ring-0 focus-visible:border-red-500 focus-visible:shadow-[4px_4px_0px_0px_#ef4444] transition-all"
+                  className="bg-black border-2 border-white text-white font-mono placeholder:text-zinc-700 h-14 rounded-none focus-visible:ring-0 focus-visible:border-red-500 focus-visible:shadow-[4px_4px_0px_0px_#ea384c] transition-all"
                 />
               </div>
               <div className="space-y-4">
@@ -121,7 +121,7 @@ export function ContactForm() {
                 </label>
                 <Input
                   placeholder="ENTER_EMAIL_ADDRESS"
-                  className="bg-black border-2 border-white text-white font-mono placeholder:text-zinc-700 h-14 rounded-none focus-visible:ring-0 focus-visible:border-red-500 focus-visible:shadow-[4px_4px_0px_0px_#ef4444] transition-all"
+                  className="bg-black border-2 border-white text-white font-mono placeholder:text-zinc-700 h-14 rounded-none focus-visible:ring-0 focus-visible:border-red-500 focus-visible:shadow-[4px_4px_0px_0px_#ea384c] transition-all"
                 />
               </div>
             </div>

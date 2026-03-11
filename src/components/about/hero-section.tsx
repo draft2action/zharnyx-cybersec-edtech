@@ -17,7 +17,7 @@ export function HeroSection() {
         transition={{ duration: 0.5, delay: 0.1 }}
         className="inline-flex items-center gap-3 px-6 py-3 border-2 border-white/20 bg-white/5 text-sm font-mono font-bold text-white uppercase tracking-widest mb-10 hover:bg-white/10 transition-colors cursor-default"
       >
-        <span className="w-2 h-2 bg-red-500 animate-pulse shadow-[0_0_10px_#ef4444]"></span>
+        <span className="w-2 h-2 bg-red-500 animate-pulse shadow-[0_0_10px_#ea384c]"></span>
         About Zharnyx
       </motion.div>
 

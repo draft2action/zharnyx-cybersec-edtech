@@ -12,7 +12,7 @@ const certifications = [
   {
     role: "VAPT",
     certs: "eJPT, OSCP",
-    colorClass: "text-[#ea384c]",
+    colorClass: "text-red-500",
   },
   {
     role: "Cloud",
@@ -39,7 +39,7 @@ export function PlacementCertsCTA() {
             viewport={{ once: true }}
             className="text-[24px] md:text-[32px] font-bold text-[#ffffff] mb-[48px] text-center"
           >
-            Recommended <span className="text-[#ea384c]">Certifications</span>
+            Recommended <span className="text-red-500">Certifications</span>
           </motion.h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-[1000px]">
@@ -69,10 +69,10 @@ export function PlacementCertsCTA() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-[#0a0a0a] border border-[#ea384c]/20 rounded-2xl p-[48px] md:p-[64px] text-center shadow-[0_0_40px_rgba(234,56,76,0.05)] w-full max-w-[900px]"
+            className="bg-[#0a0a0a] border border-red-500/20 rounded-2xl p-[48px] md:p-[64px] text-center shadow-[0_0_40px_rgba(234,56,76,0.05)] w-full max-w-[900px]"
           >
             <h3 className="text-[28px] md:text-[40px] font-bold text-[#ffffff] mb-[16px]">
-              Ready to Launch Your <span className="text-[#ea384c]">Career?</span>
+              Ready to Launch Your <span className="text-red-500">Career?</span>
             </h3>
             <p className="text-[#a3a3a3] text-[16px] md:text-[18px] mb-[40px]">
               Placement support is included in every full program package.
@@ -81,7 +81,7 @@ export function PlacementCertsCTA() {
             <div className="flex justify-center">
               <Link
                 href="/enroll"
-                className="bg-[#ea384c] hover:bg-[#d92d3f] text-white px-[40px] py-[16px] rounded-md font-medium text-[16px] transition-all shadow-[0_0_20px_rgba(234,56,76,0.3)] hover:shadow-[0_0_25px_rgba(234,56,76,0.4)] whitespace-nowrap flex items-center gap-[8px]"
+                className="bg-red-500 hover:bg-[#d92d3f] text-white px-[40px] py-[16px] rounded-md font-medium text-[16px] transition-all shadow-[0_0_20px_rgba(234,56,76,0.3)] hover:shadow-[0_0_25px_rgba(234,56,76,0.4)] whitespace-nowrap flex items-center gap-[8px]"
               >
                 Enroll Now
                 <svg

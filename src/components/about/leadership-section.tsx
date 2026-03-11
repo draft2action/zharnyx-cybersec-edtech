@@ -63,7 +63,7 @@ function LeaderCard({
 }) {
   const colorMap = {
     red: {
-      hover: "hover:border-red-500 hover:shadow-[12px_12px_0px_0px_#ef4444]",
+      hover: "hover:border-red-500 hover:shadow-[12px_12px_0px_0px_#ea384c]",
       iconBg:
         "bg-red-900/10 border-red-500/30 group-hover:bg-red-500/20 group-hover:border-red-500",
       iconColor: "text-red-500",

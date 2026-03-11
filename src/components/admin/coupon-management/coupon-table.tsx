@@ -106,7 +106,7 @@ export function CouponTable({ initialData, onRefresh }: CouponTableProps) {
           ) : (
             initialData.map((coupon) => (
               <TableRow key={coupon.id}>
-                <TableCell className="font-medium font-mono">
+                <TableCell className="font-medium font-sans">
                   {coupon.code}
                 </TableCell>
                 <TableCell>

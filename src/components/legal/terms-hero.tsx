@@ -19,7 +19,7 @@ export function TermsHero() {
           animate={{ opacity: 1, y: 0 }}
           className="text-[48px] md:text-[64px] font-bold text-[#ffffff] leading-[1.1] tracking-tight mb-[16px]"
         >
-          Terms & <span className="text-[#ea384c]">Conditions</span>
+          Terms & <span className="text-red-500">Conditions</span>
         </motion.h1>
 
         <motion.p

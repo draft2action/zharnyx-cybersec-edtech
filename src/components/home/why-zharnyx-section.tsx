@@ -22,20 +22,20 @@ export function WhyZharnyxSection() {
             viewport={{ once: true }}
           >
             <div className="mb-[24px]">
-              <span className="text-[12px] font-semibold text-[#ea384c] tracking-[0.1em] uppercase">
+              <span className="text-[12px] font-semibold text-red-500 tracking-[0.1em] uppercase">
                 THE PROBLEM
               </span>
             </div>
             
             <h2 className="text-[36px] md:text-[44px] font-bold text-[#f2f2f2] leading-[1.1] mb-[32px] tracking-tight">
-              Colleges Teach the Syllabus. <span className="text-[#ea384c]">We Teach the Skill.</span>
+              Colleges Teach the Syllabus. <span className="text-red-500">We Teach the Skill.</span>
             </h2>
 
             <p className="text-[15px] text-[#a3a3a3] leading-[26px] mb-[40px] max-w-[500px]">
               95% of cybersecurity graduates can't handle a real SOC alert, write a pentest report, or analyze a memory dump. The industry needs Day-1 deployable talent — not certificate holders.
             </p>
 
-            <blockquote className="border-l-[3px] border-[#ea384c] pl-[20px] text-[#737373] italic text-[15px] leading-[26px]">
+            <blockquote className="border-l-[3px] border-red-500 pl-[20px] text-[#737373] italic text-[15px] leading-[26px]">
               "A certificate tells an employer you studied. A portfolio tells them you can do the job."
             </blockquote>
           </motion.div>
@@ -56,7 +56,7 @@ export function WhyZharnyxSection() {
                 transition={{ delay: 0.1 + i * 0.1 }}
                 className="flex items-center gap-[16px] p-[20px] rounded-[8px] bg-[#0f0f0f] border border-[#1f1f1f]"
               >
-                <div className="flex-shrink-0 w-[24px] h-[24px] rounded-full bg-[#ea384c]/10 text-[#ea384c] text-[12px] font-bold flex items-center justify-center">
+                <div className="flex-shrink-0 w-[24px] h-[24px] rounded-full bg-red-500/10 text-red-500 text-[12px] font-bold flex items-center justify-center">
                   {i + 1}
                 </div>
                 <span className="text-[#d4d4d4] text-[14px]">{problem}</span>

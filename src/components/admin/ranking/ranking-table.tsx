@@ -65,34 +65,34 @@ export function RankingTable() {
   }
 
   return (
-    <div className="rounded-md border border-white/10">
+    <div className="rounded-md border border-[#1a1a1a]">
       <Table>
-        <TableHeader className="bg-white/5">
-          <TableRow className="border-white/10 hover:bg-white/5">
-            <TableHead className="font-mono text-white w-[80px]">
+        <TableHeader className="bg-[#0a0a0a]">
+          <TableRow className="border-[#1a1a1a] hover:bg-[#0a0a0a]">
+            <TableHead className="font-sans text-white w-[80px]">
               Rank
             </TableHead>
-            <TableHead className="font-mono text-white">Student</TableHead>
-            <TableHead className="font-mono text-white text-right">
+            <TableHead className="font-sans text-white">Student</TableHead>
+            <TableHead className="font-sans text-white text-right">
               Assessment Score
             </TableHead>
-            <TableHead className="font-mono text-white text-right">
+            <TableHead className="font-sans text-white text-right">
               Project Score
             </TableHead>
-            <TableHead className="font-mono text-white text-right">
+            <TableHead className="font-sans text-white text-right">
               Total Score
             </TableHead>
-            <TableHead className="font-mono text-white">
+            <TableHead className="font-sans text-white">
               Recruiter Access
             </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {data.length === 0 ? (
-            <TableRow className="border-white/10 hover:bg-white/5">
+            <TableRow className="border-[#1a1a1a] hover:bg-[#0a0a0a]">
               <TableCell
                 colSpan={6}
-                className="h-24 text-center font-mono text-gray-500"
+                className="h-24 text-center font-sans text-gray-500"
               >
                 No students found.
               </TableCell>
@@ -101,7 +101,7 @@ export function RankingTable() {
             data.map((student, index) => (
               <TableRow
                 key={student.id}
-                className="border-white/10 hover:bg-white/5 font-mono"
+                className="border-[#1a1a1a] hover:bg-[#0a0a0a] font-sans"
               >
                 <TableCell className="font-medium text-white">
                   {index + 1}

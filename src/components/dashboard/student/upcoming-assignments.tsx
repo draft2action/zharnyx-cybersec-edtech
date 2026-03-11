@@ -29,13 +29,13 @@ export function UpcomingAssignments() {
   ];
 
   return (
-    <Card className="bg-black/40 border-white/10 backdrop-blur-sm h-full">
+    <Card className="bg-black/40 border-[#1a1a1a] backdrop-blur-sm h-full">
       <CardHeader>
-        <CardTitle className="text-white font-mono flex items-center gap-2">
+        <CardTitle className="text-white font-sans flex items-center gap-2">
           <Calendar className="h-5 w-5 text-emerald-400" />
           Upcoming Assignments
         </CardTitle>
-        <CardDescription className="text-gray-400 font-mono">
+        <CardDescription className="text-gray-400 font-sans">
           Tasks due soon
         </CardDescription>
       </CardHeader>
@@ -48,16 +48,16 @@ export function UpcomingAssignments() {
           assignments.map((assignment) => (
             <div
               key={assignment.id}
-              className="flex items-start gap-4 p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 transition-colors"
+              className="flex items-start gap-4 p-3 rounded-lg border border-white/5 bg-[#0a0a0a] hover:bg-white/10 transition-colors"
             >
               <div className="p-2 rounded-full bg-emerald-500/10 text-emerald-400 mt-1">
                 <AlertCircle className="h-4 w-4" />
               </div>
               <div className="flex-1 min-w-0">
-                <h4 className="text-sm font-semibold text-white font-mono truncate">
+                <h4 className="text-sm font-semibold text-white font-sans truncate">
                   {assignment.title}
                 </h4>
-                <p className="text-xs text-gray-400 font-mono truncate">
+                <p className="text-xs text-gray-400 font-sans truncate">
                   {assignment.course}
                 </p>
                 <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">

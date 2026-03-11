@@ -41,7 +41,7 @@ export function UserActions({ user }: UserActionsProps) {
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
-            className="h-8 w-8 p-0 hover:bg-white/10 rounded-none data-[state=open]:bg-white/10"
+            className="h-8 w-8 p-0 hover:bg-white/10 rounded-xl data-[state=open]:bg-white/10"
           >
             <span className="sr-only">Open menu</span>
             <MoreHorizontal className="h-4 w-4 text-white" />
@@ -49,16 +49,16 @@ export function UserActions({ user }: UserActionsProps) {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="end"
-          className="font-mono bg-black border-2 border-white/20 rounded-none w-56 shadow-[4px_4px_0px_0px_white/20] p-0"
+          className="font-sans bg-black border border-[#1a1a1a] rounded-xl w-56  p-0"
         >
-          <div className="bg-white/5 p-2 border-b-2 border-white/20">
-            <DropdownMenuLabel className="p-0 text-white font-black uppercase text-xs tracking-widest">
+          <div className="bg-[#0a0a0a] p-2 border-b border-[#1a1a1a]">
+            <DropdownMenuLabel className="p-0 text-white font-bold uppercase text-xs tracking-widest">
               User Actions
             </DropdownMenuLabel>
           </div>
           <div className="p-1">
             <DropdownMenuItem
-              className="text-gray-300 hover:text-black hover:bg-white focus:text-black focus:bg-white rounded-none cursor-pointer uppercase text-xs font-bold tracking-wide py-2"
+              className="text-gray-300 hover:text-black hover:bg-white focus:text-black focus:bg-white rounded-xl cursor-pointer uppercase text-xs font-bold tracking-wide py-2"
               onClick={() => {
                 navigator.clipboard.writeText(user.id);
                 toast.success("User ID copied to clipboard");
@@ -68,7 +68,7 @@ export function UserActions({ user }: UserActionsProps) {
             </DropdownMenuItem>
 
             <DropdownMenuItem
-              className="text-gray-300 hover:text-black hover:bg-white focus:text-black focus:bg-white rounded-none cursor-pointer uppercase text-xs font-bold tracking-wide py-2"
+              className="text-gray-300 hover:text-black hover:bg-white focus:text-black focus:bg-white rounded-xl cursor-pointer uppercase text-xs font-bold tracking-wide py-2"
               onSelect={() => setIsProgressModalOpen(true)}
             >
               View Progress
@@ -81,19 +81,19 @@ export function UserActions({ user }: UserActionsProps) {
             </DropdownMenuLabel>
 
             <DropdownMenuItem
-              className="text-blue-400 hover:text-black hover:bg-blue-400 focus:text-black focus:bg-blue-400 rounded-none cursor-pointer uppercase text-xs font-bold tracking-wide py-2"
+              className="text-blue-400 hover:text-black hover:bg-blue-400 focus:text-black focus:bg-blue-400 rounded-xl cursor-pointer uppercase text-xs font-bold tracking-wide py-2"
               onClick={() => handleRoleUpdate(user.id, "student")}
             >
               Set as Student
             </DropdownMenuItem>
             <DropdownMenuItem
-              className="text-purple-400 hover:text-black hover:bg-purple-400 focus:text-black focus:bg-purple-400 rounded-none cursor-pointer uppercase text-xs font-bold tracking-wide py-2"
+              className="text-purple-400 hover:text-black hover:bg-purple-400 focus:text-black focus:bg-purple-400 rounded-xl cursor-pointer uppercase text-xs font-bold tracking-wide py-2"
               onClick={() => handleRoleUpdate(user.id, "mentor")}
             >
               Set as Mentor
             </DropdownMenuItem>
             <DropdownMenuItem
-              className="text-red-400 hover:text-black hover:bg-red-500 focus:text-black focus:bg-red-500 rounded-none cursor-pointer uppercase text-xs font-bold tracking-wide py-2"
+              className="text-red-400 hover:text-black hover:bg-red-500 focus:text-black focus:bg-red-500 rounded-xl cursor-pointer uppercase text-xs font-bold tracking-wide py-2"
               onClick={() => handleRoleUpdate(user.id, "admin")}
             >
               Set as Admin

@@ -25,7 +25,7 @@ const founders = [
 
 export function AboutFounders() {
   return (
-    <section className="bg-[#050505] font-sans py-[120px] px-6">
+    <section id="leadership" className="bg-[#050505] font-sans py-[120px] px-6">
       <div className="container mx-auto max-w-[1280px]">
         {/* Header */}
         <div className="text-center mb-[80px]">
@@ -35,7 +35,7 @@ export function AboutFounders() {
             viewport={{ once: true }}
             className="text-[32px] md:text-[48px] font-bold text-[#f2f2f2] tracking-tight"
           >
-            Meet the <span className="text-[#ea384c]">Founders</span>
+            Meet the <span className="text-red-500">Founders</span>
           </motion.h2>
         </div>
 
@@ -52,7 +52,7 @@ export function AboutFounders() {
             >
               {/* Avatar Outline Circle */}
               <div className="w-[80px] h-[80px] mx-auto rounded-full bg-[#1a1a1a] flex items-center justify-center mb-[24px]">
-                <span className="text-[#ea384c] text-[20px] font-bold">
+                <span className="text-red-500 text-[20px] font-bold">
                   {founder.initial}
                 </span>
               </div>
@@ -61,7 +61,7 @@ export function AboutFounders() {
                 {founder.name}
               </h3>
               
-              <p className="text-[#ea384c] text-[12px] font-mono mb-[16px]">
+              <p className="text-red-500 text-[12px] font-mono mb-[16px]">
                 {founder.role}
               </p>
               

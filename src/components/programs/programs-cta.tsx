@@ -9,7 +9,7 @@ export function ProgramsCTA() {
       
       {/* Background Decorators */}
       <div className="absolute inset-0 flex justify-center items-center pointer-events-none opacity-30">
-        <div className="w-[800px] h-[400px] bg-[#ea384c] rounded-full blur-[150px] opacity-10" />
+        <div className="w-[800px] h-[400px] bg-red-500 rounded-full blur-[150px] opacity-10" />
       </div>
 
       <div className="container mx-auto max-w-[800px] relative z-10 text-center">
@@ -19,7 +19,7 @@ export function ProgramsCTA() {
           viewport={{ once: true }}
           className="text-[40px] md:text-[56px] font-bold text-[#f2f2f2] tracking-tight mb-[24px]"
         >
-          Ready to <span className="text-[#ea384c]">Choose Your Track?</span>
+          Ready to <span className="text-red-500">Choose Your Track?</span>
         </motion.h2>
 
         <motion.p
@@ -41,7 +41,7 @@ export function ProgramsCTA() {
         >
           <a
             href="/enroll"
-            className="flex items-center justify-center gap-2 w-full sm:w-auto px-[32px] py-[16px] text-[15px] font-bold text-white bg-[#ea384c] rounded-md hover:bg-[#dc2626] transition-colors shadow-[0_0_20px_rgba(234,56,76,0.4)] group"
+            className="flex items-center justify-center gap-2 w-full sm:w-auto px-[32px] py-[16px] text-[15px] font-bold text-white bg-red-500 rounded-md hover:bg-red-600 transition-colors shadow-[0_0_20px_rgba(234,56,76,0.4)] group"
           >
             Enroll Now
             <ArrowRight className="w-[18px] h-[18px] group-hover:translate-x-1 transition-transform" />

@@ -21,12 +21,12 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2.5 w-fit mb-[16px]">
               <Image src="https://ik.imagekit.io/bkt3emitco/ChatGPT%20Image%20Mar%209,%202026,%2005_24_01%20AM.png" alt="Logo" width={44} height={44} />
               <span className="-translate-x-2 text-lg font-bold text-[#f2f2f2] tracking-tight">
-                ZHARNY<span className="text-[#ea384c]">X</span>
+                ZHARNY<span className="text-red-500">X</span>
               </span>
             </Link>
 
             <div className="space-y-5">
-              <p className="text-[#ea384c] text-[14px] font-semibold font-sans">
+              <p className="text-red-500 text-[14px] font-semibold font-sans">
                 Tamil Nadu's Own Cybersecurity Academy
               </p>
 

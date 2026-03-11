@@ -70,7 +70,7 @@ export function UserProgressModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-[600px] border-white/10 bg-black text-white max-h-[80vh] overflow-y-auto font-mono">
+      <DialogContent className="sm:max-w-[600px] border-[#1a1a1a] bg-black text-white max-h-[80vh] overflow-y-auto font-sans">
         <DialogHeader>
           <DialogTitle>User Progress</DialogTitle>
           <DialogDescription className="text-gray-400">
@@ -101,7 +101,7 @@ export function UserProgressModal({
                   {data.assessments.map((a) => (
                     <li
                       key={a.id}
-                      className="p-3 border border-white/10 rounded bg-white/5"
+                      className="p-3 border border-[#1a1a1a] rounded bg-[#0a0a0a]"
                     >
                       <div className="flex justify-between items-center">
                         <span className="font-medium text-gray-200">
@@ -131,7 +131,7 @@ export function UserProgressModal({
                   {data.projects.map((p) => (
                     <li
                       key={p.id}
-                      className="p-3 border border-white/10 rounded bg-white/5"
+                      className="p-3 border border-[#1a1a1a] rounded bg-[#0a0a0a]"
                     >
                       <div className="flex justify-between items-center">
                         <span className="font-medium text-gray-200">

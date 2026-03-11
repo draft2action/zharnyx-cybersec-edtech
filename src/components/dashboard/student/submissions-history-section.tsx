@@ -53,26 +53,26 @@ export function SubmissionsHistorySection({
     <div className="space-y-8">
       {/* Assessments Section */}
       <div className="space-y-4">
-        <h3 className="text-lg font-bold text-white font-mono uppercase tracking-wide pl-2 border-l-4 border-blue-500">
+        <h3 className="text-lg font-bold text-white font-sans uppercase tracking-wide pl-2 border-l-4 border-blue-500">
           Evaluations
         </h3>
-        <div className="rounded-none border-2 border-white/20 overflow-hidden">
+        <div className="rounded-xl border border-[#1a1a1a] overflow-hidden">
           <Table>
-            <TableHeader className="bg-white/5">
-              <TableRow className="hover:bg-transparent border-white/10">
-                <TableHead className="font-mono text-xs uppercase text-gray-400">
+            <TableHeader className="bg-[#0a0a0a]">
+              <TableRow className="hover:bg-transparent border-[#1a1a1a]">
+                <TableHead className="font-sans text-xs uppercase text-gray-400">
                   Course
                 </TableHead>
-                <TableHead className="font-mono text-xs uppercase text-gray-400">
+                <TableHead className="font-sans text-xs uppercase text-gray-400">
                   Assessment
                 </TableHead>
-                <TableHead className="font-mono text-xs uppercase text-gray-400">
+                <TableHead className="font-sans text-xs uppercase text-gray-400">
                   Submitted
                 </TableHead>
-                <TableHead className="font-mono text-xs uppercase text-gray-400">
+                <TableHead className="font-sans text-xs uppercase text-gray-400">
                   Status
                 </TableHead>
-                <TableHead className="font-mono text-xs uppercase text-gray-400 text-right">
+                <TableHead className="font-sans text-xs uppercase text-gray-400 text-right">
                   Score
                 </TableHead>
               </TableRow>
@@ -82,7 +82,7 @@ export function SubmissionsHistorySection({
                 <TableRow>
                   <TableCell
                     colSpan={5}
-                    className="text-center font-mono text-gray-500 py-8"
+                    className="text-center font-sans text-gray-500 py-8"
                   >
                     No assessment submissions found.
                   </TableCell>
@@ -91,13 +91,13 @@ export function SubmissionsHistorySection({
                 data?.assessments.map((sub) => (
                   <TableRow
                     key={sub.id}
-                    className="border-white/10 hover:bg-white/5 transition-colors"
+                    className="border-[#1a1a1a] hover:bg-[#0a0a0a] transition-colors"
                   >
-                    <TableCell className="font-medium text-white font-mono truncate max-w-[150px]">
+                    <TableCell className="font-medium text-white font-sans truncate max-w-[150px]">
                       {sub.assessment?.week?.month?.course?.title ||
                         "Unknown Course"}
                     </TableCell>
-                    <TableCell className="font-mono text-gray-300">
+                    <TableCell className="font-sans text-gray-300">
                       {sub.assessment?.title}
                       {sub.submissionUrl && (
                         <a
@@ -110,7 +110,7 @@ export function SubmissionsHistorySection({
                         </a>
                       )}
                     </TableCell>
-                    <TableCell className="font-mono text-gray-400 text-xs">
+                    <TableCell className="font-sans text-gray-400 text-xs">
                       {sub.submittedAt
                         ? format(new Date(sub.submittedAt), "MMM d, yyyy")
                         : "-"}
@@ -118,7 +118,7 @@ export function SubmissionsHistorySection({
                     <TableCell>
                       <Badge
                         variant="outline"
-                        className={`font-mono text-[10px] uppercase rounded-none px-2 py-0.5 border-opacity-50 ${
+                        className={`font-sans text-[10px] uppercase rounded-xl px-2 py-0.5 border-opacity-50 ${
                           sub.status === "completed" || sub.score !== null
                             ? "border-green-500 text-green-500"
                             : sub.status === "pending"
@@ -129,7 +129,7 @@ export function SubmissionsHistorySection({
                         {sub.status}
                       </Badge>
                     </TableCell>
-                    <TableCell className="text-right font-mono font-bold text-white">
+                    <TableCell className="text-right font-sans font-bold text-white">
                       {sub.score !== null ? `${sub.score}/100` : "-"}
                     </TableCell>
                   </TableRow>
@@ -142,26 +142,26 @@ export function SubmissionsHistorySection({
 
       {/* Projects Section */}
       <div className="space-y-4">
-        <h3 className="text-lg font-bold text-white font-mono uppercase tracking-wide pl-2 border-l-4 border-purple-500">
+        <h3 className="text-lg font-bold text-white font-sans uppercase tracking-wide pl-2 border-l-4 border-purple-500">
           Projects
         </h3>
-        <div className="rounded-none border-2 border-white/20 overflow-hidden">
+        <div className="rounded-xl border border-[#1a1a1a] overflow-hidden">
           <Table>
-            <TableHeader className="bg-white/5">
-              <TableRow className="hover:bg-transparent border-white/10">
-                <TableHead className="font-mono text-xs uppercase text-gray-400">
+            <TableHeader className="bg-[#0a0a0a]">
+              <TableRow className="hover:bg-transparent border-[#1a1a1a]">
+                <TableHead className="font-sans text-xs uppercase text-gray-400">
                   Course
                 </TableHead>
-                <TableHead className="font-mono text-xs uppercase text-gray-400">
+                <TableHead className="font-sans text-xs uppercase text-gray-400">
                   Project
                 </TableHead>
-                <TableHead className="font-mono text-xs uppercase text-gray-400">
+                <TableHead className="font-sans text-xs uppercase text-gray-400">
                   Links
                 </TableHead>
-                <TableHead className="font-mono text-xs uppercase text-gray-400">
+                <TableHead className="font-sans text-xs uppercase text-gray-400">
                   Review
                 </TableHead>
-                <TableHead className="font-mono text-xs uppercase text-gray-400 text-right">
+                <TableHead className="font-sans text-xs uppercase text-gray-400 text-right">
                   Score
                 </TableHead>
               </TableRow>
@@ -171,7 +171,7 @@ export function SubmissionsHistorySection({
                 <TableRow>
                   <TableCell
                     colSpan={5}
-                    className="text-center font-mono text-gray-500 py-8"
+                    className="text-center font-sans text-gray-500 py-8"
                   >
                     No project submissions found.
                   </TableCell>
@@ -180,12 +180,12 @@ export function SubmissionsHistorySection({
                 data?.projects.map((proj) => (
                   <TableRow
                     key={proj.id}
-                    className="border-white/10 hover:bg-white/5 transition-colors"
+                    className="border-[#1a1a1a] hover:bg-[#0a0a0a] transition-colors"
                   >
-                    <TableCell className="font-medium text-white font-mono truncate max-w-[150px]">
+                    <TableCell className="font-medium text-white font-sans truncate max-w-[150px]">
                       {proj.week?.month?.course?.title || "Unknown Course"}
                     </TableCell>
-                    <TableCell className="font-mono text-gray-300">
+                    <TableCell className="font-sans text-gray-300">
                       {proj.week?.projectTitle || "Project"}
                     </TableCell>
                     <TableCell>
@@ -220,12 +220,12 @@ export function SubmissionsHistorySection({
                       </div>
                     </TableCell>
                     <TableCell
-                      className="font-mono text-xs text-gray-400 max-w-[200px] truncate"
+                      className="font-sans text-xs text-gray-400 max-w-[200px] truncate"
                       title={proj.review}
                     >
                       {proj.review || "-"}
                     </TableCell>
-                    <TableCell className="text-right font-mono font-bold text-white">
+                    <TableCell className="text-right font-sans font-bold text-white">
                       {proj.score !== null ? `${proj.score}/100` : "-"}
                     </TableCell>
                   </TableRow>

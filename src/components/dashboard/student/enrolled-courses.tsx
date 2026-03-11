@@ -19,13 +19,13 @@ interface EnrolledCoursesProps {
 
 export function EnrolledCourses({ courses = [] }: EnrolledCoursesProps) {
   return (
-    <Card className="bg-black/40 border-white/10 backdrop-blur-sm h-full flex flex-col font-mono">
+    <Card className="bg-black/40 border-[#1a1a1a] backdrop-blur-sm h-full flex flex-col font-sans">
       <CardHeader>
-        <CardTitle className="text-white font-mono flex items-center gap-2">
+        <CardTitle className="text-white font-sans flex items-center gap-2">
           <PlayCircle className="h-5 w-5 text-indigo-400" />
           Enrolled Courses
         </CardTitle>
-        <CardDescription className="text-gray-400 font-mono">
+        <CardDescription className="text-gray-400 font-sans">
           Continue where you left off
         </CardDescription>
       </CardHeader>
@@ -39,10 +39,10 @@ export function EnrolledCourses({ courses = [] }: EnrolledCoursesProps) {
             <div key={course.id} className="space-y-2">
               <div className="flex justify-between items-start">
                 <div>
-                  <h4 className="font-semibold text-white font-mono">
+                  <h4 className="font-semibold text-white font-sans">
                     {course.title}
                   </h4>
-                  <p className="text-xs text-gray-400 font-mono">
+                  <p className="text-xs text-gray-400 font-sans">
                     Last accessed: {course.lastAccessed}
                   </p>
                 </div>
@@ -50,7 +50,7 @@ export function EnrolledCourses({ courses = [] }: EnrolledCoursesProps) {
                   asChild
                   size="sm"
                   variant="outline"
-                  className="h-8 border-white/10 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+                  className="h-8 border-[#1a1a1a] bg-[#0a0a0a] text-white hover:bg-white/10 hover:text-white"
                 >
                   <TransitionLink href={`/courses/${course.id}`}>
                     {course.progress > 0 ? "Continue" : "Start"}
@@ -58,7 +58,7 @@ export function EnrolledCourses({ courses = [] }: EnrolledCoursesProps) {
                 </Button>
               </div>
               <div className="space-y-1">
-                <div className="flex justify-between text-xs text-gray-400 font-mono">
+                <div className="flex justify-between text-xs text-gray-400 font-sans">
                   <span>{course.progress}% Complete</span>
                   <span>
                     {course.completedModules}/{course.totalModules} Modules

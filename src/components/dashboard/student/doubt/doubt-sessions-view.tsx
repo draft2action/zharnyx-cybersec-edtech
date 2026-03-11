@@ -49,11 +49,11 @@ export function DoubtSessionsView({ studentId }: DoubtSessionsViewProps) {
 
   return (
     <div className="space-y-6">
-      <Card className="bg-black border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10]">
-        <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between border-b-2 border-white/20 pb-4 gap-4 md:gap-0">
+      <Card className="bg-black border border-[#1a1a1a] text-white rounded-xl ">
+        <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-[#1a1a1a] pb-4 gap-4 md:gap-0">
           <div className="flex items-center gap-2">
             <HelpCircle className="w-6 h-6 text-purple-500" />
-            <CardTitle className="font-mono text-2xl uppercase tracking-tight">
+            <CardTitle className="font-sans text-2xl uppercase tracking-tight">
               Doubt Sessions
             </CardTitle>
           </div>
@@ -62,7 +62,7 @@ export function DoubtSessionsView({ studentId }: DoubtSessionsViewProps) {
               variant="outline"
               size="icon"
               onClick={fetchSessions}
-              className="border-white/20 bg-transparent hover:bg-white/10 text-white"
+              className="border-[#1a1a1a] bg-transparent hover:bg-white/10 text-white"
             >
               <RefreshCcw
                 className={`h-4 w-4 ${loading ? "animate-spin" : ""}`}

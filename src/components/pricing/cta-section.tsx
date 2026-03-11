@@ -14,7 +14,7 @@ export function PricingCTA() {
           transition={{ duration: 0.5 }}
           className="text-[36px] font-bold text-[#f2f2f2] tracking-tight"
         >
-          Ready to <span className="text-[#ea384c]">Invest in Your Future?</span>
+          Ready to <span className="text-red-500">Invest in Your Future?</span>
         </motion.h2>
         
         <motion.p
@@ -34,7 +34,7 @@ export function PricingCTA() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="pt-[16px]"
         >
-          <button className="bg-[#ea384c] hover:bg-[#d02e3f] text-white rounded-[6px] h-[44px] px-[32px] text-[16px] font-medium transition-all shadow-[0_0_20px_rgba(234,56,76,0.3)] inline-flex items-center justify-center group">
+          <button className="bg-red-500 hover:bg-[#d02e3f] text-white rounded-[6px] h-[44px] px-[32px] text-[16px] font-medium transition-all shadow-[0_0_20px_rgba(234,56,76,0.3)] inline-flex items-center justify-center group">
             Enroll Now
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>

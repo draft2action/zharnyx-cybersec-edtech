@@ -44,7 +44,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-[16px] text-left group"
       >
-        <span className="text-[#f2f2f2] font-medium text-[14px] group-hover:text-[#ea384c] transition-colors">
+        <span className="text-[#f2f2f2] font-medium text-[14px] group-hover:text-red-500 transition-colors">
           {q}
         </span>
         <ChevronDown
@@ -84,7 +84,7 @@ export function FaqSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-[#ea384c] text-[12px] font-semibold uppercase tracking-[0.15em] mb-[16px]"
+            className="text-red-500 text-[12px] font-semibold uppercase tracking-[0.15em] mb-[16px]"
           >
             FAQ
           </motion.p>
@@ -95,7 +95,7 @@ export function FaqSection() {
             transition={{ delay: 0.1 }}
             className="text-[36px] md:text-[44px] font-bold text-[#f2f2f2] tracking-tight"
           >
-            Frequently Asked <span className="text-[#ea384c]">Questions</span>
+            Frequently Asked <span className="text-red-500">Questions</span>
           </motion.h2>
         </div>
 

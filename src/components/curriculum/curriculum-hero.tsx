@@ -6,7 +6,7 @@ export function CurriculumHero() {
   return (
     <section className="relative overflow-hidden bg-[#000000] font-sans pt-[160px] pb-[80px] px-6 border-b border-[#1a1a1a]">
       {/* Background Glows and Grid */}
-      {/* <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#ea384c] opacity-[0.05] blur-[120px] pointer-events-none" />
+      {/* <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-red-500 opacity-[0.05] blur-[120px] pointer-events-none" />
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.1]"
         style={{
@@ -19,7 +19,7 @@ export function CurriculumHero() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-[#ea384c] text-[11px] md:text-[13px] font-mono tracking-[0.15em] mb-[24px] uppercase"
+          className="text-red-500 text-[11px] md:text-[13px] font-mono tracking-[0.15em] mb-[24px] uppercase"
         >
           FULL CURRICULUM
         </motion.p>
@@ -30,7 +30,7 @@ export function CurriculumHero() {
           transition={{ delay: 0.1 }}
           className="text-[30px] md:text-[40px] lg:text-[54px] font-bold text-[#ffffff] leading-[1.1] tracking-tight mb-[24px]"
         >
-          28 Weeks. <span className="text-[#ea384c]">Every Detail.</span>
+          28 Weeks. <span className="text-red-500">Every Detail.</span>
         </motion.h1>
 
         <motion.p

@@ -35,12 +35,12 @@ export function LearningProgress() {
   ];
 
   return (
-    <Card className="bg-black/40 border-white/10 backdrop-blur-sm">
+    <Card className="bg-black/40 border-[#1a1a1a] backdrop-blur-sm">
       <CardHeader>
-        <CardTitle className="text-white font-mono">
+        <CardTitle className="text-white font-sans">
           Learning Progress
         </CardTitle>
-        <CardDescription className="text-gray-400 font-mono">
+        <CardDescription className="text-gray-400 font-sans">
           Your improved skills
         </CardDescription>
       </CardHeader>
@@ -49,17 +49,17 @@ export function LearningProgress() {
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="p-4 rounded-lg border border-white/5 bg-white/5 flex flex-col items-center text-center"
+              className="p-4 rounded-lg border border-white/5 bg-[#0a0a0a] flex flex-col items-center text-center"
             >
               <div
                 className={`p-3 rounded-full ${stat.bgColor} ${stat.color} mb-3`}
               >
                 <stat.icon className="h-6 w-6" />
               </div>
-              <div className="text-2xl font-bold text-white font-mono mb-1">
+              <div className="text-2xl font-bold text-white font-sans mb-1">
                 {stat.value}
               </div>
-              <div className="text-xs text-gray-400 font-mono uppercase tracking-wider">
+              <div className="text-xs text-gray-400 font-sans uppercase tracking-wider">
                 {stat.label}
               </div>
             </div>

@@ -44,18 +44,18 @@ export default async function PartnerDashboardPage(props: {
         <div className="flex min-h-screen w-full bg-black font-sans">
             <div className="relative flex flex-col flex-1 z-10 w-full pl-6 pr-6 pb-6 pt-4">
                 {/* Header */}
-                <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-4 border-b-2 border-white/20">
+                <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-4 border-b border-[#1a1a1a]">
                     <div className="flex items-start gap-4">
-                        <SidebarTrigger className="text-white hover:bg-white/10 md:hidden border-2 border-white/20 rounded-none h-10 w-10 shrink-0" />
+                        <SidebarTrigger className="text-white hover:bg-white/10 md:hidden border border-[#1a1a1a] rounded-xl h-10 w-10 shrink-0" />
                         <div className="flex flex-col">
-                            <h1 className="text-4xl font-black font-mono text-white uppercase tracking-tighter leading-none">
+                            <h1 className="text-4xl font-bold font-sans text-white uppercase tracking-tighter leading-none">
                                 Partner Portal
                             </h1>
                             <div className="flex items-center gap-2 mt-2">
                                 <span className="bg-green-600 text-black text-[10px] font-bold uppercase tracking-widest px-2 py-0.5">
                                     Active
                                 </span>
-                                <span className="text-gray-500 font-mono text-xs uppercase tracking-widest">
+                                <span className="text-gray-500 font-sans text-xs uppercase tracking-widest">
                                     {"// Agency: "}
                                     {session.user.name}
                                 </span>

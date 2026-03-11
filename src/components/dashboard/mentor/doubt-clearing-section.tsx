@@ -118,7 +118,7 @@ export function DoubtClearingSection({ mentorId }: DoubtClearingSectionProps) {
 
   if (requests.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 border-2 border-white/10 border-dashed rounded-lg bg-white/5">
+      <div className="flex flex-col items-center justify-center p-12 border border-[#1a1a1a] border-dashed rounded-lg bg-[#0a0a0a]">
         <HelpCircle className="h-12 w-12 text-yellow-500 mb-4" />
         <h3 className="text-xl font-bold text-white mb-2">No Requests</h3>
         <p className="text-gray-400 text-center max-w-sm">
@@ -135,10 +135,10 @@ export function DoubtClearingSection({ mentorId }: DoubtClearingSectionProps) {
           <Card
             key={request.id}
             className={cn(
-              "bg-black border-2 transition-colors",
+              "bg-black border transition-colors",
               request.status === "scheduled"
                 ? "border-green-500/30 hover:border-green-500"
-                : "border-white/10 hover:border-yellow-500"
+                : "border-[#1a1a1a] hover:border-yellow-500"
             )}
           >
             <CardHeader className="pb-3">
@@ -153,7 +153,7 @@ export function DoubtClearingSection({ mentorId }: DoubtClearingSectionProps) {
                 >
                   {request.status}
                 </Badge>
-                <span className="text-xs text-gray-500 font-mono">
+                <span className="text-xs text-gray-500 font-sans">
                   {format(new Date(request.createdAt), "MMM d")}
                 </span>
               </div>
@@ -206,7 +206,7 @@ export function DoubtClearingSection({ mentorId }: DoubtClearingSectionProps) {
                   </Button>
                   <Button
                     variant="outline"
-                    className="w-full border-white/20 text-gray-400 hover:text-white hover:bg-white/10"
+                    className="w-full border-[#1a1a1a] text-gray-400 hover:text-white hover:bg-white/10"
                     onClick={() => handleComplete(request)}
                   >
                     Mark as Completed
@@ -222,7 +222,7 @@ export function DoubtClearingSection({ mentorId }: DoubtClearingSectionProps) {
         open={!!selectedRequest}
         onOpenChange={(open) => !open && setSelectedRequest(null)}
       >
-        <DialogContent className="bg-black border-2 border-white/20 text-white sm:max-w-md">
+        <DialogContent className="bg-black border border-[#1a1a1a] text-white sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Schedule Doubt Session</DialogTitle>
             <DialogDescription>
@@ -249,7 +249,7 @@ export function DoubtClearingSection({ mentorId }: DoubtClearingSectionProps) {
                 <Input
                   id="scheduledAt"
                   type="datetime-local"
-                  className="bg-black border-white/20 text-white focus:border-yellow-500 date-input-white"
+                  className="bg-black border-[#1a1a1a] text-white focus:border-yellow-500 date-input-white"
                   value={scheduledAt}
                   onChange={(e) => setScheduledAt(e.target.value)}
                 />
@@ -265,7 +265,7 @@ export function DoubtClearingSection({ mentorId }: DoubtClearingSectionProps) {
                 <Input
                   id="meetLink"
                   placeholder="https://meet.google.com/..."
-                  className="bg-black border-white/20 text-white focus:border-yellow-500"
+                  className="bg-black border-[#1a1a1a] text-white focus:border-yellow-500"
                   value={meetLink}
                   onChange={(e) => setMeetLink(e.target.value)}
                 />

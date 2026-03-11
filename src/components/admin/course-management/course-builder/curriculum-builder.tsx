@@ -52,7 +52,7 @@ export function CurriculumBuilder({
   return (
     <div className="space-y-6">
       {fields.length === 0 && (
-        <div className="text-gray-500 font-mono text-center py-8 border border-dashed border-white/10 rounded-md">
+        <div className="text-gray-500 font-sans text-center py-8 border border-dashed border-[#1a1a1a] rounded-md">
           No months added yet. Start building your curriculum.
         </div>
       )}
@@ -77,7 +77,7 @@ export function CurriculumBuilder({
         type="button"
         onClick={addMonth}
         variant="outline"
-        className="w-full font-mono border-dashed border-white/20 text-gray-400 hover:text-white hover:bg-white/5 hover:border-white/40"
+        className="w-full font-sans border-dashed border-[#1a1a1a] text-gray-400 hover:text-white hover:bg-[#0a0a0a] hover:border-white/40"
       >
         <Plus className="mr-2 h-4 w-4" />
         Add Month

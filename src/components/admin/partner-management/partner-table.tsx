@@ -44,22 +44,22 @@ export function PartnerTable() {
     if (stats.length === 0) return <div className="text-gray-400 p-4">No partner data available</div>;
 
     return (
-        <div className="rounded-md border border-white/20 bg-zinc-950">
+        <div className="rounded-md border border-[#1a1a1a] bg-[#0a0a0a]">
             <Table>
-                <TableHeader className="bg-white/5">
-                    <TableRow className="border-white/20 hover:bg-white/5">
-                        <TableHead className="text-gray-400 font-mono text-xs uppercase">Agency Name</TableHead>
-                        <TableHead className="text-gray-400 font-mono text-xs uppercase">Coupon Code</TableHead>
-                        <TableHead className="text-gray-400 font-mono text-xs uppercase text-right">Uses</TableHead>
-                        <TableHead className="text-gray-400 font-mono text-xs uppercase text-right">Rev. Share</TableHead>
-                        <TableHead className="text-gray-400 font-mono text-xs uppercase text-right">Total Revenue</TableHead>
+                <TableHeader className="bg-[#0a0a0a]">
+                    <TableRow className="border-[#1a1a1a] hover:bg-[#0a0a0a]">
+                        <TableHead className="text-gray-400 font-sans text-xs uppercase">Agency Name</TableHead>
+                        <TableHead className="text-gray-400 font-sans text-xs uppercase">Coupon Code</TableHead>
+                        <TableHead className="text-gray-400 font-sans text-xs uppercase text-right">Uses</TableHead>
+                        <TableHead className="text-gray-400 font-sans text-xs uppercase text-right">Rev. Share</TableHead>
+                        <TableHead className="text-gray-400 font-sans text-xs uppercase text-right">Total Revenue</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {stats.map((stat, index) => (
-                        <TableRow key={index} className="border-white/20 hover:bg-white/5">
+                        <TableRow key={index} className="border-[#1a1a1a] hover:bg-[#0a0a0a]">
                             <TableCell className="font-medium text-white">{stat.agencyName}</TableCell>
-                            <TableCell className="text-blue-400 font-mono">{stat.couponName}</TableCell>
+                            <TableCell className="text-blue-400 font-sans">{stat.couponName}</TableCell>
                             <TableCell className="text-white text-right">{stat.uses}</TableCell>
                             <TableCell className="text-gray-400 text-right">₹{stat.revenueShare}</TableCell>
                             <TableCell className="text-green-500 font-bold text-right">₹{stat.totalRevenue}</TableCell>

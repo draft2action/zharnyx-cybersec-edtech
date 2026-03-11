@@ -212,16 +212,16 @@ export function DashboardSidebar({
 
   return (
     <Sidebar
-      className="border-r-2 border-white/20 bg-black text-white"
+      className="border-r border-[#1a1a1a] bg-black text-white"
       collapsible="icon"
     >
-      <SidebarHeader className="border-b-2 border-white/20 p-4 h-[80px] flex items-center justify-center bg-black group-data-[collapsible=icon]:p-2">
+      <SidebarHeader className="border-b border-[#1a1a1a] p-4 h-[80px] flex items-center justify-center bg-black group-data-[collapsible=icon]:p-2">
         {/* Logo / Title Area */}
         <div className="flex items-center gap-3 overflow-hidden w-full group">
           {/* Icon - Color depends on Role */}
           <div
             className={cn(
-              "flex items-center justify-center shrink-0 w-10 h-10 border-2 border-white/20 shadow-[2px_2px_0px_0px_white] group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 transition-all",
+              "flex items-center justify-center shrink-0 w-10 h-10 border border-[#1a1a1a]  group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 transition-all",
               effectiveRole === "mentor"
                 ? "bg-purple-600"
                 : effectiveRole === "student"
@@ -255,12 +255,12 @@ export function DashboardSidebar({
               state === "collapsed" ? "opacity-0 w-0 hidden" : "opacity-100"
             )}
           >
-            <span className="font-black text-xl text-white tracking-tighter uppercase leading-none">
+            <span className="font-bold text-xl text-white tracking-tighter uppercase leading-none">
               ZHARNYX
             </span>
             <span
               className={cn(
-                "text-[10px] font-mono uppercase tracking-widest leading-none mt-1",
+                "text-[10px] font-sans uppercase tracking-widest leading-none mt-1",
                 effectiveRole === "mentor"
                   ? "text-purple-500"
                   : effectiveRole === "student"
@@ -286,7 +286,7 @@ export function DashboardSidebar({
         {/* Admin Menu */}
         {effectiveRole === "admin" && (
           <SidebarGroup>
-            <SidebarGroupLabel className="text-gray-500 font-mono font-bold uppercase tracking-widest text-xs mb-4 pl-4 group-data-[collapsible=icon]:hidden">
+            <SidebarGroupLabel className="text-gray-500 font-sans font-bold uppercase tracking-widest text-xs mb-4 pl-4 group-data-[collapsible=icon]:hidden">
               Management modules
             </SidebarGroupLabel>
             <SidebarGroupContent>
@@ -303,12 +303,12 @@ export function DashboardSidebar({
                         isActive={isActive}
                         onClick={() => handleAdminClick(item.id)}
                         className={cn(
-                          "font-mono font-bold text-sm border-2 transition-all duration-200 p-3 h-auto rounded-none mb-1",
+                          "font-sans font-bold text-sm border transition-all duration-200 p-3 h-auto rounded-xl mb-1",
                           // Default
-                          "bg-transparent border-transparent text-gray-400 hover:bg-white/10 hover:text-white hover:border-white/20",
+                          "bg-transparent border-transparent text-gray-400 hover:bg-white/10 hover:text-white hover:border-[#1a1a1a]",
                           // Active
                           isActive &&
-                          "bg-red-600/10 border-red-600 text-red-500 hover:bg-red-600/20 hover:text-red-400 hover:border-red-500 shadow-[2px_2px_0px_0px_#dc2626]",
+                          "bg-red-600/10 border-red-600 text-red-500 hover:bg-red-600/20 hover:text-red-400 hover:border-red-500 ",
                           // Collapsed adjustments
                           "group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-2"
                         )}
@@ -338,7 +338,7 @@ export function DashboardSidebar({
         {/* Mentor Menu */}
         {effectiveRole === "mentor" && (
           <SidebarGroup>
-            <SidebarGroupLabel className="text-gray-500 font-mono font-bold uppercase tracking-widest text-xs mb-4 pl-4 group-data-[collapsible=icon]:hidden">
+            <SidebarGroupLabel className="text-gray-500 font-sans font-bold uppercase tracking-widest text-xs mb-4 pl-4 group-data-[collapsible=icon]:hidden">
               Overview & Grading
             </SidebarGroupLabel>
             <SidebarGroupContent>
@@ -355,12 +355,12 @@ export function DashboardSidebar({
                         isActive={isActive}
                         onClick={() => handleMentorClick(item.id)}
                         className={cn(
-                          "font-mono font-bold text-sm border-2 transition-all duration-200 p-3 h-auto rounded-none mb-1",
+                          "font-sans font-bold text-sm border transition-all duration-200 p-3 h-auto rounded-xl mb-1",
                           // Default
-                          "bg-transparent border-transparent text-gray-400 hover:bg-white/10 hover:text-white hover:border-white/20",
+                          "bg-transparent border-transparent text-gray-400 hover:bg-white/10 hover:text-white hover:border-[#1a1a1a]",
                           // Active - Purple
                           isActive &&
-                          "bg-purple-600/10 border-purple-600 text-purple-500 hover:bg-purple-600/20 hover:text-purple-400 hover:border-purple-500 shadow-[2px_2px_0px_0px_#9333ea]",
+                          "bg-purple-600/10 border-purple-600 text-purple-500 hover:bg-purple-600/20 hover:text-purple-400 hover:border-purple-500 ",
                           // Collapsed adjustments
                           "group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-2"
                         )}
@@ -390,7 +390,7 @@ export function DashboardSidebar({
         {/* Partner Menu */}
         {effectiveRole === "partner_agency" && (
           <SidebarGroup>
-            <SidebarGroupLabel className="text-gray-500 font-mono font-bold uppercase tracking-widest text-xs mb-4 pl-4 group-data-[collapsible=icon]:hidden">
+            <SidebarGroupLabel className="text-gray-500 font-sans font-bold uppercase tracking-widest text-xs mb-4 pl-4 group-data-[collapsible=icon]:hidden">
               Agency Controls
             </SidebarGroupLabel>
             <SidebarGroupContent>
@@ -407,12 +407,12 @@ export function DashboardSidebar({
                         isActive={isActive}
                         onClick={() => handlePartnerClick(item.id)}
                         className={cn(
-                          "font-mono font-bold text-sm border-2 transition-all duration-200 p-3 h-auto rounded-none mb-1",
+                          "font-sans font-bold text-sm border transition-all duration-200 p-3 h-auto rounded-xl mb-1",
                           // Default
-                          "bg-transparent border-transparent text-gray-400 hover:bg-white/10 hover:text-white hover:border-white/20",
+                          "bg-transparent border-transparent text-gray-400 hover:bg-white/10 hover:text-white hover:border-[#1a1a1a]",
                           // Active - Green
                           isActive &&
-                          "bg-green-600/10 border-green-600 text-green-500 hover:bg-green-600/20 hover:text-green-400 hover:border-green-500 shadow-[2px_2px_0px_0px_#22c55e]",
+                          "bg-green-600/10 border-green-600 text-green-500 hover:bg-green-600/20 hover:text-green-400 hover:border-green-500 ",
                           // Collapsed adjustments
                           "group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-2"
                         )}
@@ -442,7 +442,7 @@ export function DashboardSidebar({
         {/* Student Menu */}
         {effectiveRole !== "admin" && effectiveRole !== "mentor" && effectiveRole !== "partner_agency" && (
           <SidebarGroup>
-            <SidebarGroupLabel className="text-gray-500 font-mono font-bold uppercase tracking-widest text-xs mb-4 pl-4 group-data-[collapsible=icon]:hidden">
+            <SidebarGroupLabel className="text-gray-500 font-sans font-bold uppercase tracking-widest text-xs mb-4 pl-4 group-data-[collapsible=icon]:hidden">
               Learning Space
             </SidebarGroupLabel>
             <SidebarGroupContent>
@@ -459,12 +459,12 @@ export function DashboardSidebar({
                         isActive={isActive}
                         onClick={() => handleStudentClick(item.id)}
                         className={cn(
-                          "font-mono font-bold text-sm border-2 transition-all duration-200 p-3 h-auto rounded-none mb-1",
+                          "font-sans font-bold text-sm border transition-all duration-200 p-3 h-auto rounded-xl mb-1",
                           // Default
-                          "bg-transparent border-transparent text-gray-400 hover:bg-white/10 hover:text-white hover:border-white/20",
+                          "bg-transparent border-transparent text-gray-400 hover:bg-white/10 hover:text-white hover:border-[#1a1a1a]",
                           // Active
                           isActive &&
-                          "bg-blue-600/10 border-blue-600 text-blue-500 hover:bg-blue-600/20 hover:text-blue-400 hover:border-blue-500 shadow-[2px_2px_0px_0px_#2563eb]",
+                          "bg-blue-600/10 border-blue-600 text-blue-500 hover:bg-blue-600/20 hover:text-blue-400 hover:border-blue-500 ",
                           // Collapsed
                           "group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-2"
                         )}
@@ -492,12 +492,12 @@ export function DashboardSidebar({
         )}
       </SidebarContent>
 
-      <SidebarFooter className="border-t-2 border-white/20 p-4 bg-black group-data-[collapsible=icon]:p-2">
+      <SidebarFooter className="border-t border-[#1a1a1a] p-4 bg-black group-data-[collapsible=icon]:p-2">
         <SidebarMenu className="gap-2 group-data-[collapsible=icon]:gap-1">
           <SidebarMenuItem>
             <SidebarMenuButton
               onClick={toggleSidebar}
-              className="hover:bg-white/10 font-mono text-gray-400 hover:text-white border-2 border-transparent hover:border-white/20 h-auto p-3 rounded-none  group-data-[collapsible=icon]:justify-center"
+              className="hover:bg-white/10 font-sans text-gray-400 hover:text-white border border-transparent hover:border-[#1a1a1a] h-auto p-3 rounded-xl  group-data-[collapsible=icon]:justify-center"
             >
               <PanelLeft
                 className={cn(
@@ -514,7 +514,7 @@ export function DashboardSidebar({
           <SidebarMenuItem>
             <SidebarMenuButton
               onClick={() => router.push("/")}
-              className="hover:bg-white/10 font-mono text-gray-400 hover:text-white border-2 border-transparent hover:border-white/20 h-auto p-3 rounded-none group-data-[collapsible=icon]:justify-center"
+              className="hover:bg-white/10 font-sans text-gray-400 hover:text-white border border-transparent hover:border-[#1a1a1a] h-auto p-3 rounded-xl group-data-[collapsible=icon]:justify-center"
             >
               <Home className="h-4 w-4" />
               <span className="uppercase tracking-wider text-xs group-data-[collapsible=icon]:hidden">
@@ -525,7 +525,7 @@ export function DashboardSidebar({
           <SidebarMenuItem>
             <SidebarMenuButton
               onClick={handleLogout}
-              className="hover:bg-red-900/30 text-red-500/70 hover:text-red-500 font-mono border-2 border-transparent hover:border-red-900/50 h-auto p-3 rounded-none group group-data-[collapsible=icon]:justify-center"
+              className="hover:bg-red-900/30 text-red-500/70 hover:text-red-500 font-sans border border-transparent hover:border-red-900/50 h-auto p-3 rounded-xl group group-data-[collapsible=icon]:justify-center"
             >
               <LogOut className="h-4 w-4 " />
               <span className="uppercase tracking-wider text-xs group-data-[collapsible=icon]:hidden">

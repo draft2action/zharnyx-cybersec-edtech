@@ -8,7 +8,7 @@ export function StandaloneModules() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-[48px]">
           <h2 className="text-[30px] font-bold text-[#f2f2f2] tracking-tight">
-            Standalone <span className="text-[#ea384c]">Modules</span>
+            Standalone <span className="text-red-500">Modules</span>
           </h2>
         </div>
 
@@ -28,7 +28,7 @@ export function StandaloneModules() {
               <div className="flex items-baseline gap-2">
                 <span className="text-[24px] font-bold text-[#f2f2f2]">₹9,899</span>
               </div>
-              <span className="text-[14px] text-[#ea384c] mb-1">Student: ₹4,949</span>
+              <span className="text-[14px] text-red-500 mb-1">Student: ₹4,949</span>
               <span className="text-[12px] text-[#8c8c8c]">3 Months · excl. GST</span>
             </div>
           </motion.div>
@@ -81,7 +81,7 @@ export function StandaloneModules() {
           className="p-[24px] border border-[#262626] bg-[#111111] rounded-[8px] text-center flex flex-col items-center gap-[12px] relative overflow-hidden"
         >
           <h3 className="text-[18px] font-bold text-[#f2f2f2]">
-            AI for Cybersecurity <span className="text-[#ea384c]">Add-On</span>
+            AI for Cybersecurity <span className="text-red-500">Add-On</span>
           </h3>
           <p className="text-[14px] text-[#8c8c8c] max-w-xl">
             Standalone module covering AI/ML in cybersecurity. Available to all students.

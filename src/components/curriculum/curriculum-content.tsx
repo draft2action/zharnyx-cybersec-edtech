@@ -63,7 +63,7 @@ export function CurriculumContent() {
               key={cat}
               onClick={() => setActiveTab(cat)}
               className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 border ${activeTab === cat
-                ? "bg-[#ea384c] border-[#ea384c] text-white"
+                ? "bg-red-500 border-red-500 text-white"
                 : "bg-transparent border-[#333333] text-[#a3a3a3] hover:border-[#666666] hover:text-[#f2f2f2]"
                 }`}
             >
@@ -87,7 +87,7 @@ export function CurriculumContent() {
               >
                 {/* Top Row: Week & Category */}
                 <div className="flex justify-between items-center mb-4 text-[12px] font-mono tracking-wide">
-                  <span className="text-[#ea384c]">Week {item.week}</span>
+                  <span className="text-red-500">Week {item.week}</span>
                   <span className="text-[#555555] uppercase">{item.category}</span>
                 </div>
 
@@ -98,7 +98,7 @@ export function CurriculumContent() {
 
                 {/* Tools */}
                 <div className="text-[10px]">
-                  <span className="text-[#ea384c]">Tools: </span>
+                  <span className="text-red-500">Tools: </span>
                   <span className="text-[#a3a3a3]">{item.tools}</span>
                 </div>
               </motion.div>

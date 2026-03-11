@@ -25,19 +25,19 @@ export function ProgramsStandalone() {
 
             <div className="space-y-[16px] mb-[48px] flex-grow">
               <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-[18px] h-[18px] text-[#ea384c] flex-shrink-0" />
+                <CheckCircle2 className="w-[18px] h-[18px] text-red-500 flex-shrink-0" />
                 <span className="text-[#d4d4d4] text-[15px]">
                   Foundation Phase — 3 months
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-[18px] h-[18px] text-[#ea384c] flex-shrink-0" />
+                <CheckCircle2 className="w-[18px] h-[18px] text-red-500 flex-shrink-0" />
                 <span className="text-[#d4d4d4] text-[15px]">
                   Any Specialization Track — 3 months
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-[18px] h-[18px] text-[#ea384c] flex-shrink-0" />
+                <CheckCircle2 className="w-[18px] h-[18px] text-red-500 flex-shrink-0" />
                 <span className="text-[#d4d4d4] text-[15px]">
                   Career Launch — 1 month
                 </span>
@@ -61,7 +61,7 @@ export function ProgramsStandalone() {
               <h3 className="text-[24px] font-bold text-[#f2f2f2]">
                 AI for Cybersecurity
               </h3>
-              <span className="text-[#ea384c] text-[10px] font-bold px-2 py-1 bg-[#ea384c]/10 rounded uppercase tracking-wider">
+              <span className="text-red-500 text-[10px] font-bold px-2 py-1 bg-red-500/10 rounded uppercase tracking-wider">
                 ADD-ON
               </span>
             </div>
@@ -74,7 +74,7 @@ export function ProgramsStandalone() {
               Pricing on request · Available to all students
             </p>
 
-            <button className="flex items-center justify-center gap-2 w-fit px-[24px] py-[12px] text-[14px] font-medium text-white bg-[#ea384c] rounded-md hover:bg-[#dc2626] transition-colors mt-auto shadow-[0_0_15px_rgba(234,56,76,0.5)] group">
+            <button className="flex items-center justify-center gap-2 w-fit px-[24px] py-[12px] text-[14px] font-medium text-white bg-red-500 rounded-md hover:bg-red-600 transition-colors mt-auto shadow-[0_0_15px_rgba(234,56,76,0.5)] group">
               Enquire Now
               <ArrowRight className="w-[16px] h-[16px] group-hover:translate-x-1 transition-transform" />
             </button>

@@ -111,7 +111,7 @@ function MethodologyCard({
     red: {
       border: "border-red-600",
       text: "text-red-500",
-      shadow: "shadow-[8px_8px_0px_0px_#ef4444]",
+      shadow: "shadow-[8px_8px_0px_0px_#ea384c]",
       bullet: "bg-red-500",
     },
     blue: {

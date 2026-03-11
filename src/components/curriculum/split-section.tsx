@@ -33,7 +33,7 @@ export function SplitSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="group relative bg-black border-2 border-red-900/50 hover:border-red-500 transition-all duration-300 hover:shadow-[12px_12px_0px_0px_#ef4444] hover:-translate-y-1"
+          className="group relative bg-black border-2 border-red-900/50 hover:border-red-500 transition-all duration-300 hover:shadow-[12px_12px_0px_0px_#ea384c] hover:-translate-y-1"
         >
           <div className="p-10 border-b-2 border-red-900/30 bg-red-950/10">
             <div className="flex items-center gap-6 mb-6">

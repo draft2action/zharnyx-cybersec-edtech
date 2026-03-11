@@ -70,14 +70,14 @@ function PillarCard({
   color: "red" | "blue" | "purple" | "green";
 }) {
   const iconColorMap = {
-    red: "bg-red-600 shadow-[8px_8px_0px_0px_#ef4444] border-red-500",
+    red: "bg-red-600 shadow-[8px_8px_0px_0px_#ea384c] border-red-500",
     blue: "bg-blue-600 shadow-[8px_8px_0px_0px_#3b82f6] border-blue-500",
     purple: "bg-purple-600 shadow-[8px_8px_0px_0px_#a855f7] border-purple-500",
     green: "bg-green-600 shadow-[8px_8px_0px_0px_#22c55e] border-green-500",
   };
 
   const hoverClassMap = {
-    red: "hover:border-red-500 hover:shadow-[12px_12px_0px_0px_#ef4444]",
+    red: "hover:border-red-500 hover:shadow-[12px_12px_0px_0px_#ea384c]",
     blue: "hover:border-blue-500 hover:shadow-[12px_12px_0px_0px_#3b82f6]",
     purple: "hover:border-purple-500 hover:shadow-[12px_12px_0px_0px_#a855f7]",
     green: "hover:border-green-500 hover:shadow-[12px_12px_0px_0px_#22c55e]",

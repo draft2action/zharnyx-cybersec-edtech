@@ -86,7 +86,7 @@ export function AssignmentScoringSection({
 
   if (assignments.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 border-2 border-white/10 border-dashed rounded-lg bg-white/5">
+      <div className="flex flex-col items-center justify-center p-12 border border-[#1a1a1a] border-dashed rounded-lg bg-[#0a0a0a]">
         <CheckCircle className="h-12 w-12 text-green-500 mb-4" />
         <h3 className="text-xl font-bold text-white mb-2">All Caught Up!</h3>
         <p className="text-gray-400 text-center max-w-sm">
@@ -102,7 +102,7 @@ export function AssignmentScoringSection({
         {assignments.map((response) => (
           <Card
             key={response.id}
-            className="bg-black border-2 border-white/10 hover:border-white/30 transition-colors"
+            className="bg-black border border-[#1a1a1a] hover:border-white/30 transition-colors"
           >
             <CardHeader className="pb-3">
               <div className="flex justify-between items-start mb-2">
@@ -112,7 +112,7 @@ export function AssignmentScoringSection({
                 >
                   {response.assessment.week.title}
                 </Badge>
-                <span className="text-xs text-gray-500 font-mono">
+                <span className="text-xs text-gray-500 font-sans">
                   {format(new Date(response.submittedAt), "MMM d")}
                 </span>
               </div>
@@ -142,7 +142,7 @@ export function AssignmentScoringSection({
         open={!!selectedSubmission}
         onOpenChange={(open) => !open && setSelectedSubmission(null)}
       >
-        <DialogContent className="bg-black border-2 border-white/20 text-white sm:max-w-md">
+        <DialogContent className="bg-black border border-[#1a1a1a] text-white sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Score Assignment</DialogTitle>
             <DialogDescription>
@@ -174,7 +174,7 @@ export function AssignmentScoringSection({
                 <Label className="text-gray-400 text-xs uppercase tracking-wider">
                   Submission
                 </Label>
-                <div className="p-3 bg-white/5 rounded border border-white/10 flex items-center justify-between">
+                <div className="p-3 bg-[#0a0a0a] rounded border border-[#1a1a1a] flex items-center justify-between">
                   <div className="flex items-center gap-2 overflow-hidden mr-2">
                     <FileText className="h-4 w-4 shrink-0 text-blue-400" />
                     <span className="text-sm truncate opacity-80 box-decoration-slice">
@@ -210,7 +210,7 @@ export function AssignmentScoringSection({
                   min="0"
                   max="100"
                   placeholder="Enter score..."
-                  className="bg-black border-white/20 text-white focus:border-purple-500"
+                  className="bg-black border-[#1a1a1a] text-white focus:border-purple-500"
                   value={score}
                   onChange={(e) => setScore(e.target.value)}
                 />

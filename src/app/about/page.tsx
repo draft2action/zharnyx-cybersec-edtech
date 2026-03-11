@@ -10,7 +10,7 @@ import { AboutCTA } from "@/components/about/about-cta";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-[#050505] selection:bg-[#ea384c]/30 selection:text-white">
+    <main className="min-h-screen bg-[#050505] selection:bg-red-500/30 selection:text-white">
       <Navbar />
       <div className="relative z-10">
         <AboutHero />

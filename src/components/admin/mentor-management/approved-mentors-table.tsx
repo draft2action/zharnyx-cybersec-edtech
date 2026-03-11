@@ -43,34 +43,34 @@ export function ApprovedMentorsTable() {
   }, []);
 
   if (loading)
-    return <div className="text-white font-mono p-4">Loading mentors...</div>;
+    return <div className="text-white font-sans p-4">Loading mentors...</div>;
 
   return (
-    <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10] mt-8">
-      <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4">
+    <Card className="bg-[#0a0a0a] border border-[#1a1a1a] text-white rounded-xl  mt-8">
+      <CardHeader className="bg-[#0a0a0a] border-b border-[#1a1a1a] pb-4 pt-4">
         <div className="flex items-center gap-2 mb-1">
-          <CardTitle className="font-mono text-xl text-white uppercase tracking-wide">
+          <CardTitle className="font-sans text-xl text-white uppercase tracking-wide">
             Active Mentors
           </CardTitle>
         </div>
-        <CardDescription className="text-gray-400 font-mono text-xs uppercase tracking-wider">
+        <CardDescription className="text-gray-400 font-sans text-xs uppercase tracking-wider">
           Currently active mentors in the system.
         </CardDescription>
       </CardHeader>
       <CardContent className="p-0">
         <Table>
-          <TableHeader className="bg-white/5 border-b-2 border-white/10">
-            <TableRow className="border-white/10 hover:bg-transparent">
-              <TableHead className="text-white font-mono text-xs font-black uppercase tracking-widest h-12">
+          <TableHeader className="bg-[#0a0a0a] border-b border-[#1a1a1a]">
+            <TableRow className="border-[#1a1a1a] hover:bg-transparent">
+              <TableHead className="text-white font-sans text-xs font-bold uppercase tracking-widest h-12">
                 Name
               </TableHead>
-              <TableHead className="text-white font-mono text-xs font-black uppercase tracking-widest h-12">
+              <TableHead className="text-white font-sans text-xs font-bold uppercase tracking-widest h-12">
                 Email
               </TableHead>
-              <TableHead className="text-white font-mono text-xs font-black uppercase tracking-widest h-12">
+              <TableHead className="text-white font-sans text-xs font-bold uppercase tracking-widest h-12">
                 Role
               </TableHead>
-              <TableHead className="text-white font-mono text-xs font-black uppercase tracking-widest h-12">
+              <TableHead className="text-white font-sans text-xs font-bold uppercase tracking-widest h-12">
                 Joined
               </TableHead>
             </TableRow>
@@ -80,7 +80,7 @@ export function ApprovedMentorsTable() {
               <TableRow>
                 <TableCell
                   colSpan={4}
-                  className="h-24 text-center font-mono text-gray-500 uppercase tracking-widest text-xs"
+                  className="h-24 text-center font-sans text-gray-500 uppercase tracking-widest text-xs"
                 >
                   No active mentors found.
                 </TableCell>
@@ -89,7 +89,7 @@ export function ApprovedMentorsTable() {
               mentors.map((mentor) => (
                 <TableRow
                   key={mentor.id}
-                  className="border-b border-white/10 hover:bg-white/5 transition-colors font-mono"
+                  className="border-b border-[#1a1a1a] hover:bg-[#0a0a0a] transition-colors font-sans"
                 >
                   <TableCell className="font-bold text-white text-sm py-4 border-r border-white/5">
                     {mentor.name || "N/A"}
@@ -100,7 +100,7 @@ export function ApprovedMentorsTable() {
                   <TableCell className="border-r border-white/5 py-4">
                     <Badge
                       variant="outline"
-                      className="border-blue-500 text-blue-400 rounded-none uppercase text-[10px] tracking-wider font-bold bg-blue-500/10"
+                      className="border-blue-500 text-blue-400 rounded-xl uppercase text-[10px] tracking-wider font-bold bg-blue-500/10"
                     >
                       Mentor
                     </Badge>

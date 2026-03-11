@@ -7,7 +7,7 @@ export function PricingPackages() {
     <section className="py-[80px] px-4 md:px-8 bg-transparent relative z-10 font-sans">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 relative">
         {/* Glow behind cards */}
-        <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[600px] bg-[#ea384c]/5 blur-[120px] pointer-events-none rounded-full" />
+        <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[600px] bg-red-500/5 blur-[120px] pointer-events-none rounded-full" />
 
         {/* Student Package */}
         <motion.div
@@ -15,10 +15,10 @@ export function PricingPackages() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-[#0a0a0a] border border-[#ea384c]/30 shadow-[0_0_60px_rgba(234,56,76,0.1)] rounded-[12px] p-[40px] flex flex-col relative overflow-hidden z-10"
+          className="bg-[#0a0a0a] border border-red-500/30 shadow-[0_0_60px_rgba(234,56,76,0.1)] rounded-[12px] p-[40px] flex flex-col relative overflow-hidden z-10"
         >
           <div className="mb-[32px]">
-            <span className="inline-block px-4 py-1.5 bg-[#ea384c]/10 text-[#ea384c] rounded-full text-[12px] font-medium mb-[24px]">
+            <span className="inline-block px-4 py-1.5 bg-red-500/10 text-red-500 rounded-full text-[12px] font-medium mb-[24px]">
               Student Package
             </span>
             <div className="flex items-baseline gap-1 mt-[8px]">
@@ -52,10 +52,10 @@ export function PricingPackages() {
           </div>
 
           <div className="mt-auto">
-            <p className="text-[12px] text-[#ea384c] font-medium mb-[16px]">
+            <p className="text-[12px] text-red-500 font-medium mb-[16px]">
               50% discount on Foundation Phase
             </p>
-            <button className="w-full bg-[#ea384c] hover:bg-[#d02e3f] text-white rounded-[6px] h-[48px] px-[32px] text-[14px] font-medium transition-colors shadow-[0_4px_14px_0_rgba(234,56,76,0.25)]">
+            <button className="w-full bg-red-500 hover:bg-[#d02e3f] text-white rounded-[6px] h-[48px] px-[32px] text-[14px] font-medium transition-colors shadow-[0_4px_14px_0_rgba(234,56,76,0.25)]">
               Enroll as Student
             </button>
           </div>

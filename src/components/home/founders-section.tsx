@@ -34,7 +34,7 @@ export function FoundersSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-[#ea384c] text-[12px] font-semibold uppercase tracking-[0.15em] mb-[16px]"
+            className="text-red-500 text-[12px] font-semibold uppercase tracking-[0.15em] mb-[16px]"
           >
             LEADERSHIP
           </motion.p>
@@ -45,7 +45,7 @@ export function FoundersSection() {
             transition={{ delay: 0.1 }}
             className="text-[36px] md:text-[44px] font-bold text-[#f2f2f2] tracking-tight"
           >
-            Meet the <span className="text-[#ea384c]">Founders</span>
+            Meet the <span className="text-red-500">Founders</span>
           </motion.h2>
         </div>
 
@@ -61,13 +61,13 @@ export function FoundersSection() {
               className="flex flex-col items-center text-center p-[40px] border border-[#1f1f1f] rounded-[16px] bg-[#0a0a0a] hover:border-[#333] transition-colors"
             >
               {/* Avatar */}
-              <div className="flex-shrink-0 w-[64px] h-[64px] rounded-full bg-[#ea384c]/10 flex items-center justify-center text-[#ea384c] text-[20px] font-bold mb-[24px]">
+              <div className="flex-shrink-0 w-[64px] h-[64px] rounded-full bg-red-500/10 flex items-center justify-center text-red-500 text-[20px] font-bold mb-[24px]">
                 {f.initial}
               </div>
               {/* Info */}
               <div>
                 <p className="text-[#f2f2f2] font-semibold text-[16px] leading-none mb-[8px] tracking-tight">{f.name}</p>
-                <p className="text-[#ea384c] text-[13px] mb-[20px] tracking-wide">{f.role}</p>
+                <p className="text-red-500 text-[13px] mb-[20px] tracking-wide">{f.role}</p>
                 <p className="text-[#8c8c8c] text-[14px] leading-[24px]">{f.bio}</p>
               </div>
             </motion.div>

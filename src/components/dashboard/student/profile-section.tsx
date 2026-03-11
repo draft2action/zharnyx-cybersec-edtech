@@ -112,7 +112,7 @@ export function ProfileSection({ studentId }: ProfileSectionProps) {
         <Button
           asChild
           variant="outline"
-          className="gap-2 border-2 border-white/20 hover:border-blue-500 hover:text-blue-500 text-gray-400 rounded-none bg-black"
+          className="gap-2 border border-[#1a1a1a] hover:border-blue-500 hover:text-blue-500 text-gray-400 rounded-xl bg-black"
         >
           <a
             href={`/profile/${studentId}`}
@@ -127,17 +127,17 @@ export function ProfileSection({ studentId }: ProfileSectionProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Left Column: Personal Details */}
         <div className="space-y-4">
-          <h3 className="font-mono text-lg text-blue-500 uppercase font-bold border-b border-white/10 pb-2">
+          <h3 className="font-sans text-lg text-blue-500 uppercase font-bold border-b border-[#1a1a1a] pb-2">
             Personal Details
           </h3>
 
           <div className="space-y-2">
-            <Label className="text-gray-400 font-mono text-xs uppercase">
+            <Label className="text-gray-400 font-sans text-xs uppercase">
               Bio
             </Label>
             <Textarea
               placeholder="Tell us about yourself..."
-              className="bg-black border-2 border-white/20 font-mono rounded-none text-white focus-visible:ring-0 focus-visible:border-blue-500 min-h-[100px]"
+              className="bg-black border border-[#1a1a1a] font-sans rounded-xl text-white focus-visible:ring-0 focus-visible:border-blue-500 min-h-[100px]"
               value={formData.bio}
               onChange={(e) =>
                 setFormData({ ...formData, bio: e.target.value })
@@ -146,12 +146,12 @@ export function ProfileSection({ studentId }: ProfileSectionProps) {
           </div>
 
           <div className="space-y-2">
-            <Label className="text-gray-400 font-mono text-xs uppercase flex items-center gap-2">
+            <Label className="text-gray-400 font-sans text-xs uppercase flex items-center gap-2">
               <Mail className="w-4 h-4 text-blue-500" /> Contact Email
             </Label>
             <Input
               placeholder="contact@example.com"
-              className="bg-black border-2 border-white/20 font-mono rounded-none text-white focus-visible:ring-0 focus-visible:border-blue-500 h-10"
+              className="bg-black border border-[#1a1a1a] font-sans rounded-xl text-white focus-visible:ring-0 focus-visible:border-blue-500 h-10"
               value={formData.contactEmail}
               onChange={(e) =>
                 setFormData({ ...formData, contactEmail: e.target.value })
@@ -162,18 +162,18 @@ export function ProfileSection({ studentId }: ProfileSectionProps) {
 
         {/* Right Column: Social Links */}
         <div className="space-y-4">
-          <h3 className="font-mono text-lg text-blue-500 uppercase font-bold border-b border-white/10 pb-2">
+          <h3 className="font-sans text-lg text-blue-500 uppercase font-bold border-b border-[#1a1a1a] pb-2">
             Social Links
           </h3>
 
           <div className="grid gap-4">
             <div className="flex items-center gap-2">
-              <div className="bg-white/5 p-2 border border-white/10">
+              <div className="bg-[#0a0a0a] p-2 border border-[#1a1a1a]">
                 <Github className="w-5 h-5 text-gray-300" />
               </div>
               <Input
                 placeholder="GitHub URL"
-                className="bg-black border-2 border-white/20 font-mono rounded-none text-white focus-visible:ring-0 focus-visible:border-blue-500 h-10"
+                className="bg-black border border-[#1a1a1a] font-sans rounded-xl text-white focus-visible:ring-0 focus-visible:border-blue-500 h-10"
                 value={formData.githubUrl}
                 onChange={(e) =>
                   setFormData({ ...formData, githubUrl: e.target.value })
@@ -181,12 +181,12 @@ export function ProfileSection({ studentId }: ProfileSectionProps) {
               />
             </div>
             <div className="flex items-center gap-2">
-              <div className="bg-white/5 p-2 border border-white/10">
+              <div className="bg-[#0a0a0a] p-2 border border-[#1a1a1a]">
                 <Linkedin className="w-5 h-5 text-blue-400" />
               </div>
               <Input
                 placeholder="LinkedIn URL"
-                className="bg-black border-2 border-white/20 font-mono rounded-none text-white focus-visible:ring-0 focus-visible:border-blue-500 h-10"
+                className="bg-black border border-[#1a1a1a] font-sans rounded-xl text-white focus-visible:ring-0 focus-visible:border-blue-500 h-10"
                 value={formData.linkedinUrl}
                 onChange={(e) =>
                   setFormData({ ...formData, linkedinUrl: e.target.value })
@@ -194,12 +194,12 @@ export function ProfileSection({ studentId }: ProfileSectionProps) {
               />
             </div>
             <div className="flex items-center gap-2">
-              <div className="bg-white/5 p-2 border border-white/10">
+              <div className="bg-[#0a0a0a] p-2 border border-[#1a1a1a]">
                 <Twitter className="w-5 h-5 text-cyan-400" />
               </div>
               <Input
                 placeholder="Twitter/X URL"
-                className="bg-black border-2 border-white/20 font-mono rounded-none text-white focus-visible:ring-0 focus-visible:border-blue-500 h-10"
+                className="bg-black border border-[#1a1a1a] font-sans rounded-xl text-white focus-visible:ring-0 focus-visible:border-blue-500 h-10"
                 value={formData.twitterUrl}
                 onChange={(e) =>
                   setFormData({ ...formData, twitterUrl: e.target.value })
@@ -207,12 +207,12 @@ export function ProfileSection({ studentId }: ProfileSectionProps) {
               />
             </div>
             <div className="flex items-center gap-2">
-              <div className="bg-white/5 p-2 border border-white/10">
+              <div className="bg-[#0a0a0a] p-2 border border-[#1a1a1a]">
                 <Globe className="w-5 h-5 text-green-400" />
               </div>
               <Input
                 placeholder="Personal Website"
-                className="bg-black border-2 border-white/20 font-mono rounded-none text-white focus-visible:ring-0 focus-visible:border-blue-500 h-10"
+                className="bg-black border border-[#1a1a1a] font-sans rounded-xl text-white focus-visible:ring-0 focus-visible:border-blue-500 h-10"
                 value={formData.websiteUrl}
                 onChange={(e) =>
                   setFormData({ ...formData, websiteUrl: e.target.value })
@@ -225,36 +225,36 @@ export function ProfileSection({ studentId }: ProfileSectionProps) {
 
       {/* Top Projects Selection */}
       <div className="space-y-4">
-        <h3 className="font-mono text-lg text-blue-500 uppercase font-bold border-b border-white/10 pb-2">
+        <h3 className="font-sans text-lg text-blue-500 uppercase font-bold border-b border-[#1a1a1a] pb-2">
           Top Projects (Max 5)
         </h3>
-        <p className="text-gray-400 font-mono text-xs">
+        <p className="text-gray-400 font-sans text-xs">
           Select your best work from approved submissions to showcase on your
           profile.
         </p>
 
         <div className="flex flex-col md:flex-row gap-4">
           <div className="w-full md:w-1/3">
-            <Label className="text-gray-400 font-mono text-xs uppercase mb-2 block">
+            <Label className="text-gray-400 font-sans text-xs uppercase mb-2 block">
               Add Project
             </Label>
             <Select onValueChange={handleAddProject}>
-              <SelectTrigger className="w-full border-2 border-white/20 bg-black text-white font-mono rounded-none">
+              <SelectTrigger className="w-full border border-[#1a1a1a] bg-black text-white font-sans rounded-xl">
                 <SelectValue placeholder="Select a project..." />
               </SelectTrigger>
-              <SelectContent className="bg-black border-2 border-white/20 text-white rounded-none">
+              <SelectContent className="bg-black border border-[#1a1a1a] text-white rounded-xl">
                 {approvedProjects.map((p) => (
                   <SelectItem
                     key={p.id}
                     value={p.id}
                     disabled={formData.topProjects.includes(p.id)}
-                    className="font-mono"
+                    className="font-sans"
                   >
                     {p.week?.projectTitle || p.week?.title || "Project"}
                   </SelectItem>
                 ))}
                 {approvedProjects.length === 0 && (
-                  <div className="p-2 text-xs font-mono text-gray-500">
+                  <div className="p-2 text-xs font-sans text-gray-500">
                     No approved projects found.
                   </div>
                 )}
@@ -270,7 +270,7 @@ export function ProfileSection({ studentId }: ProfileSectionProps) {
               return (
                 <Card
                   key={projectId}
-                  className="bg-zinc-900 border border-white/10 relative group"
+                  className="bg-zinc-900 border border-[#1a1a1a] relative group"
                 >
                   <button
                     onClick={() => handleRemoveProject(projectId)}
@@ -280,14 +280,14 @@ export function ProfileSection({ studentId }: ProfileSectionProps) {
                   </button>
                   <CardContent className="p-4 flex flex-col gap-2">
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs text-blue-500">
+                      <span className="font-sans text-xs text-blue-500">
                         #{index + 1}
                       </span>
-                      <h4 className="font-bold text-white font-mono text-sm truncate">
+                      <h4 className="font-bold text-white font-sans text-sm truncate">
                         {project.week?.projectTitle || "Project"}
                       </h4>
                     </div>
-                    <p className="text-xs text-gray-400 font-mono truncate">
+                    <p className="text-xs text-gray-400 font-sans truncate">
                       {project.week?.month?.course?.title}
                     </p>
                   </CardContent>
@@ -295,7 +295,7 @@ export function ProfileSection({ studentId }: ProfileSectionProps) {
               );
             })}
             {formData.topProjects.length === 0 && (
-              <div className="col-span-full flex items-center justify-center p-8 border-2 border-dashed border-white/10 text-gray-500 font-mono text-xs">
+              <div className="col-span-full flex items-center justify-center p-8 border border-dashed border-[#1a1a1a] text-gray-500 font-sans text-xs">
                 No projects selected yet.
               </div>
             )}
@@ -303,11 +303,11 @@ export function ProfileSection({ studentId }: ProfileSectionProps) {
         </div>
       </div>
 
-      <div className="flex justify-end pt-4 border-t border-white/10">
+      <div className="flex justify-end pt-4 border-t border-[#1a1a1a]">
         <Button
           onClick={handleSave}
           disabled={loading}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-mono rounded-none uppercase tracking-wide px-8"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-sans rounded-xl uppercase tracking-wide px-8"
         >
           <Save className="w-4 h-4 mr-2" />
           {loading ? "Saving..." : "Save Profile"}

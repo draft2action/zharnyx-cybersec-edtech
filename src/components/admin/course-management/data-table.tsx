@@ -65,13 +65,13 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <div className="rounded-md border border-white/10 overflow-hidden font-mono">
+      <div className="rounded-md border border-[#1a1a1a] overflow-hidden font-sans">
         <Table>
-          <TableHeader className="bg-white/5">
+          <TableHeader className="bg-[#0a0a0a]">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
                 key={headerGroup.id}
-                className="border-white/10 hover:bg-transparent"
+                className="border-[#1a1a1a] hover:bg-transparent"
               >
                 {headerGroup.headers.map((header) => {
                   return (
@@ -97,7 +97,7 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className="border-white/10 hover:bg-white/5 transition-colors"
+                  className="border-[#1a1a1a] hover:bg-[#0a0a0a] transition-colors"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="py-5 px-6">
@@ -122,13 +122,13 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4 font-mono">
+      <div className="flex items-center justify-end space-x-2 py-4 font-sans">
         <Button
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
-          className="border-white/10 bg-transparent text-white hover:bg-white/10"
+          className="border-[#1a1a1a] bg-transparent text-white hover:bg-white/10"
         >
           Previous
         </Button>
@@ -141,7 +141,7 @@ export function DataTable<TData, TValue>({
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
-          className="border-white/10 bg-transparent text-white hover:bg-white/10"
+          className="border-[#1a1a1a] bg-transparent text-white hover:bg-white/10"
         >
           Next
         </Button>

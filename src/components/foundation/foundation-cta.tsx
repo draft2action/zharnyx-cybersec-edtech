@@ -45,7 +45,7 @@ export function FoundationCTA() {
               viewport={{ once: true }}
               className="text-[32px] md:text-[40px] font-bold text-[#ffffff] mb-[48px]"
             >
-              Foundation <span className="text-[#ea384c]">Deliverables</span>
+              Foundation <span className="text-red-500">Deliverables</span>
             </motion.h2>
 
             <div className="space-y-[24px]">
@@ -58,7 +58,7 @@ export function FoundationCTA() {
                   transition={{ delay: i * 0.1 }}
                   className="flex items-center gap-[16px]"
                 >
-                  <RedCheckIcon className="text-[#ea384c] shrink-0" />
+                  <RedCheckIcon className="text-red-500 shrink-0" />
                   <span className="text-[#a3a3a3] text-[16px] md:text-[18px]">
                     {item}
                   </span>
@@ -72,7 +72,7 @@ export function FoundationCTA() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-[#0a0a0a] border border-[#ea384c]/20 rounded-2xl p-[48px] text-center shadow-[0_0_40px_rgba(234,56,76,0.05)]"
+            className="bg-[#0a0a0a] border border-red-500/20 rounded-2xl p-[48px] text-center shadow-[0_0_40px_rgba(234,56,76,0.05)]"
           >
             <p className="text-[#a3a3a3] text-[15px] mb-[16px]">
               Foundation is required for all tracks
@@ -84,7 +84,7 @@ export function FoundationCTA() {
             <div className="flex flex-col sm:flex-row justify-center gap-[16px]">
               <Link
                 href="/enroll"
-                className="bg-[#ea384c] hover:bg-[#d92d3f] text-white px-[32px] py-[16px] rounded-md font-medium text-[16px] transition-all shadow-[0_0_20px_rgba(234,56,76,0.3)] hover:shadow-[0_0_25px_rgba(234,56,76,0.4)] whitespace-nowrap"
+                className="bg-red-500 hover:bg-[#d92d3f] text-white px-[32px] py-[16px] rounded-md font-medium text-[16px] transition-all shadow-[0_0_20px_rgba(234,56,76,0.3)] hover:shadow-[0_0_25px_rgba(234,56,76,0.4)] whitespace-nowrap"
               >
                 Enroll Now
               </Link>

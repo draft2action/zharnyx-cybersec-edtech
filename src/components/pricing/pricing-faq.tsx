@@ -37,7 +37,7 @@ export function PricingFaq() {
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-[64px]">
           <h2 className="text-[30px] font-bold text-[#f2f2f2] tracking-tight">
-            Pricing <span className="text-[#ea384c]">FAQ</span>
+            Pricing <span className="text-red-500">FAQ</span>
           </h2>
         </div>
 
@@ -50,7 +50,7 @@ export function PricingFaq() {
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, i) => (
               <AccordionItem key={i} value={`item-${i}`} className="border-b border-[#262626]">
-                <AccordionTrigger className="text-left text-[14px] font-medium text-[#f2f2f2] hover:text-[#ea384c] transition-colors py-[16px] hover:no-underline">
+                <AccordionTrigger className="text-left text-[14px] font-medium text-[#f2f2f2] hover:text-red-500 transition-colors py-[16px] hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-[#8c8c8c] text-[14px] pb-[16px] leading-relaxed">

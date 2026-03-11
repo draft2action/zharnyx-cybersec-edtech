@@ -102,7 +102,7 @@ export function InternshipSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.8 }}
-        className="border-2 border-red-500 bg-black p-10 md:p-12 relative overflow-hidden shadow-[16px_16px_0px_0px_#ef4444] group hover:-translate-y-1 transition-transform duration-300"
+        className="border-2 border-red-500 bg-black p-10 md:p-12 relative overflow-hidden shadow-[16px_16px_0px_0px_#ea384c] group hover:-translate-y-1 transition-transform duration-300"
       >
         <div className="absolute top-0 right-0 bg-red-600 text-white text-sm font-black uppercase px-6 py-3 border-l-2 border-b-2 border-white">
           Exclusive
@@ -180,7 +180,7 @@ function TierCard({
       text: "text-red-500",
       bg: "bg-red-500/10",
       hover: "group-hover:text-red-500",
-      shadow: "hover:shadow-[12px_12px_0px_0px_#ef4444]",
+      shadow: "hover:shadow-[12px_12px_0px_0px_#ea384c]",
     },
     blue: {
       border: "border-blue-500",

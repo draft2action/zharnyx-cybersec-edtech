@@ -65,19 +65,19 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="rounded-none border-2 border-white/10 bg-black">
+      <div className="rounded-xl border border-[#1a1a1a] bg-black">
         <Table>
-          <TableHeader className="bg-white/5 border-b-2 border-white/10">
+          <TableHeader className="bg-[#0a0a0a] border-b border-[#1a1a1a]">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
                 key={headerGroup.id}
-                className="border-white/10 hover:bg-transparent"
+                className="border-[#1a1a1a] hover:bg-transparent"
               >
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead
                       key={header.id}
-                      className="text-white font-mono text-xs font-black uppercase tracking-widest h-12"
+                      className="text-white font-sans text-xs font-bold uppercase tracking-widest h-12"
                     >
                       {header.isPlaceholder
                         ? null
@@ -97,12 +97,12 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className="border-b border-white/10 hover:bg-white/5 transition-colors data-[state=selected]:bg-red-900/10"
+                  className="border-b border-[#1a1a1a] hover:bg-[#0a0a0a] transition-colors data-[state=selected]:bg-red-900/10"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className="text-gray-300 font-mono text-sm py-4 border-r border-white/5 last:border-r-0"
+                      className="text-gray-300 font-sans text-sm py-4 border-r border-white/5 last:border-r-0"
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
@@ -147,7 +147,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4 text-gray-300 font-mono">
+      <div className="flex items-center justify-end space-x-2 py-4 text-gray-300 font-sans">
         <div className="text-sm">
           Page {table.getState().pagination.pageIndex + 1} of{" "}
           {table.getPageCount() < 0 ? 1 : table.getPageCount()}
@@ -157,7 +157,7 @@ export function DataTable<TData, TValue>({
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
-          className="bg-transparent text-gray-300 border-white/20 hover:bg-white/10 hover:text-white disabled:opacity-50"
+          className="bg-transparent text-gray-300 border-[#1a1a1a] hover:bg-white/10 hover:text-white disabled:opacity-50"
         >
           Previous
         </Button>
@@ -166,7 +166,7 @@ export function DataTable<TData, TValue>({
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
-          className="bg-transparent text-gray-300 border-white/20 hover:bg-white/10 hover:text-white disabled:opacity-50"
+          className="bg-transparent text-gray-300 border-[#1a1a1a] hover:bg-white/10 hover:text-white disabled:opacity-50"
         >
           Next
         </Button>

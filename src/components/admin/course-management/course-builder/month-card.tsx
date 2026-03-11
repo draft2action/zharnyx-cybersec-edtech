@@ -57,7 +57,7 @@ export function MonthCard({
   });
 
   return (
-    <Card className="bg-black/20 border-white/10 mb-4">
+    <Card className="bg-black/20 border-[#1a1a1a] mb-4">
       <CardHeader className="p-4 flex flex-col md:flex-row items-start md:items-center gap-4 space-y-0">
         <div className="cursor-move text-gray-500">
           <GripVertical className="h-5 w-5" />
@@ -68,7 +68,7 @@ export function MonthCard({
             <Input
               {...register(`months.${index}.title`)}
               placeholder="Month Title"
-              className="bg-black/40 border-white/10 text-white font-mono h-9"
+              className="bg-black/40 border-[#1a1a1a] text-white font-sans h-9"
             />
             {errors.months?.[index]?.title && (
               <span className="text-red-500 text-xs">
@@ -126,10 +126,10 @@ export function MonthCard({
               }}
               defaultValue={watch(`months.${index}.type`)}
             >
-              <SelectTrigger className="h-9 bg-black/40 border-white/10 text-white font-mono">
+              <SelectTrigger className="h-9 bg-black/40 border-[#1a1a1a] text-white font-sans">
                 <SelectValue placeholder="Type" />
               </SelectTrigger>
-              <SelectContent className="bg-black border-white/10 text-white">
+              <SelectContent className="bg-black border-[#1a1a1a] text-white">
                 <SelectItem value="common">Common</SelectItem>
                 <SelectItem value="team">Team (Red/Blue)</SelectItem>
               </SelectContent>
@@ -165,7 +165,7 @@ export function MonthCard({
 
       {isExpanded && (
         <CardContent className="p-4 pt-0 pl-4 md:pl-10">
-          <div className="space-y-4 border-l-2 border-white/5 pl-4 ml-2">
+          <div className="space-y-4 border-l border-white/5 pl-4 ml-2">
             {weekFields.map((week, wIndex) => (
               <WeekCard
                 key={week.id}

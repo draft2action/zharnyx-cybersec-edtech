@@ -41,7 +41,7 @@ const salaryRanges = [
   {
     role: "VAPT",
     range: "₹8–18 LPA",
-    colorClass: "text-[#ea384c]",
+    colorClass: "text-red-500",
   },
   {
     role: "Cloud Security",
@@ -69,7 +69,7 @@ export function PlacementSupport() {
               viewport={{ once: true }}
               className="text-[24px] md:text-[32px] font-bold text-[#ffffff] mb-[32px]"
             >
-              Placement <span className="text-[#ea384c]">Support Includes</span>
+              Placement <span className="text-red-500">Support Includes</span>
             </motion.h2>
 
             <div className="space-y-[16px]">
@@ -82,7 +82,7 @@ export function PlacementSupport() {
                   transition={{ delay: i * 0.1 }}
                   className="flex items-start gap-[16px]"
                 >
-                  <RedCheckIcon className="text-[#ea384c] shrink-0 mt-[2px]" />
+                  <RedCheckIcon className="text-red-500 shrink-0 mt-[2px]" />
                   <span className="text-[#a3a3a3] text-[14px] md:text-[16px] leading-snug">
                     {item}
                   </span>
@@ -99,7 +99,7 @@ export function PlacementSupport() {
               viewport={{ once: true }}
               className="text-[24px] md:text-[32px] font-bold text-[#ffffff] mb-[32px]"
             >
-              Salary <span className="text-[#ea384c]">Ranges</span>
+              Salary <span className="text-red-500">Ranges</span>
             </motion.h2>
 
             <div className="space-y-[16px]">

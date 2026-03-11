@@ -12,32 +12,32 @@ import {
 
 const pillars = [
   {
-    icon: <Laptop className="w-[24px] h-[24px] text-[#ea384c]" />,
+    icon: <Laptop className="w-[24px] h-[24px] text-red-500" />,
     title: "Real Lab-First Learning",
     description: "Every week has a hands-on lab deliverable. Students build, not just read."
   },
   {
-    icon: <MapPin className="w-[24px] h-[24px] text-[#ea384c]" />,
+    icon: <MapPin className="w-[24px] h-[24px] text-red-500" />,
     title: "Tamil Nadu Focused Placements",
     description: "Targeted at Coimbatore, Chennai & TN-based companies and GCCs."
   },
   {
-    icon: <Users className="w-[24px] h-[24px] text-[#ea384c]" />,
+    icon: <Users className="w-[24px] h-[24px] text-red-500" />,
     title: "Buddy System Learning",
     description: "Paired with a peer for accountability, collaboration, and support."
   },
   {
-    icon: <Banknote className="w-[24px] h-[24px] text-[#ea384c]" />,
+    icon: <Banknote className="w-[24px] h-[24px] text-red-500" />,
     title: "Affordable by Design",
     description: "Student discount on Foundation. EMI available on request."
   },
   {
-    icon: <GraduationCap className="w-[24px] h-[24px] text-[#ea384c]" />,
+    icon: <GraduationCap className="w-[24px] h-[24px] text-red-500" />,
     title: "Structured End-to-End Journey",
     description: "28-week curriculum — Foundation → Track → Career Launch."
   },
   {
-    icon: <Award className="w-[24px] h-[24px] text-[#ea384c]" />,
+    icon: <Award className="w-[24px] h-[24px] text-red-500" />,
     title: "4 Specialized Tracks",
     description: "SOC, VAPT, Cloud Security, DFIR — choose your career path."
   }
@@ -45,7 +45,7 @@ const pillars = [
 
 export function AboutPillars() {
   return (
-    <section className="bg-[#050505] font-sans py-[120px] px-6">
+    <section id="core-pillars" className="bg-[#050505] font-sans py-[120px] px-6">
       <div className="container mx-auto max-w-[1280px]">
         {/* Header */}
         <div className="text-center mb-[80px]">
@@ -55,7 +55,7 @@ export function AboutPillars() {
             viewport={{ once: true }}
             className="text-[32px] md:text-[48px] font-bold text-[#f2f2f2] tracking-tight"
           >
-            What Makes Us <span className="text-[#ea384c]">Different</span>
+            What Makes Us <span className="text-red-500">Different</span>
           </motion.h2>
         </div>
 

@@ -26,19 +26,19 @@ export default async function MentorPage(props: PageProps) {
           {/* Header Section */}
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 pt-8">
             <div className="flex items-start gap-4">
-              <SidebarTrigger className="text-white hover:bg-white/10 md:hidden border-2 border-white/20 rounded-none h-10 w-10 shrink-0" />
+              <SidebarTrigger className="text-white hover:bg-white/10 md:hidden border border-[#1a1a1a] rounded-xl h-10 w-10 shrink-0" />
               <div>
                 <Link
                   href="/"
-                  className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors mb-2 font-mono"
+                  className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors mb-2 font-sans"
                 >
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Back to Home
                 </Link>
-                <h1 className="text-4xl font-bold tracking-tight text-white font-mono">
+                <h1 className="text-4xl font-bold tracking-tight text-white font-sans">
                   Mentor Portal
                 </h1>
-                <p className="text-gray-400 font-mono mt-2 text-lg">
+                <p className="text-gray-400 font-sans mt-2 text-lg">
                   Manage your courses and students
                 </p>
               </div>

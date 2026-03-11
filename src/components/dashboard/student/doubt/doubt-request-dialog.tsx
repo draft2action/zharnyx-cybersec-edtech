@@ -143,7 +143,7 @@ export function DoubtRequestDialog({
           <Plus className="mr-2 h-4 w-4" /> Request Session
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-zinc-950 text-white border-white/20">
+      <DialogContent className="sm:max-w-[425px] bg-[#0a0a0a] text-white border-[#1a1a1a]">
         <DialogHeader>
           <DialogTitle>Request Doubt Session</DialogTitle>
           <DialogDescription className="text-gray-400">
@@ -159,10 +159,10 @@ export function DoubtRequestDialog({
               onValueChange={setSelectedCourseId}
               disabled={loading}
             >
-              <SelectTrigger className="bg-zinc-900 border-white/10">
+              <SelectTrigger className="bg-zinc-900 border-[#1a1a1a]">
                 <SelectValue placeholder="Select a course" />
               </SelectTrigger>
-              <SelectContent className="bg-zinc-900 border-white/10 text-white">
+              <SelectContent className="bg-zinc-900 border-[#1a1a1a] text-white">
                 {courses.map((course) => (
                   <SelectItem key={course.id} value={course.id}>
                     {course.title}
@@ -179,10 +179,10 @@ export function DoubtRequestDialog({
               onValueChange={setSelectedMentorId}
               disabled={!selectedCourseId}
             >
-              <SelectTrigger className="bg-zinc-900 border-white/10">
+              <SelectTrigger className="bg-zinc-900 border-[#1a1a1a]">
                 <SelectValue placeholder="Select a mentor" />
               </SelectTrigger>
-              <SelectContent className="bg-zinc-900 border-white/10 text-white">
+              <SelectContent className="bg-zinc-900 border-[#1a1a1a] text-white">
                 {mentors.map((mentor) => (
                   <SelectItem key={mentor.id} value={mentor.id}>
                     {mentor.name}
@@ -199,7 +199,7 @@ export function DoubtRequestDialog({
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               placeholder="e.g., Buffer Overflow in Week 3"
-              className="bg-zinc-900 border-white/10"
+              className="bg-zinc-900 border-[#1a1a1a]"
             />
           </div>
 
@@ -210,7 +210,7 @@ export function DoubtRequestDialog({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Describe your doubt in detail..."
-              className="bg-zinc-900 border-white/10 min-h-[100px]"
+              className="bg-zinc-900 border-[#1a1a1a] min-h-[100px]"
             />
           </div>
 

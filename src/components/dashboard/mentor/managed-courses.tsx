@@ -31,16 +31,16 @@ export function ManagedCourses() {
   ];
 
   return (
-    <Card className="bg-zinc-950 border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10] h-full">
-      <CardHeader className="bg-white/5 border-b-2 border-white/20 pb-4 pt-4 flex flex-row items-center justify-between">
+    <Card className="bg-[#0a0a0a] border border-[#1a1a1a] text-white rounded-xl  h-full">
+      <CardHeader className="bg-[#0a0a0a] border-b border-[#1a1a1a] pb-4 pt-4 flex flex-row items-center justify-between">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <BookOpen className="h-4 w-4 text-purple-500" />
-            <CardTitle className="font-mono text-xl text-white uppercase tracking-wide">
+            <CardTitle className="font-sans text-xl text-white uppercase tracking-wide">
               Managed Courses
             </CardTitle>
           </div>
-          <CardDescription className="text-gray-400 font-mono text-xs uppercase tracking-wider">
+          <CardDescription className="text-gray-400 font-sans text-xs uppercase tracking-wider">
             Courses you are teaching
           </CardDescription>
         </div>
@@ -48,7 +48,7 @@ export function ManagedCourses() {
           asChild
           variant="outline"
           size="sm"
-          className="rounded-none border-2 border-white text-white bg-transparent hover:bg-white hover:text-black font-mono uppercase text-xs font-bold tracking-wide h-8"
+          className="rounded-xl border border-white text-white bg-transparent hover:bg-white hover:text-black font-sans uppercase text-xs font-bold tracking-wide h-8"
         >
           <TransitionLink href="/dashboard/admin/courses/new">
             Create
@@ -59,14 +59,14 @@ export function ManagedCourses() {
         {courses.map((course) => (
           <div
             key={course.id}
-            className="p-4 border-b border-white/10 hover:bg-white/5 transition-colors group"
+            className="p-4 border-b border-[#1a1a1a] hover:bg-[#0a0a0a] transition-colors group"
           >
             <div className="flex justify-between items-start">
               <div className="space-y-2">
-                <h4 className="font-bold text-white font-mono text-sm leading-tight group-hover:text-purple-400 transition-colors">
+                <h4 className="font-bold text-white font-sans text-sm leading-tight group-hover:text-purple-400 transition-colors">
                   {course.title}
                 </h4>
-                <div className="flex items-center gap-4 text-[10px] text-gray-400 font-mono uppercase tracking-wider">
+                <div className="flex items-center gap-4 text-[10px] text-gray-400 font-sans uppercase tracking-wider">
                   <span className="flex items-center gap-1">
                     <Users className="h-3 w-3" /> {course.students} Students
                   </span>
@@ -85,7 +85,7 @@ export function ManagedCourses() {
                 asChild
                 size="sm"
                 variant="ghost"
-                className="text-gray-400 hover:text-purple-400 hover:bg-purple-500/10 rounded-none h-8 font-mono text-xs uppercase"
+                className="text-gray-400 hover:text-purple-400 hover:bg-purple-500/10 rounded-xl h-8 font-sans text-xs uppercase"
               >
                 <TransitionLink href={`/dashboard/admin/courses/${course.id}`}>
                   Manage

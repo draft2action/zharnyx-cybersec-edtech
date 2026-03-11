@@ -158,11 +158,11 @@ export function CourseList({ onEdit }: CourseListProps) {
             placeholder="SEARCH COURSES..."
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            className="h-10 flex-1 rounded-none border-2 border-white/20 bg-black px-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-red-500 font-mono uppercase tracking-wide transition-colors"
+            className="h-10 flex-1 rounded-xl border border-[#1a1a1a] bg-black px-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-red-500 font-sans uppercase tracking-wide transition-colors"
           />
           <button
             disabled={loading}
-            className="h-10 px-6 rounded-none bg-white text-black hover:bg-gray-200 transition-colors text-xs font-black uppercase tracking-widest border-2 border-white disabled:opacity-50 disabled:cursor-not-allowed"
+            className="h-10 px-6 rounded-xl bg-white text-black hover:bg-gray-200 transition-colors text-xs font-bold uppercase tracking-widest border border-white disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? "SEARCHING..." : "SEARCH"}
           </button>
@@ -173,10 +173,10 @@ export function CourseList({ onEdit }: CourseListProps) {
             setStatusFilter(value);
           }}
         >
-          <SelectTrigger className="w-full md:w-[180px] h-10 border-2 border-white/20 bg-black text-white font-mono rounded-none uppercase text-xs font-bold tracking-wide focus:border-red-500">
+          <SelectTrigger className="w-full md:w-[180px] h-10 border border-[#1a1a1a] bg-black text-white font-sans rounded-xl uppercase text-xs font-bold tracking-wide focus:border-red-500">
             <SelectValue placeholder="ALL STATUS" />
           </SelectTrigger>
-          <SelectContent className="bg-black border-2 border-white/20 text-white font-mono rounded-none">
+          <SelectContent className="bg-black border border-[#1a1a1a] text-white font-sans rounded-xl">
             <SelectItem value="all">ALL STATUS</SelectItem>
             <SelectItem value="published">PUBLISHED</SelectItem>
             <SelectItem value="unpublished">UNPUBLISHED</SelectItem>
@@ -200,7 +200,7 @@ export function CourseList({ onEdit }: CourseListProps) {
         open={!!deleteId}
         onOpenChange={(open) => !open && setDeleteId(null)}
       >
-        <AlertDialogContent className="bg-black border-white/10 text-white font-mono">
+        <AlertDialogContent className="bg-black border-[#1a1a1a] text-white font-sans">
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription className="text-gray-400">
@@ -209,7 +209,7 @@ export function CourseList({ onEdit }: CourseListProps) {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="bg-white/10 border-white/10 text-white hover:bg-white/20">
+            <AlertDialogCancel className="bg-white/10 border-[#1a1a1a] text-white hover:bg-white/20">
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction
@@ -226,7 +226,7 @@ export function CourseList({ onEdit }: CourseListProps) {
         open={!!unpublishId}
         onOpenChange={(open) => !open && setUnpublishId(null)}
       >
-        <AlertDialogContent className="bg-black border-white/10 text-white font-mono">
+        <AlertDialogContent className="bg-black border-[#1a1a1a] text-white font-sans">
           <AlertDialogHeader>
             <AlertDialogTitle>Unpublish this course?</AlertDialogTitle>
             <AlertDialogDescription className="text-gray-400">
@@ -235,7 +235,7 @@ export function CourseList({ onEdit }: CourseListProps) {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="bg-white/10 border-white/10 text-white hover:bg-white/20">
+            <AlertDialogCancel className="bg-white/10 border-[#1a1a1a] text-white hover:bg-white/20">
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction

@@ -16,7 +16,7 @@ export function ProgramsHero() {
                     transition={{ duration: 0.5 }}
                     className="inline-flex items-center gap-2 px-3 py-1 text-red-700 border border-[#262626] rounded-full text-[12px] font-semibold text-[#f2f2f2] uppercase tracking-wider mb-[32px]"
                 >
-                    {/* <span className="w-2 h-2 rounded-full bg-[#ea384c] shadow-[0_0_8px_rgba(234,56,76,0.6)] animate-pulse" /> */}
+                    {/* <span className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_rgba(234,56,76,0.6)] animate-pulse" /> */}
                     PROGRAMS
                 </motion.div>
 
@@ -27,7 +27,7 @@ export function ProgramsHero() {
                     className="text-[30px] md:text-[40px] lg:text-[54px] font-bold tracking-tight text-[#f2f2f2] leading-[1.1] mb-[24px]"
                 >
                     7 Months. 4 Tracks.{" "}
-                    <span className="text-[#ea384c]">100% Hands-On.</span>
+                    <span className="text-red-500">100% Hands-On.</span>
                 </motion.h1>
 
                 <motion.p

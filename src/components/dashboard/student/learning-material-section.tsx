@@ -83,7 +83,7 @@ function CountdownTimer({ targetDate }: { targetDate: Date | string }) {
     return () => clearInterval(timer);
   }, [targetDate]);
 
-  return <span className={cn("font-mono font-bold", timeLeft === "Expired" ? "text-red-500" : "text-yellow-500")}>{timeLeft || "Loading..."}</span>;
+  return <span className={cn("font-sans font-bold", timeLeft === "Expired" ? "text-red-500" : "text-yellow-500")}>{timeLeft || "Loading..."}</span>;
 }
 
 export function LearningMaterialSection({
@@ -203,19 +203,19 @@ export function LearningMaterialSection({
     <div className="space-y-4 md:space-y-6 p-3 md:p-6">
       {/* Course Selector */}
       <div className="flex flex-col gap-2">
-        <Label className="text-gray-400 font-mono text-xs uppercase">
+        <Label className="text-gray-400 font-sans text-xs uppercase">
           Select Course
         </Label>
         <Select value={selectedCourseId} onValueChange={setSelectedCourseId}>
-          <SelectTrigger className="w-full md:w-[300px] border-2 border-white/20 bg-black text-white font-mono rounded-none focus:ring-0 focus:border-blue-500">
+          <SelectTrigger className="w-full md:w-[300px] border border-[#1a1a1a] bg-black text-white font-sans rounded-xl focus:ring-0 focus:border-blue-500">
             <SelectValue placeholder="Select a course" />
           </SelectTrigger>
-          <SelectContent className="bg-black border-2 border-white/20 text-white rounded-none">
+          <SelectContent className="bg-black border border-[#1a1a1a] text-white rounded-xl">
             {courses.map((c) => (
               <SelectItem
                 key={c.id}
                 value={c.id}
-                className="focus:bg-zinc-900 focus:text-white font-mono"
+                className="focus:bg-zinc-900 focus:text-white font-sans"
               >
                 {c.title}
               </SelectItem>
@@ -225,12 +225,12 @@ export function LearningMaterialSection({
       </div>
 
       {loadingContent ? (
-        <div className="text-white font-mono">Loading content...</div>
+        <div className="text-white font-sans">Loading content...</div>
       ) : (
         <div className="space-y-8">
           {courseContent.map((month) => (
             <div key={month.id} className="space-y-3 md:space-y-4">
-              <h3 className="text-base md:text-lg font-bold text-blue-500 font-mono uppercase tracking-wide border-b border-blue-500/30 pb-2">
+              <h3 className="text-base md:text-lg font-bold text-blue-500 font-sans uppercase tracking-wide border-b border-blue-500/30 pb-2">
                 {month.title}
               </h3>
 
@@ -244,7 +244,7 @@ export function LearningMaterialSection({
                       "group border mb-4 rounded bg-zinc-900/30 transition-all duration-200 overflow-hidden",
                       week.isLocked
                         ? "border-white/5 opacity-60 cursor-not-allowed"
-                        : "border-white/10 hover:border-blue-500/30 hover:bg-zinc-900/50"
+                        : "border-[#1a1a1a] hover:border-blue-500/30 hover:bg-zinc-900/50"
                     )}
                   >
                     <AccordionTrigger disabled={week.isLocked} className="w-full px-3 py-3 md:px-4 md:py-4 hover:no-underline">
@@ -256,22 +256,22 @@ export function LearningMaterialSection({
                             {week.isCompleted ? (
                               <CheckCircle className="w-5 h-5 text-green-500" />
                             ) : week.isPending ? (
-                              <div className="w-4 h-4 rounded-full border-2 border-yellow-500 border-dashed" />
+                              <div className="w-4 h-4 rounded-full border border-yellow-500 border-dashed" />
                             ) : null}
                           </div>
                         )}
                         <div className="flex flex-col items-start gap-1 text-left">
-                          <h4 className={cn("text-white font-medium font-mono text-sm md:text-base tracking-wide", week.isLocked && "text-gray-600")}>
+                          <h4 className={cn("text-white font-medium font-sans text-sm md:text-base tracking-wide", week.isLocked && "text-gray-600")}>
                             {week.title}
                           </h4>
-                          <span className="text-[10px] text-gray-500 font-mono uppercase tracking-widest">
+                          <span className="text-[10px] text-gray-500 font-sans uppercase tracking-widest">
                             {week.isLocked ? "Locked" : "Click to view content"}
                           </span>
                         </div>
                         {week.isCompleted && !week.isLocked && (
                           <Badge
                             variant="outline"
-                            className="ml-auto mr-4 border-green-500 text-green-500 font-mono text-[10px] uppercase"
+                            className="ml-auto mr-4 border-green-500 text-green-500 font-sans text-[10px] uppercase"
                           >
                             Completed
                           </Badge>
@@ -279,7 +279,7 @@ export function LearningMaterialSection({
                         {week.isPending && !week.isCompleted && !week.isLocked && (
                           <Badge
                             variant="outline"
-                            className="ml-auto mr-4 border-yellow-500 text-yellow-500 font-mono text-[10px] uppercase"
+                            className="ml-auto mr-4 border-yellow-500 text-yellow-500 font-sans text-[10px] uppercase"
                           >
                             <div className="w-2 h-2 mr-2 rounded-full border border-yellow-500 border-dashed" />
                             Pending Review
@@ -294,11 +294,11 @@ export function LearningMaterialSection({
                           <div className="flex flex-col gap-3 items-center">
                             {week.projectTitle ? (
                               <>
-                                <h5 className="text-gray-400 font-mono text-xs uppercase font-bold tracking-widest text-center">Project Brief</h5>
+                                <h5 className="text-gray-400 font-sans text-xs uppercase font-bold tracking-widest text-center">Project Brief</h5>
                                 <div className="text-center space-y-2 max-w-2xl mx-auto">
-                                  <h4 className="text-white font-mono text-lg font-bold">{week.projectTitle}</h4>
+                                  <h4 className="text-white font-sans text-lg font-bold">{week.projectTitle}</h4>
                                   {week.projectDescription && (
-                                    <p className="text-gray-300 font-mono text-sm whitespace-pre-wrap">
+                                    <p className="text-gray-300 font-sans text-sm whitespace-pre-wrap">
                                       {week.projectDescription}
                                     </p>
                                   )}
@@ -306,7 +306,7 @@ export function LearningMaterialSection({
                               </>
                             ) : (
                               <>
-                                <h5 className="text-gray-400 font-mono text-xs uppercase font-bold tracking-widest text-center">Learning Plan</h5>
+                                <h5 className="text-gray-400 font-sans text-xs uppercase font-bold tracking-widest text-center">Learning Plan</h5>
                                 <div className="flex justify-center w-full">
                                   {week.content ? (
                                     week.content.startsWith('http') ? (
@@ -314,20 +314,20 @@ export function LearningMaterialSection({
                                         href={week.content}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="font-mono text-sm text-gray-300 hover:text-white flex items-center gap-2 transition-colors border-b border-white/10 pb-1 hover:border-white/50"
+                                        className="font-sans text-sm text-gray-300 hover:text-white flex items-center gap-2 transition-colors border-b border-[#1a1a1a] pb-1 hover:border-white/50"
                                       >
                                         <FileText className="w-4 h-4 text-blue-500 shrink-0" />
                                         <span className="break-all">{week.content}</span>
                                         <ExternalLink className="w-3 h-3 text-gray-500 shrink-0" />
                                       </a>
                                     ) : (
-                                      <div className="font-mono text-sm text-gray-300 flex items-start gap-2">
+                                      <div className="font-sans text-sm text-gray-300 flex items-start gap-2">
                                         <FileText className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
                                         <span className="whitespace-pre-wrap">{week.content}</span>
                                       </div>
                                     )
                                   ) : (
-                                    <span className="text-gray-500 font-mono text-xs italic">No plan content.</span>
+                                    <span className="text-gray-500 font-sans text-xs italic">No plan content.</span>
                                   )}
                                 </div>
                               </>
@@ -338,14 +338,14 @@ export function LearningMaterialSection({
                           {/* Assuming resources is castable to array of objects or handled safely */}
                           {Array.isArray(week.resources) && (week.resources as any[]).length > 0 && (
                             <div className="flex flex-col items-center">
-                              <h5 className="text-gray-400 font-mono text-xs uppercase mb-3 font-bold tracking-widest text-center">Resources</h5>
+                              <h5 className="text-gray-400 font-sans text-xs uppercase mb-3 font-bold tracking-widest text-center">Resources</h5>
                               <div className="flex flex-wrap gap-3 justify-center">
                                 {(week.resources as any[]).map((res: any, idx: number) => (
                                   <Button
                                     key={idx}
                                     variant="outline"
                                     asChild
-                                    className="font-mono text-xs border-white/10 bg-zinc-900/50 hover:bg-zinc-800 text-gray-300 hover:text-white h-9 px-3 flex items-center gap-2 max-w-[200px] md:max-w-xs justify-start rounded-sm transition-all group/btn"
+                                    className="font-sans text-xs border-[#1a1a1a] bg-zinc-900/50 hover:bg-zinc-800 text-gray-300 hover:text-white h-9 px-3 flex items-center gap-2 max-w-[200px] md:max-w-xs justify-start rounded-sm transition-all group/btn"
                                   >
                                     <a href={res.link} target="_blank" rel="noopener noreferrer">
                                       <Globe className="w-3 h-3 text-blue-500 group-hover/btn:text-blue-400 transition-colors shrink-0" />
@@ -364,23 +364,23 @@ export function LearningMaterialSection({
                           <div className="mb-6">
                             <Accordion type="single" collapsible className="w-full">
                               <AccordionItem value="assessments" className="border-none">
-                                <AccordionTrigger className="text-gray-400 font-mono text-xs uppercase hover:text-white hover:no-underline py-3 justify-start gap-2 tracking-widest font-bold">
+                                <AccordionTrigger className="text-gray-400 font-sans text-xs uppercase hover:text-white hover:no-underline py-3 justify-start gap-2 tracking-widest font-bold">
                                   Weeks Assessment
                                 </AccordionTrigger>
                                 <AccordionContent>
                                   <div className="grid grid-cols-1 gap-4 pt-4">
                                     {week.assessments.map((assessment: CourseAssessment) => (
-                                      <div key={assessment.id} className="bg-zinc-900/20 border border-white/5 p-4 md:p-6 rounded flex flex-col gap-4 relative overflow-hidden group/card hover:border-white/10 transition-colors">
+                                      <div key={assessment.id} className="bg-zinc-900/20 border border-white/5 p-4 md:p-6 rounded flex flex-col gap-4 relative overflow-hidden group/card hover:border-[#1a1a1a] transition-colors">
                                         {/* Card Header */}
                                         <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
                                           <div className="space-y-1">
-                                            <h4 className="text-white font-medium font-mono text-base">{assessment.title}</h4>
+                                            <h4 className="text-white font-medium font-sans text-base">{assessment.title}</h4>
                                             <div className="flex items-center gap-2">
-                                              <span className="text-xs font-mono text-blue-400 bg-blue-900/20 px-2 py-0.5 rounded border border-blue-500/20">
+                                              <span className="text-xs font-sans text-blue-400 bg-blue-900/20 px-2 py-0.5 rounded border border-blue-500/20">
                                                 {assessment.topic}
                                               </span>
                                               {assessment.isCompleted && (
-                                                <span className="text-xs font-mono text-green-400 bg-green-900/20 px-2 py-0.5 rounded border border-green-500/20 flex items-center gap-1">
+                                                <span className="text-xs font-sans text-green-400 bg-green-900/20 px-2 py-0.5 rounded border border-green-500/20 flex items-center gap-1">
                                                   <CheckCircle className="w-3 h-3" /> Completed
                                                 </span>
                                               )}
@@ -388,13 +388,13 @@ export function LearningMaterialSection({
                                           </div>
                                           <div className="flex flex-col items-end gap-2">
                                             {week.isCompleted && !week.isProjectRejected && !week.assessments?.some(a => a.isRejected) ? (
-                                              <Badge variant="outline" className="border-green-500 text-green-500 font-mono text-xs border-dashed uppercase py-1.5">
+                                              <Badge variant="outline" className="border-green-500 text-green-500 font-sans text-xs border-dashed uppercase py-1.5">
                                                 <CheckCircle className="w-3 h-3 mr-2" />
                                                 Successfully Submitted
                                               </Badge>
                                             ) : assessment.isPending ? (
-                                              <Badge variant="outline" className="border-yellow-500 text-yellow-500 font-mono text-xs border-dashed uppercase py-1.5">
-                                                <div className="w-3 h-3 mr-2 rounded-full border-2 border-yellow-500 border-dashed" />
+                                              <Badge variant="outline" className="border-yellow-500 text-yellow-500 font-sans text-xs border-dashed uppercase py-1.5">
+                                                <div className="w-3 h-3 mr-2 rounded-full border border-yellow-500 border-dashed" />
                                                 Review Pending
                                               </Badge>
                                             ) : week.isPending ? (
@@ -418,31 +418,31 @@ export function LearningMaterialSection({
                                                   <DialogTrigger asChild>
                                                     <Button
                                                       variant="outline"
-                                                      className="font-mono text-xs border-dashed border-red-500/50 text-red-500 hover:bg-red-900/20 hover:text-red-400 hover:border-red-500 rounded-none h-8"
+                                                      className="font-sans text-xs border-dashed border-red-500/50 text-red-500 hover:bg-red-900/20 hover:text-red-400 hover:border-red-500 rounded-xl h-8"
                                                     >
                                                       <FileText className="w-3 h-3 mr-2" />
                                                       Resubmit Work
                                                     </Button>
                                                   </DialogTrigger>
-                                                  <DialogContent className="bg-zinc-950 border-2 border-white/20 text-white rounded-none sm:max-w-md">
+                                                  <DialogContent className="bg-[#0a0a0a] border border-[#1a1a1a] text-white rounded-xl sm:max-w-md">
                                                     {/* Dialog Content same as submit */}
                                                     <DialogHeader>
-                                                      <DialogTitle className="font-mono uppercase">
+                                                      <DialogTitle className="font-sans uppercase">
                                                         Resubmit Assessment
                                                       </DialogTitle>
-                                                      <DialogDescription className="font-mono text-xs text-gray-400">
+                                                      <DialogDescription className="font-sans text-xs text-gray-400">
                                                         Resubmit your work for "{assessment.title}".
                                                         Previous submission was rejected.
                                                       </DialogDescription>
                                                     </DialogHeader>
                                                     <div className="space-y-4 py-4">
                                                       <div className="space-y-2">
-                                                        <Label className="text-xs font-mono uppercase">
+                                                        <Label className="text-xs font-sans uppercase">
                                                           Submission URL
                                                         </Label>
                                                         <Input
                                                           placeholder="https://..."
-                                                          className="bg-black border-white/20 font-mono rounded-none text-white focus-visible:ring-0 focus-visible:border-blue-500"
+                                                          className="bg-black border-[#1a1a1a] font-sans rounded-xl text-white focus-visible:ring-0 focus-visible:border-blue-500"
                                                           value={submissionUrl}
                                                           onChange={(e) =>
                                                             setSubmissionUrl(e.target.value)
@@ -453,7 +453,7 @@ export function LearningMaterialSection({
                                                     <DialogFooter>
                                                       <Button
                                                         onClick={handleSubmitAssignment}
-                                                        className="bg-blue-600 hover:bg-blue-700 text-white font-mono rounded-none uppercase tracking-wide w-full"
+                                                        className="bg-blue-600 hover:bg-blue-700 text-white font-sans rounded-xl uppercase tracking-wide w-full"
                                                       >
                                                         Resubmit Assignment
                                                       </Button>
@@ -463,7 +463,7 @@ export function LearningMaterialSection({
                                               ) : (
                                                 <Button
                                                   variant="outline"
-                                                  className="font-mono text-xs border-dashed border-white/30 text-gray-400 cursor-not-allowed hover:bg-transparent"
+                                                  className="font-sans text-xs border-dashed border-white/30 text-gray-400 cursor-not-allowed hover:bg-transparent"
                                                   onClick={() =>
                                                     toast("Waiting for mentor's response", {
                                                       description: "You cannot submit other work until the current one is reviewed.",
@@ -491,30 +491,30 @@ export function LearningMaterialSection({
                                                 <DialogTrigger asChild>
                                                   <Button
                                                     variant="outline"
-                                                    className="font-mono text-xs border-dashed border-white/30 hover:bg-yellow-900/20 hover:text-yellow-400 hover:border-yellow-500 rounded-none h-8"
+                                                    className="font-sans text-xs border-dashed border-white/30 hover:bg-yellow-900/20 hover:text-yellow-400 hover:border-yellow-500 rounded-xl h-8"
                                                   >
                                                     <FileText className="w-3 h-3 mr-2" />
                                                     Submit Work
                                                   </Button>
                                                 </DialogTrigger>
-                                                <DialogContent className="bg-zinc-950 border-2 border-white/20 text-white rounded-none sm:max-w-md">
+                                                <DialogContent className="bg-[#0a0a0a] border border-[#1a1a1a] text-white rounded-xl sm:max-w-md">
                                                   <DialogHeader>
-                                                    <DialogTitle className="font-mono uppercase">
+                                                    <DialogTitle className="font-sans uppercase">
                                                       Submit Assessment
                                                     </DialogTitle>
-                                                    <DialogDescription className="font-mono text-xs text-gray-400">
+                                                    <DialogDescription className="font-sans text-xs text-gray-400">
                                                       Submit your work for "{assessment.title}".
                                                       Only PDF or valid URLs allowed.
                                                     </DialogDescription>
                                                   </DialogHeader>
                                                   <div className="space-y-4 py-4">
                                                     <div className="space-y-2">
-                                                      <Label className="text-xs font-mono uppercase">
+                                                      <Label className="text-xs font-sans uppercase">
                                                         Submission URL
                                                       </Label>
                                                       <Input
                                                         placeholder="https://..."
-                                                        className="bg-black border-white/20 font-mono rounded-none text-white focus-visible:ring-0 focus-visible:border-blue-500"
+                                                        className="bg-black border-[#1a1a1a] font-sans rounded-xl text-white focus-visible:ring-0 focus-visible:border-blue-500"
                                                         value={submissionUrl}
                                                         onChange={(e) =>
                                                           setSubmissionUrl(e.target.value)
@@ -525,7 +525,7 @@ export function LearningMaterialSection({
                                                   <DialogFooter>
                                                     <Button
                                                       onClick={handleSubmitAssignment}
-                                                      className="bg-blue-600 hover:bg-blue-700 text-white font-mono rounded-none uppercase tracking-wide w-full"
+                                                      className="bg-blue-600 hover:bg-blue-700 text-white font-sans rounded-xl uppercase tracking-wide w-full"
                                                     >
                                                       Submit Assignment
                                                     </Button>
@@ -538,8 +538,8 @@ export function LearningMaterialSection({
 
                                         {/* Problem Description */}
                                         <div className="bg-black/30 p-3 rounded border border-white/5">
-                                          <h6 className="text-[10px] text-gray-500 uppercase font-mono mb-1">Problem Statement</h6>
-                                          <p className="text-sm text-gray-300 font-mono leading-relaxed">
+                                          <h6 className="text-[10px] text-gray-500 uppercase font-sans mb-1">Problem Statement</h6>
+                                          <p className="text-sm text-gray-300 font-sans leading-relaxed">
                                             {assessment.problem}
                                           </p>
                                         </div>
@@ -548,19 +548,19 @@ export function LearningMaterialSection({
                                         {/* Feedback Section */}
                                         {assessment.isRejected && (
                                           <div className="bg-red-900/20 border border-red-500/30 p-3 rounded mt-2">
-                                            <h6 className="text-[10px] text-red-400 uppercase font-mono mb-1 font-bold">Mentor Feedback</h6>
+                                            <h6 className="text-[10px] text-red-400 uppercase font-sans mb-1 font-bold">Mentor Feedback</h6>
                                             {assessment.feedback ? (
                                               <a
                                                 href={assessment.feedback}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-sm text-red-300 hover:text-red-200 font-mono underline decoration-red-500/30 underline-offset-4 flex items-center gap-2"
+                                                className="text-sm text-red-300 hover:text-red-200 font-sans underline decoration-red-500/30 underline-offset-4 flex items-center gap-2"
                                               >
                                                 <ExternalLink className="w-3 h-3" />
                                                 View Improvements Doc
                                               </a>
                                             ) : (
-                                              <span className="text-sm text-red-400/50 font-mono italic">
+                                              <span className="text-sm text-red-400/50 font-sans italic">
                                                 No feedback document linked.
                                               </span>
                                             )}
@@ -568,7 +568,7 @@ export function LearningMaterialSection({
                                         )}
 
                                         {/* Footer Info */}
-                                        <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-gray-500 pt-2 border-t border-white/5 mt-1">
+                                        <div className="flex flex-wrap items-center gap-4 text-xs font-sans text-gray-500 pt-2 border-t border-white/5 mt-1">
                                           {!assessment.isCompleted && !week.isCompleted && (
                                             <div className="flex items-center gap-1.5">
                                               <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
@@ -606,19 +606,19 @@ export function LearningMaterialSection({
 
 
                         {/* Actions Area (Projects only now) */}
-                        <div className="flex flex-wrap gap-3 pt-4 border-t border-white/10">
+                        <div className="flex flex-wrap gap-3 pt-4 border-t border-[#1a1a1a]">
 
 
                           {/* Project Submission */}
                           {(week.projectTitle || week.projectDescription) && (
                             week.isCompleted && !week.isProjectRejected ? (
-                              <Badge variant="outline" className="border-green-500 text-green-500 font-mono text-xs border-dashed uppercase py-1.5 h-9 px-3">
+                              <Badge variant="outline" className="border-green-500 text-green-500 font-sans text-xs border-dashed uppercase py-1.5 h-9 px-3">
                                 <CheckCircle className="w-3 h-3 mr-2" />
                                 Project Submitted
                               </Badge>
                             ) : week.isPending && !week.isProjectRejected ? (
-                              <Badge variant="outline" className="border-yellow-500 text-yellow-500 font-mono text-xs border-dashed uppercase py-1.5 h-9 px-3">
-                                <div className="w-3 h-3 mr-2 rounded-full border-2 border-yellow-500 border-dashed" />
+                              <Badge variant="outline" className="border-yellow-500 text-yellow-500 font-sans text-xs border-dashed uppercase py-1.5 h-9 px-3">
+                                <div className="w-3 h-3 mr-2 rounded-full border border-yellow-500 border-dashed" />
                                 Review Pending
                               </Badge>
                             ) : (
@@ -626,19 +626,19 @@ export function LearningMaterialSection({
                               <div className="flex flex-col gap-2 w-full md:w-auto">
                                 {week.isProjectRejected && (
                                   <div className="bg-red-900/20 border border-red-500/30 p-3 rounded mb-2 w-full">
-                                    <h6 className="text-[10px] text-red-400 uppercase font-mono mb-1 font-bold">Mentor Feedback</h6>
+                                    <h6 className="text-[10px] text-red-400 uppercase font-sans mb-1 font-bold">Mentor Feedback</h6>
                                     {week.projectReview ? (
                                       <a
                                         href={week.projectReview}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-sm text-red-300 hover:text-red-200 font-mono underline decoration-red-500/30 underline-offset-4 flex items-center gap-2"
+                                        className="text-sm text-red-300 hover:text-red-200 font-sans underline decoration-red-500/30 underline-offset-4 flex items-center gap-2"
                                       >
                                         <ExternalLink className="w-3 h-3" />
                                         View Improvements Doc
                                       </a>
                                     ) : (
-                                      <span className="text-sm text-red-400/50 font-mono italic">
+                                      <span className="text-sm text-red-400/50 font-sans italic">
                                         No feedback document linked.
                                       </span>
                                     )}
@@ -658,7 +658,7 @@ export function LearningMaterialSection({
                                     <Button
                                       variant="outline"
                                       className={cn(
-                                        "font-mono text-xs border-purple-500/50 text-purple-400 hover:bg-purple-900/20 hover:text-purple-300 hover:border-purple-500 rounded-none h-9",
+                                        "font-sans text-xs border-purple-500/50 text-purple-400 hover:bg-purple-900/20 hover:text-purple-300 hover:border-purple-500 rounded-xl h-9",
                                         week.isProjectRejected && "border-red-500 text-red-500 hover:text-red-400 hover:border-red-400"
                                       )}
                                     >
@@ -666,12 +666,12 @@ export function LearningMaterialSection({
                                       {week.isProjectRejected ? "Resubmit Project" : "Submit Project"}
                                     </Button>
                                   </DialogTrigger>
-                                  <DialogContent className="bg-zinc-950 border-2 border-white/20 text-white rounded-none sm:max-w-lg">
+                                  <DialogContent className="bg-[#0a0a0a] border border-[#1a1a1a] text-white rounded-xl sm:max-w-lg">
                                     <DialogHeader>
-                                      <DialogTitle className="font-mono uppercase">
+                                      <DialogTitle className="font-sans uppercase">
                                         {week.isProjectRejected ? "Resubmit Project" : "Submit Project"}
                                       </DialogTitle>
-                                      <DialogDescription className="font-mono text-xs text-gray-400">
+                                      <DialogDescription className="font-sans text-xs text-gray-400">
                                         {week.isProjectRejected ? (
                                           "Your previous submission was rejected. Please address the feedback and resubmit."
                                         ) : (
@@ -685,12 +685,12 @@ export function LearningMaterialSection({
                                     <div className="space-y-4 py-4">
                                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div className="space-y-2">
-                                          <Label className="text-xs font-mono uppercase flex items-center gap-2">
+                                          <Label className="text-xs font-sans uppercase flex items-center gap-2">
                                             <Github className="w-3 h-3" /> GitHub Repo
                                           </Label>
                                           <Input
                                             placeholder="https://github.com/..."
-                                            className="bg-black border-white/20 font-mono rounded-none text-white focus-visible:ring-0 focus-visible:border-blue-500"
+                                            className="bg-black border-[#1a1a1a] font-sans rounded-xl text-white focus-visible:ring-0 focus-visible:border-blue-500"
                                             value={projectData.githubUrl}
                                             onChange={(e) =>
                                               setProjectData({
@@ -701,12 +701,12 @@ export function LearningMaterialSection({
                                           />
                                         </div>
                                         <div className="space-y-2">
-                                          <Label className="text-xs font-mono uppercase flex items-center gap-2">
+                                          <Label className="text-xs font-sans uppercase flex items-center gap-2">
                                             <Globe className="w-3 h-3" /> Live URL
                                           </Label>
                                           <Input
                                             placeholder="https://..."
-                                            className="bg-black border-white/20 font-mono rounded-none text-white focus-visible:ring-0 focus-visible:border-blue-500"
+                                            className="bg-black border-[#1a1a1a] font-sans rounded-xl text-white focus-visible:ring-0 focus-visible:border-blue-500"
                                             value={projectData.liveUrl}
                                             onChange={(e) =>
                                               setProjectData({
@@ -718,12 +718,12 @@ export function LearningMaterialSection({
                                         </div>
                                       </div>
                                       <div className="space-y-2">
-                                        <Label className="text-xs font-mono uppercase flex items-center gap-2">
+                                        <Label className="text-xs font-sans uppercase flex items-center gap-2">
                                           <Play className="w-3 h-3" /> Demo Video URL
                                         </Label>
                                         <Input
                                           placeholder="https://youtube.com/..."
-                                          className="bg-black border-white/20 font-mono rounded-none text-white focus-visible:ring-0 focus-visible:border-blue-500"
+                                          className="bg-black border-[#1a1a1a] font-sans rounded-xl text-white focus-visible:ring-0 focus-visible:border-blue-500"
                                           value={projectData.demoUrl}
                                           onChange={(e) =>
                                             setProjectData({
@@ -734,12 +734,12 @@ export function LearningMaterialSection({
                                         />
                                       </div>
                                       <div className="space-y-2">
-                                        <Label className="text-xs font-mono uppercase">
+                                        <Label className="text-xs font-sans uppercase">
                                           Description / Notes
                                         </Label>
                                         <Textarea
                                           placeholder="Any additional notes..."
-                                          className="bg-black border-white/20 font-mono rounded-none text-white focus-visible:ring-0 focus-visible:border-blue-500 min-h-[100px]"
+                                          className="bg-black border-[#1a1a1a] font-sans rounded-xl text-white focus-visible:ring-0 focus-visible:border-blue-500 min-h-[100px]"
                                           value={projectData.description}
                                           onChange={(e) =>
                                             setProjectData({
@@ -753,7 +753,7 @@ export function LearningMaterialSection({
                                     <DialogFooter>
                                       <Button
                                         onClick={handleSubmitProject}
-                                        className="bg-purple-600 hover:bg-purple-700 text-white font-mono rounded-none uppercase tracking-wide w-full"
+                                        className="bg-purple-600 hover:bg-purple-700 text-white font-sans rounded-xl uppercase tracking-wide w-full"
                                       >
                                         {week.isProjectRejected ? "Resubmit Project" : "Submit Project"}
                                       </Button>

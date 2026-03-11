@@ -22,21 +22,21 @@ export default async function StudentPage(props: PageProps) {
       <div className="relative flex flex-col flex-1 z-10 w-full pl-6 pr-6 pb-6 pt-4">
         {/* Header Section */}
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 border-b-2 border-white/20 pb-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 border-b border-[#1a1a1a] pb-4">
           <div className="flex items-start gap-4">
-            <SidebarTrigger className="text-white hover:bg-white/10 md:hidden border-2 border-white/20 rounded-none h-10 w-10 shrink-0" />
+            <SidebarTrigger className="text-white hover:bg-white/10 md:hidden border border-[#1a1a1a] rounded-xl h-10 w-10 shrink-0" />
             <div>
               <Link
                 href="/"
-                className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors mb-2 font-mono"
+                className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors mb-2 font-sans"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Home
               </Link>
-              <h1 className="text-4xl font-black font-mono text-white uppercase tracking-tighter leading-none">
+              <h1 className="text-4xl font-bold font-sans text-white uppercase tracking-tighter leading-none">
                 Student Portal
               </h1>
-              <p className="text-gray-400 font-mono mt-1 text-sm uppercase tracking-widest">
+              <p className="text-gray-400 font-sans mt-1 text-sm uppercase tracking-widest">
                 Track your progress and assignments
               </p>
             </div>

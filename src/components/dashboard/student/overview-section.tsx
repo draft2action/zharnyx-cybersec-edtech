@@ -46,7 +46,7 @@ export function OverviewSection({ studentId }: OverviewSectionProps) {
         {[1, 2, 3, 4].map((i) => (
           <Skeleton
             key={i}
-            className="h-32 bg-zinc-900 border border-white/10"
+            className="h-32 bg-zinc-900 border border-[#1a1a1a]"
           />
         ))}
       </div>
@@ -86,16 +86,16 @@ export function OverviewSection({ studentId }: OverviewSectionProps) {
         {items.map((item) => (
           <Card
             key={item.label}
-            className="bg-black border-2 border-white/20 text-white rounded-none shadow-[4px_4px_0px_0px_white/10] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-200"
+            className="bg-black border border-[#1a1a1a] text-white rounded-xl  hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-200"
           >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium font-mono uppercase tracking-wider text-gray-400">
+              <CardTitle className="text-sm font-medium font-sans uppercase tracking-wider text-gray-400">
                 {item.label}
               </CardTitle>
               <item.icon className={`h-4 w-4 ${item.color}`} />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold font-mono">{item.value}</div>
+              <div className="text-2xl font-bold font-sans">{item.value}</div>
             </CardContent>
           </Card>
         ))}

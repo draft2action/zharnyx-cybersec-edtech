@@ -26,14 +26,14 @@ export function AvailableCourses({ courses }: AvailableCoursesProps) {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-sans">
         {courses.map((course) => (
           <Card
             key={course.id}
-            className="bg-black/40 border-white/10 backdrop-blur-sm flex flex-col"
+            className="bg-black/40 border-[#1a1a1a] backdrop-blur-sm flex flex-col"
           >
             <CardHeader>
-              <CardTitle className="text-white font-mono text-lg">
+              <CardTitle className="text-white font-sans text-lg">
                 {course.title}
               </CardTitle>
               <CardDescription className="text-gray-400 line-clamp-2">

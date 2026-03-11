@@ -90,7 +90,7 @@ export function ProjectScoringSection({
 
   if (projects.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 border-2 border-white/10 border-dashed rounded-lg bg-white/5">
+      <div className="flex flex-col items-center justify-center p-12 border border-[#1a1a1a] border-dashed rounded-lg bg-[#0a0a0a]">
         <CheckCircle className="h-12 w-12 text-green-500 mb-4" />
         <h3 className="text-xl font-bold text-white mb-2">All Caught Up!</h3>
         <p className="text-gray-400 text-center max-w-sm">
@@ -106,7 +106,7 @@ export function ProjectScoringSection({
         {projects.map((submission) => (
           <Card
             key={submission.id}
-            className="bg-black border-2 border-white/10 hover:border-white/30 transition-colors"
+            className="bg-black border border-[#1a1a1a] hover:border-white/30 transition-colors"
           >
             <CardHeader className="pb-3">
               <div className="flex justify-between items-start mb-2">
@@ -116,7 +116,7 @@ export function ProjectScoringSection({
                 >
                   {submission.week.month.course.title}
                 </Badge>
-                <span className="text-xs text-gray-500 font-mono">
+                <span className="text-xs text-gray-500 font-sans">
                   {format(new Date(submission.createdAt), "MMM d")}
                 </span>
               </div>
@@ -146,7 +146,7 @@ export function ProjectScoringSection({
         open={!!selectedSubmission}
         onOpenChange={(open) => !open && setSelectedSubmission(null)}
       >
-        <DialogContent className="bg-black border-2 border-white/20 text-white sm:max-w-lg">
+        <DialogContent className="bg-black border border-[#1a1a1a] text-white sm:max-w-lg">
           <DialogHeader>
             <DialogTitle>Score Project</DialogTitle>
             <DialogDescription>
@@ -190,7 +190,7 @@ export function ProjectScoringSection({
                         <Button
                           variant="outline"
                           size="sm"
-                          className="w-full justify-start border-white/20 text-gray-300 hover:text-white hover:bg-white/10"
+                          className="w-full justify-start border-[#1a1a1a] text-gray-300 hover:text-white hover:bg-white/10"
                         >
                           <Github className="mr-2 h-4 w-4" />
                           GitHub Repository
@@ -209,7 +209,7 @@ export function ProjectScoringSection({
                         <Button
                           variant="outline"
                           size="sm"
-                          className="w-full justify-start border-white/20 text-gray-300 hover:text-white hover:bg-white/10"
+                          className="w-full justify-start border-[#1a1a1a] text-gray-300 hover:text-white hover:bg-white/10"
                         >
                           <MonitorPlay className="mr-2 h-4 w-4" />
                           Live Demo
@@ -228,7 +228,7 @@ export function ProjectScoringSection({
                         <Button
                           variant="outline"
                           size="sm"
-                          className="w-full justify-start border-white/20 text-gray-300 hover:text-white hover:bg-white/10"
+                          className="w-full justify-start border-[#1a1a1a] text-gray-300 hover:text-white hover:bg-white/10"
                         >
                           <MonitorPlay className="mr-2 h-4 w-4" />
                           Video Demo
@@ -244,7 +244,7 @@ export function ProjectScoringSection({
                 <Label className="text-gray-400 text-xs uppercase tracking-wider">
                   Description
                 </Label>
-                <div className="text-sm bg-white/5 p-3 rounded border border-white/10 max-h-32 overflow-y-auto">
+                <div className="text-sm bg-[#0a0a0a] p-3 rounded border border-[#1a1a1a] max-h-32 overflow-y-auto">
                   {selectedSubmission.description || "No description provided."}
                 </div>
               </div>
@@ -262,7 +262,7 @@ export function ProjectScoringSection({
                   min="0"
                   max="10"
                   placeholder="Enter score (1-10)..."
-                  className="bg-black border-white/20 text-white focus:border-purple-500"
+                  className="bg-black border-[#1a1a1a] text-white focus:border-purple-500"
                   value={score}
                   onChange={(e) => setScore(e.target.value)}
                 />
@@ -278,7 +278,7 @@ export function ProjectScoringSection({
                 <Textarea
                   id="review"
                   placeholder="Write your feedback here..."
-                  className="bg-black border-white/20 text-white focus:border-purple-500 min-h-[100px]"
+                  className="bg-black border-[#1a1a1a] text-white focus:border-purple-500 min-h-[100px]"
                   value={review}
                   onChange={(e) => setReview(e.target.value)}
                 />

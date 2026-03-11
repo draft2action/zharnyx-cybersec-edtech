@@ -102,20 +102,20 @@ export function PartnerApplicationTable() {
     if (applications.length === 0) return <div className="text-gray-400 p-4">No pending applications</div>;
 
     return (
-        <div className="rounded-md border border-white/20">
+        <div className="rounded-md border border-[#1a1a1a]">
             <Table>
-                <TableHeader className="bg-white/5">
-                    <TableRow className="border-white/20 hover:bg-white/5">
-                        <TableHead className="text-gray-400 font-mono text-xs uppercase">Agency</TableHead>
-                        <TableHead className="text-gray-400 font-mono text-xs uppercase">Contact</TableHead>
-                        <TableHead className="text-gray-400 font-mono text-xs uppercase">Website</TableHead>
-                        <TableHead className="text-gray-400 font-mono text-xs uppercase">Date</TableHead>
-                        <TableHead className="text-right text-gray-400 font-mono text-xs uppercase">Actions</TableHead>
+                <TableHeader className="bg-[#0a0a0a]">
+                    <TableRow className="border-[#1a1a1a] hover:bg-[#0a0a0a]">
+                        <TableHead className="text-gray-400 font-sans text-xs uppercase">Agency</TableHead>
+                        <TableHead className="text-gray-400 font-sans text-xs uppercase">Contact</TableHead>
+                        <TableHead className="text-gray-400 font-sans text-xs uppercase">Website</TableHead>
+                        <TableHead className="text-gray-400 font-sans text-xs uppercase">Date</TableHead>
+                        <TableHead className="text-right text-gray-400 font-sans text-xs uppercase">Actions</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {applications.map((app) => (
-                        <TableRow key={app.id} className="border-white/20 hover:bg-white/5">
+                        <TableRow key={app.id} className="border-[#1a1a1a] hover:bg-[#0a0a0a]">
                             <TableCell className="font-medium text-white">
                                 <div>{app.agencyName}</div>
                                 <div className="text-xs text-gray-500">{app.email}</div>

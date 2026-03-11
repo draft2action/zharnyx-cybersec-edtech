@@ -29,7 +29,7 @@ interface DoubtListProps {
 export function DoubtList({ sessions }: DoubtListProps) {
   if (sessions.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 text-center border-2 border-dashed border-white/10 rounded-lg">
+      <div className="flex flex-col items-center justify-center p-12 text-center border border-dashed border-[#1a1a1a] rounded-lg">
         <HelpCircle className="h-12 w-12 text-gray-500 mb-4" />
         <h3 className="text-lg font-medium text-white mb-2">
           No Doubt Sessions
@@ -77,7 +77,7 @@ export function DoubtList({ sessions }: DoubtListProps) {
       {sessions.map((session) => (
         <Card
           key={session.id}
-          className="bg-zinc-900/50 border-white/10 text-white"
+          className="bg-zinc-900/50 border-[#1a1a1a] text-white"
         >
           <CardHeader className="pb-4">
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
@@ -90,14 +90,14 @@ export function DoubtList({ sessions }: DoubtListProps) {
                     {getStatusIcon(session.status)}
                     {session.status}
                   </Badge>
-                  <span className="text-xs text-gray-400 font-mono">
+                  <span className="text-xs text-gray-400 font-sans">
                     {format(new Date(session.createdAt), "PPP")}
                   </span>
                 </div>
                 <CardTitle className="text-lg font-bold">
                   {session.topic}
                 </CardTitle>
-                <div className="text-sm text-gray-400 font-mono">
+                <div className="text-sm text-gray-400 font-sans">
                   {session.courseTitle} •{" "}
                   {session.mentorName ? (
                     <span className="text-purple-400">
@@ -113,7 +113,7 @@ export function DoubtList({ sessions }: DoubtListProps) {
 
                 {session.status === "scheduled" && session.scheduledAt && (
                   <div className="mt-4 p-3 bg-blue-500/10 border border-blue-500/20 rounded-md">
-                    <p className="text-sm text-blue-400 font-mono font-bold mb-1">
+                    <p className="text-sm text-blue-400 font-sans font-bold mb-1">
                       Scheduled For:{" "}
                       {format(new Date(session.scheduledAt), "PPp")}
                     </p>

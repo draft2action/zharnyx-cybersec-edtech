@@ -75,7 +75,7 @@ export function ConvergenceSection() {
           <div className="hidden md:flex shrink-0 w-12 h-12 bg-black border-2 border-white items-center justify-center z-10 group-hover:bg-red-600 transition-colors shadow-[0_0_0_4px_black]">
             <span className="text-sm font-black text-white">3</span>
           </div>
-          <div className="flex-1 bg-black border-2 border-white/20 p-8 hover:border-red-500 transition-all duration-300 hover:shadow-[12px_12px_0px_0px_#ef4444] hover:-translate-y-1">
+          <div className="flex-1 bg-black border-2 border-white/20 p-8 hover:border-red-500 transition-all duration-300 hover:shadow-[12px_12px_0px_0px_#ea384c] hover:-translate-y-1">
             <div className="flex justify-between items-start mb-4">
               <h4 className="text-2xl font-black text-white uppercase tracking-tight">
                 LIVE FIRE EXERCISE

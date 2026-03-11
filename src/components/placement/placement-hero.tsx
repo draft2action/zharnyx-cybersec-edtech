@@ -16,7 +16,7 @@ export function PlacementHero() {
   return (
     <section className="relative overflow-hidden bg-[#000000] font-sans pt-[160px] pb-[80px] px-6 border-b border-[#1a1a1a]">
       {/* Background Glows and Grid */}
-      {/* <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#ea384c] opacity-[0.05] blur-[120px] pointer-events-none" />
+      {/* <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-red-500 opacity-[0.05] blur-[120px] pointer-events-none" />
       <div 
         className="absolute inset-0 pointer-events-none opacity-[0.1]"
         style={{
@@ -29,7 +29,7 @@ export function PlacementHero() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-[#ea384c] text-[11px] md:text-[13px] font-mono tracking-[0.15em] mb-[24px uppercase]"
+          className="text-red-500 text-[11px] md:text-[13px] font-mono tracking-[0.15em] mb-[24px uppercase]"
         >
           PLACEMENT & CAREERS
         </motion.p>
@@ -40,7 +40,7 @@ export function PlacementHero() {
           transition={{ delay: 0.1 }}
           className="text-[30px] md:text-[40px] lg:text-[54px] font-bold text-[#ffffff] leading-[1.1] tracking-tight mb-[24px]"
         >
-          From Training to <span className="text-[#ea384c]">Career Launch</span>
+          From Training to <span className="text-red-500">Career Launch</span>
         </motion.h1>
 
         <motion.p
@@ -60,7 +60,7 @@ export function PlacementHero() {
             transition={{ delay: 0.3 }}
             className="text-[20px] md:text-[28px] font-bold text-white mb-[48px] text-center"
           >
-            Hiring <span className="text-[#ea384c]">Partners</span>
+            Hiring <span className="text-red-500">Partners</span>
           </motion.h2>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-[24px] w-full max-w-3xl">

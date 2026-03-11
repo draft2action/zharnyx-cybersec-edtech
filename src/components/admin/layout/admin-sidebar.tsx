@@ -101,17 +101,17 @@ export function AdminSidebar({
 
   return (
     <Sidebar
-      className="border-r border-white/10 bg-black/90 text-white"
+      className="border-r border-[#1a1a1a] bg-black/90 text-white"
       collapsible="icon"
     >
-      <SidebarHeader className="border-b border-white/10 p-4">
-        <div className="flex items-center gap-2 font-mono font-bold text-xl text-white">
+      <SidebarHeader className="border-b border-[#1a1a1a] p-4">
+        <div className="flex items-center gap-2 font-sans font-bold text-xl text-white">
           <span className="text-blue-500">Cyber</span>Sec
         </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-gray-500 font-mono">
+          <SidebarGroupLabel className="text-gray-500 font-sans">
             Admin Console
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -122,7 +122,7 @@ export function AdminSidebar({
                     asChild
                     isActive={activeSection === item.id}
                     onClick={() => onSectionChange(item.id)}
-                    className="hover:bg-white/10 data-[active=true]:bg-blue-600 data-[active=true]:text-white font-mono transition-colors"
+                    className="hover:bg-white/10 data-[active=true]:bg-blue-600 data-[active=true]:text-white font-sans transition-colors"
                   >
                     <button>
                       <item.icon className="h-4 w-4" />
@@ -135,12 +135,12 @@ export function AdminSidebar({
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="border-t border-white/10 p-4">
+      <SidebarFooter className="border-t border-[#1a1a1a] p-4">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
               onClick={() => router.push("/")}
-              className="hover:bg-white/10 font-mono text-gray-400 hover:text-white"
+              className="hover:bg-white/10 font-sans text-gray-400 hover:text-white"
             >
               <Home className="h-4 w-4" />
               <span>Back to Home</span>
@@ -149,7 +149,7 @@ export function AdminSidebar({
           <SidebarMenuItem>
             <SidebarMenuButton
               onClick={handleLogout}
-              className="hover:bg-red-500/10 text-red-400 hover:text-red-300 font-mono"
+              className="hover:bg-red-500/10 text-red-400 hover:text-red-300 font-sans"
             >
               <LogOut className="h-4 w-4" />
               <span>Sign Out</span>

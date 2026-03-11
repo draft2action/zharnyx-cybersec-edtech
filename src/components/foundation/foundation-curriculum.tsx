@@ -6,7 +6,7 @@ import { Terminal, Globe, Code } from "lucide-react";
 const curriculumBlocks = [
   {
     month: "Month 1: Systems, OS & Virtualization",
-    icon: <Terminal className="w-[24px] h-[24px] text-[#ea384c]" />,
+    icon: <Terminal className="w-[24px] h-[24px] text-red-500" />,
     weeks: [
       {
         id: "week-1",
@@ -40,7 +40,7 @@ const curriculumBlocks = [
   },
   {
     month: "Month 2: Networking, TCP/IP & Traffic Analysis",
-    icon: <Globe className="w-[24px] h-[24px] text-[#ea384c]" />,
+    icon: <Globe className="w-[24px] h-[24px] text-red-500" />,
     weeks: [
       {
         id: "week-5",
@@ -74,7 +74,7 @@ const curriculumBlocks = [
   },
   {
     month: "Month 3: Security Frameworks, Python & Capstone",
-    icon: <Code className="w-[24px] h-[24px] text-[#ea384c]" />,
+    icon: <Code className="w-[24px] h-[24px] text-red-500" />,
     weeks: [
       {
         id: "week-9",
@@ -134,7 +134,7 @@ export function FoundationCurriculum() {
                     transition={{ delay: i * 0.1 }}
                     className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-[32px] hover:border-[#262626] transition-colors flex flex-col h-full"
                   >
-                    <div className="text-[#ea384c] text-[13px] font-mono mb-[16px]">
+                    <div className="text-red-500 text-[13px] font-mono mb-[16px]">
                       {week.label}
                     </div>
                     <h3 className="text-[18px] font-bold text-[#f2f2f2] mb-[12px]">
@@ -144,7 +144,7 @@ export function FoundationCurriculum() {
                       {week.description}
                     </p>
                     <div className="mt-auto">
-                      <span className="text-[#ea384c] text-[13px]">Tools: </span>
+                      <span className="text-red-500 text-[13px]">Tools: </span>
                       <span className="text-[#737373] text-[13px]">{week.tools}</span>
                     </div>
                   </motion.div>

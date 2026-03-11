@@ -84,7 +84,7 @@ function TimelineItem({
 
   const colorMap = {
     red: {
-      hover: "hover:border-red-500 hover:shadow-[12px_12px_0px_0px_#ef4444]",
+      hover: "hover:border-red-500 hover:shadow-[12px_12px_0px_0px_#ea384c]",
       dot: "md:group-hover:border-red-500",
       text: "text-red-500",
     },

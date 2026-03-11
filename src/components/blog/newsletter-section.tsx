@@ -12,7 +12,7 @@ export function NewsletterSection() {
           viewport={{ once: true }}
           className="text-[32px] md:text-[40px] font-bold text-[#f2f2f2] tracking-tight mb-[16px]"
         >
-          Weekly Tamil Nadu <span className="text-[#ea384c]">Cyber Insights</span>
+          Weekly Tamil Nadu <span className="text-red-500">Cyber Insights</span>
         </motion.h2>
         
         <motion.p
@@ -36,12 +36,12 @@ export function NewsletterSection() {
           <input 
             type="email" 
             placeholder="your@email.com" 
-            className="flex-1 bg-[#0a0a0a] border border-[#262626] rounded-md px-[16px] py-[12px] text-[#f2f2f2] text-[15px] placeholder:text-[#525252] focus:outline-none focus:border-[#ea384c] transition-colors"
+            className="flex-1 bg-[#0a0a0a] border border-[#262626] rounded-md px-[16px] py-[12px] text-[#f2f2f2] text-[15px] placeholder:text-[#525252] focus:outline-none focus:border-red-500 transition-colors"
             required
           />
           <button 
             type="submit"
-            className="bg-[#ea384c] hover:bg-[#d92d3f] text-white px-[24px] py-[12px] rounded-md font-medium text-[15px] transition-all shadow-[0_0_20px_rgba(234,56,76,0.3)] hover:shadow-[0_0_25px_rgba(234,56,76,0.4)] whitespace-nowrap"
+            className="bg-red-500 hover:bg-[#d92d3f] text-white px-[24px] py-[12px] rounded-md font-medium text-[15px] transition-all shadow-[0_0_20px_rgba(234,56,76,0.3)] hover:shadow-[0_0_25px_rgba(234,56,76,0.4)] whitespace-nowrap"
           >
             Subscribe
           </button>

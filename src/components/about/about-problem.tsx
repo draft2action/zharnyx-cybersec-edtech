@@ -27,7 +27,7 @@ const problems = [
 
 export function AboutProblem() {
   return (
-    <section className="bg-[#050505] font-sans py-[120px] px-6">
+    <section id="journey" className="bg-[#050505] font-sans py-[120px] px-6">
       <div className="container mx-auto max-w-[800px]">
         {/* Header */}
         <div className="text-center mb-[80px]">
@@ -37,7 +37,7 @@ export function AboutProblem() {
             viewport={{ once: true }}
             className="text-[32px] md:text-[48px] font-bold text-[#f2f2f2] tracking-tight"
           >
-            The Problem <span className="text-[#ea384c]">We Solve</span>
+            The Problem <span className="text-red-500">We Solve</span>
           </motion.h2>
         </div>
 
@@ -52,7 +52,7 @@ export function AboutProblem() {
               transition={{ delay: i * 0.1 }}
               className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-lg p-[24px] flex items-center gap-[24px]"
             >
-              <div className="flex-shrink-0 w-[32px] h-[32px] rounded-full bg-[#ea384c]/10 flex items-center justify-center font-mono font-bold text-[#ea384c] text-[14px]">
+              <div className="flex-shrink-0 w-[32px] h-[32px] rounded-full bg-red-500/10 flex items-center justify-center font-mono font-bold text-red-500 text-[14px]">
                 {problem.num}
               </div>
               <p className="text-[#a3a3a3] text-[15px]">
@@ -67,7 +67,7 @@ export function AboutProblem() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="border-l-[2px] border-[#ea384c] pl-[24px] md:pl-[40px] py-[12px] max-w-[650px] mx-auto text-center md:text-left"
+          className="border-l-[2px] border-red-500 pl-[24px] md:pl-[40px] py-[12px] max-w-[650px] mx-auto text-center md:text-left"
         >
           <p className="text-[#a3a3a3] text-[18px] md:text-[20px] italic leading-relaxed">
             "A certificate tells an employer you studied. A portfolio tells them you can do the job."
